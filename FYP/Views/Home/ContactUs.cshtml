@@ -1,0 +1,58 @@
+﻿@inject Models.ContactUsModel contactus
+@model Models.ContactUsModel
+@{
+}
+
+<body style="" class="contactus-background">
+
+</body>
+
+
+<form method="post">
+
+
+    <div class="row">
+        <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded">
+            <center>
+                <h1 class="text-white bg-white bg-opacity-10 rounded">Contact With Us</h1>
+            </center>
+
+            <div class="input-group mb-3 justify-content-center">
+                <span class="input-group-text bg-black bg-opacity-10"> <img class="icon" src="~/Icons/Contactus/name.svg" style="filter:invert(1);" /> </span>
+                <div class="form-floating col-6">
+                    <input asp-for="@contactus.Name" class="form-control bg-black bg-opacity-10 " placeholder="Username">
+                    <label asp-for="@contactus.Name" class="text-white">Username</label>
+                </div>
+            </div>
+
+            <div class="input-group mb-3 justify-content-center">
+                <span class="input-group-text bg-black bg-opacity-10"><img class="icon" src="~/Icons/Contactus/email.svg" style="filter:invert(1);" /></span>
+                <div class="form-floating col-6">
+                    <input asp-for="@contactus.Email" class="form-control bg-black bg-opacity-10" placeholder="Email">
+                    <label asp-for="@contactus.Email" class="text-white">Email</label>
+                </div>
+            </div>
+
+            <div class="input-group mb-3 justify-content-center">
+                <span class="input-group-text bg-black bg-opacity-10"><img class="icon" src="~/Icons/Contactus/subject.svg" style="filter:invert(1);" /></span>
+                <div class="form-floating col-6">
+                    <input asp-for="@contactus.Subject" class="form-control bg-black bg-opacity-10" placeholder="Subject">
+                    <label asp-for="@contactus.Subject" class="text-white">Subject</label>
+                </div>
+            </div>
+
+            <div class="input-group mb-3 justify-content-center">
+                <span class="input-group-text bg-black bg-opacity-10"><img class="icon" src="~/Icons/Contactus/description.svg" style="filter:invert(1);" /></span>
+                <div class="form-floating col-6">
+                    <textarea asp-for="@contactus.Description" class="form-control bg-black bg-opacity-10" placeholder="Description"><</textarea>
+                    <label asp-for="@contactus.Description" class="text-white">Description</label>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <input type="submit" value="Send Mail" class="btn btn-light col-3" />
+            </div>
+
+        </div>
+    </div>
+</form>

@@ -1,0 +1,235 @@
+﻿
+@{
+    ViewData["Title"] = "Home page";
+    ViewData["color"] = "text-muted";
+    ViewData["render"] = "render";    
+}
+
+<body style="" class="dashboard-background">
+
+</body>
+
+@if (TempData["signout_notification"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Logged Out || </strong> You have logged Out of your LMS Account at : @DateTime.Now
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<div class="row">
+    @*    col 1*@
+    @if (TempData["signin_notification"] != null)
+    {
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Logged In ||</strong> You have logged in to your LMS Account at : @DateTime.Now
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    }
+
+    <div class="col-md-6 p-2">
+
+        @* Section for Current Courses*@
+        <div class="row m-2">
+            @*  header  *@
+
+            <div class="col justify-content-between d-flex p-2 bg-dark text-white mb-1 fw-bold text-uppercase">
+                <label>My Current Courses</label>
+                <div>
+                    <a class="link text-decoration-none link-info" href="#"><img class="align-middle icon me-1" src="~/icons/hamburger.svg" />Enroll Now</a>
+                </div>
+            </div>
+
+            <div class="w-100"></div>
+
+            @*  end header  *@
+            <div class="col border bg-black text-center bg-opacity-50 mx-2">
+                <div class="row">
+                    <div class="col bg-black bg-opacity-50 p-2">
+                        <strong class="text-white ms-2">Current Courses List</strong>
+                        <button class="btn1 btn-primary float-end">+</button>
+                        <button class="btn2 btn-primary hide float-end">-</button>
+                    </div>
+                    <div class="w-100"></div>
+
+                    <div class="coll col hide">
+                        <div class="card-body text-white">
+                            You don't have any courses yet
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        @*End Section for Current Courses*@
+
+        @* Section for Previous Courses*@
+        <div class="row m-2">
+            @*  col 1 of 100% width  *@
+
+            <div class="col p-2 bg-dark text-white mb-1 fw-bold text-uppercase">
+                <label>My Previous Courses</label>
+            </div>
+
+            <div class="w-100"></div>
+            <div class="col border bg-black text-center bg-opacity-50 mx-2">
+                <div class="row">
+                    <div class="col bg-black bg-opacity-50 p-2">
+                        <strong class="text-white ms-2">Previous Courses List</strong>
+                        <button class="btn1 btn-primary float-end">+</button>
+                        <button class="btn2 btn-primary hide float-end">-</button>
+                    </div>
+                    <div class="w-100"></div>
+
+                    <div class="coll col hide">
+                        <div class="card-body text-white">
+                            You don't have any Previous courses
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        @*End Section for Previous Courses*@
+
+    </div>
+
+    @*     col 2*@
+    <div class="col-md-6 p-2">
+
+        @* Section for Notice Board*@
+        <div class="row m-2">
+            @*  col 1 of 100% width  *@
+
+            <div class="col justify-content-between d-flex p-2 bg-dark text-white mb-1 fw-bold text-uppercase">
+                <label>Notice Board</label>
+            </div>
+
+            <div class="w-100"></div>
+
+            <div class="col-3 m-1 bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                <a href="#" class="text-decoration-none link-dark">
+                    <center>
+                        <img class="icon2" src="~/icons/news.svg " />
+                    </center>
+                    <label style="cursor:pointer;" class="text-center text-white d-block">News & Events</label>
+                </a>
+            </div>
+
+            <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                <a href="#" class=" text-decoration-none link-dark">
+                    <center>
+                        <img class="icon2" src="~/icons/links.svg " />
+                    </center>
+                    <label class="text-center text-white d-block" style="cursor:pointer;">Important Links</label>
+                </a>
+            </div>
+
+        </div>
+
+        @* Section for My-Activities*@
+        <div class="row m-2">
+
+            @*  col 1 of 100% width  *@
+
+            <div class="col justify-content-between d-flex p-2 bg-dark text-white mb-1 fw-bold text-uppercase">
+                <label>My Activities</label>
+            </div>
+
+            <div class="w-100"></div>
+            <div class="col-3 m-1 flex-grow-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                <a href="#" class=" text-decoration-none link-dark">
+                    <center>
+                        <img class="icon2" src="~/icons/calender.svg" />
+                    </center>
+                    <label class="text-center text-white d-block" style="cursor:pointer;">Assignments</label>
+                </a>
+
+            </div>
+            <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                <a href="#" class=" text-decoration-none link-dark">
+                    <center>
+                        <img class="icon2" src="~/icons/quiz.svg" />
+                    </center>
+                    <label class="text-center text-white d-block" style="cursor:pointer;">Quizes</label>
+                </a>
+
+            </div>
+            <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                <a href="#" class=" text-decoration-none link-dark">
+                    <center>
+                        <img class="icon2" src="~/icons/discussion.svg" />
+                    </center>
+                    <label class="text-center text-white d-block" style="cursor:pointer;">Discussion</label>
+                </a>
+
+            </div>
+            <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary mt-1" style="cursor:pointer;">
+                <a href="#" class=" text-decoration-none link-dark" title="Add your Personal Notes here">
+                    <center>
+                        <img class="icon2" src="~/icons/notes.svg" />
+                    </center>
+                    <label class="text-center text-white d-block" style="cursor:pointer;">My Notes</label>
+                </a>
+
+            </div>
+
+        </div>
+
+        @* Section for Services*@
+        <div class="row m-2">
+
+            @*  col 1 of 100% width  *@
+
+            <div class="col justify-content-between d-flex p-2 bg-dark text-white mb-1 fw-bold text-uppercase">
+                <label>Services</label>
+            </div>
+
+            <div class="w-100"></div>
+
+            <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                <a href="#" class=" text-decoration-none link-dark">
+                    <center>
+                        <img class="icon2" src="~/icons/results.svg" />
+                    </center>
+                    <label class="text-center text-white d-block" style="cursor:pointer;">Result</label>
+                </a>
+            </div>
+
+            <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                <a href="#" class=" text-decoration-none link-dark">
+                    <center>
+                        <img class="icon2" src="~/icons/support.svg" />
+                    </center>
+                    <label class="text-center text-white d-block">Support</label>
+                </a>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts{
+
+    <script>
+        //Show + sign
+        $('.btn1').on('click', function () {
+            $('.coll').toggleClass('hide')
+            $('.btn2').toggleClass('hide')
+            $('.btn1').toggleClass('hide')
+        });
+        //Show - sign
+        $('.btn2').on('click', function () {
+            $('.coll').toggleClass('hide')
+            $('.btn1').toggleClass('hide')
+            $('.btn2').toggleClass('hide')
+        });
+    </script>
+
+}

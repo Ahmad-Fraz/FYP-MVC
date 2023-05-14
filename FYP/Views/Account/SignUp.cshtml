@@ -1,0 +1,185 @@
+﻿@model Models.SignUpModel
+@{
+    ViewData["Title"] = "SignUp Page";
+    ViewData["color"] = "signup_text-muted";
+}
+
+<body style="" class="signup-background">
+
+</body>
+
+@if (TempData["UsernotCreated"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        Account cannot be created.
+    </div>
+}
+
+@*<span class="backshadow shadow rounded"></span>
+*@
+
+<div class="pageContent">
+
+    <center class="border border-dark bg-black bg-opacity-50" style="border-radius:2rem;"> <img class="signin-icon text-white" src="~/icons/person-signup (1).svg" /> <h2>SignUp to UAF LMS || FYP</h2> </center>
+
+    <form class="mt-2 border border-dark bg-black bg-opacity-50" method="post" style="border-radius:2rem;" enctype="multipart/form-data" asp-action="SignUp" asp-controller="Account">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+
+                    <div class="d-sm-flex col justify-content-center">
+
+                        <div class="col-md-5 m-1">
+
+                            <div class="mb-3">
+                                <label asp-for="@Model.Name" class="form-label"></label>
+                                <input asp-for="@Model.Name" class="form-control edit_Form-control" tabindex="1">
+                                <span asp-validation-for="@Model.Name" class="bg-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="@Model.DOB" class="form-label"></label>
+                                <input asp-for="@Model.DOB" class="form-control edit_Form-control text-black" style="filter:invert(1);" placeholder="xxxx-ag-xxxx" tabindex="3" />
+                                <span asp-validation-for="@Model.DOB" class="bg-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="@Model.password" class="form-label"></label>
+                                <input asp-for="@Model.password" class="form-control edit_Form-control" tabindex="5">
+                                <span asp-validation-for="@Model.password" class="bg-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <select class="dropdown-item-text edit_Form-control degree border col-12" asp-for="@Model.Degree" tabindex="7">
+                                    <option selected>Please Select Your Degree</option>
+                                    <optgroup label="Faculty of Sciences">
+                                        <option value="CS">Computer Science</option>
+                                        <option value="SE">Software Engineering</option>
+                                        <option value="IT">Information Technology</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-5 m-1">
+
+                            <div class="mb-3">
+                                <label asp-for="@Model.Email" class="form-label"></label>
+                                <input asp-for="@Model.Email" class="form-control edit_Form-control" placeholder="name@gmail.com" tabindex="2">
+                                <span asp-validation-for="@Model.Email" class="bg-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="@Model.PhoneNo" class="form-label"></label>
+                                <input asp-for="@Model.PhoneNo" class="form-control edit_Form-control" tabindex="4">
+                                <span asp-validation-for="@Model.PhoneNo" class="bg-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="@Model.confirm_password" class="form-label">Confirm Password</label>
+                                <input asp-for="@Model.confirm_password" class="form-control edit_Form-control" tabindex="6">
+                                <span asp-validation-for="@Model.confirm_password" class="bg-danger"></span>
+                            </div>
+                           
+
+                            <div class="mb-3 d-flex justify-content-center border">
+                                <div class="d-lg-flex">
+                                    <label class="p-1 fw-bold">Member Type: </label>
+                                    @foreach (var item in Html.GetEnumSelectList<Models.SignUpModel.Select>())
+                                    {
+                                        <div class="form-check m-1">
+                                            <input class="form-check-input" type="radio" asp-for="Member_Type" id="@item.Value"  name="type" value="@item.Text" tabindex="8">
+                                            <label for="@item.Value">@item.Text</label>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="carousel-item">
+
+                    <div class="d-sm-flex col justify-content-center " style="height:25rem;">
+
+                        <div class="col-md-5 m-1">
+
+                            <div class="mb-3">
+                                <label asp-for="@Model.Gender" class="form-label"></label>
+                                <select class="bg-black bg-opacity-10 text-white h4 d-block col-12" asp-for="@Model.Gender" placeholder="Optional:You can set it later" tabindex="9">
+                                    <option selected value="Male" class="text-black">Male</option>
+                                    <option value="Female" class="text-black">Female</option>
+                                </select>
+                                <span asp-validation-for="@Model.Gender" class="bg-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="@Model.Home_Address" class="form-label"></label>
+                                <input asp-for="@Model.Home_Address" class="form-control edit_Form-control" tabindex="11" placeholder="Optional:You can set it later">
+                                <span asp-validation-for="@Model.Home_Address" class="bg-danger"></span>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-5 m-1">
+
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.Profile_pic"></label>
+                                <div class="input-group mb-3">
+                                    <input type="file" class="form-control text-white bg-black bg-opacity-10" asp-for="@Model.Profile_pic" tabindex="10">
+                                    <label class="input-group-text" asp-for="@Model.Profile_pic">Upload</label>
+                                </div>
+
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label asp-for="@Model.City_Name" class="form-label"></label>
+                                <input asp-for="@Model.City_Name" class="form-control edit_Form-control" tabindex="12" placeholder="Optional:You can set it later">
+                                <span asp-validation-for="@Model.City_Name" class="bg-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <center class="position-absolute" style="bottom: 0px;left: 0;right: 0;top: 75%;">
+                        <input type="submit" class="btn btn-primary mt-1 col-6" value="Sign Up" tabindex="13" />
+                    </center>
+
+                </div>
+
+            </div>
+
+            <button style="left:-30px;" class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button style="right:-30px;" class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+</div>
+
+<div class="m-5">
+</div>

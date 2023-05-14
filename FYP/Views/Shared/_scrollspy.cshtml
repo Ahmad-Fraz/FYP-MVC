@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Home"] = "Home";
+}
+<div class="row">
+
+    <div class="col-3">
+        <div id="list-example" class="list-group">
+            <a class="list-group-item list-group-item-action bg-black bg-opacity-75 link-light border-bottom btn-outline-light" href="#Home">Home</a>
+            <a class="list-group-item list-group-item-action bg-black bg-opacity-75 link-light border-bottom btn-outline-light" href="#Security">Security</a>
+        </div>
+    </div>
+
+    <div class="col-9">
+        <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" data-bs-offset="0" class="scrollspy" tabindex="0">
+            <div id="Home">
+                <partial name="Dropdown_Partials/_Home.cshtml"></partial>
+            </div>
+
+            <div id="Security">
+                <partial name="Dropdown_Partials/_security.cshtml"></partial>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<hr />

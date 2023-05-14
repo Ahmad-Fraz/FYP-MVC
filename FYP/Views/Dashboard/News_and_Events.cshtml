@@ -1,0 +1,201 @@
+﻿@model IEnumerable<Models.Dashboard.news_events>
+@inject Models.Dashboard.news_events New_Events
+@{
+
+}
+
+<div class="row">
+    @if (TempData["SuccessNotification"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Event created Successfully ||</strong> A new Event has been created.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["FailuresNotification"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Event Cannot be Created</strong> There was a problem in event creation.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @*    Bread Crumb
+    *@
+
+    <div class="col container_img">
+
+        <div class="event_para rounded">
+            <center class="h1 bg-success ">News & Events </center>
+            <p class="font-monospace text-capitalize">Lok Virsa festival is the largest cultural activity in Pakistan held in October every year. For the last two decades, this festival has attracted international artisans and performers from more than 20 countries around the world to perform</p>
+            <a class="m-3 btn btn-outline-light btn-link link-light border" href="#CreateEvent" data-bs-toggle="modal" data-bs-target="#_CreateEvent">Create New Event</a>
+        </div>
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/Images for background/Event.jpg" class="d-block w-100" alt="..." style="height:25rem;">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/Images for background/event1.jpg" class="d-block w-100" alt="..." style="height:25rem;">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/Images for background/event2.jpg" class="d-block w-100" alt="..." style="height:25rem;">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="w-100"></div>
+
+    <div class="row">
+        <label>Upcoming Events</label>
+    </div>
+
+    <hr />
+
+    @foreach (var events in Model)
+    {
+        int id = events.id;
+        var eventImage = "/profile_pics/" + (events.Event_Image_Name ?? "qm.jpg");
+
+        <div class="row my-1 border-bottom">
+
+            <div class="col-2 p-1 my-auto">
+                <strong>@events.Date</strong>
+            </div>
+            <div class="col-4 p-1">
+                <img class="w-100" style="height:15rem;" src="@eventImage" />
+            </div>
+
+            @*        For Text
+        *@
+            <div class="col-6">
+                <div class="w-100" style="">
+                    <div class="card-body">
+                        <h5 class="card-title">@events.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary text-muted">
+                            @events.Date <br>Time : @events.FromTime To @events.ToTime
+                        </h6>
+                        <hr />
+                        <a href="#" class="card-link btn btn-outline-success my-2">View Event Details</a> <br>
+                        <div class="justify-content-between">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @*Creating New Event*@
+    <form method="post" enctype="multipart/form-data" asp-controller="Dashboard" asp-action="News_and_Events">
+        <div class="" id="CreateEvent">
+
+            <!-- Modal -->
+            <div class="modal fade" id="_CreateEvent" tabindex="-1" aria-labelledby="CreateEvent" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content overflow-scroll" style="height:90vh;">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="CreateEvent">Create a New Event</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <div class="mb-3 col">
+                                <label asp-for="@New_Events.Date" class="form-label"></label>
+                                <input class="form-control focus" asp-for="@New_Events.Date" type="date">
+                                <span asp-validation-for="@New_Events.Date" class="text-danger"></span>
+                            </div>
+
+                            <div class="row justify-content-between">
+
+                                <div class="mb-3 col-5">
+                                    <label asp-for="@New_Events.FromTime" class="form-label"></label>
+                                    <input class="form-control focus" asp-for="@New_Events.FromTime">
+                                    <span asp-validation-for="@New_Events.FromTime" class="text-danger"></span>
+                                </div>
+
+                                <label class="col-2 text-center m-auto">To</label>
+
+                                <div class="mb-3 col-5">
+                                    <label asp-for="@New_Events.ToTime" class="form-label"></label>
+                                    <input class="form-control focus" asp-for="@New_Events.ToTime">
+                                    <span asp-validation-for="@New_Events.ToTime" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3 col">
+                                <label asp-for="@New_Events.Title" class="form-label"></label>
+                                <input class="form-control focus" asp-for="@New_Events.Title">
+                                <span asp-validation-for="@New_Events.Title" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col">
+                                <label asp-for="@New_Events.ShortDescription" class="form-label"></label>
+                                <textarea class="form-control focus" asp-for="@New_Events.ShortDescription"></textarea>
+                                <span asp-validation-for="@New_Events.ShortDescription" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col">
+                                <label asp-for="@New_Events.Description" class="form-label"></label>
+                                <textarea class="form-control focus" asp-for="@New_Events.Description"></textarea>
+                                <span asp-validation-for="@New_Events.Description" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="mb-3 col">
+                                <label asp-for="@New_Events.Locations" class="form-label"></label>
+                                <input class="form-control focus" asp-for="@New_Events.Locations" placeholder="Enter the location of event occuring place">
+                                <span asp-validation-for="@New_Events.Locations" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="@New_Events.FormFile" class="form-label"></label>
+                                <input asp-for="@New_Events.FormFile" class="form-control focus" type="file" onchange="ShowPreview(this)">
+
+                            </div>
+
+
+                            <div class="text-center m-auto">
+                                <img id="img" style="height:20rem; text-align:center;width:-webkit-fill-available;}" alt="Choose an image to preview" />
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create Event</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+
+    @section Scripts{
+        <script type="text/javascript">
+
+            function ShowPreview(input) {
+                if (input.files && input.files[0]) {
+                    var ImageDir = new FileReader();
+                    ImageDir.onload = function (e) {
+                        $('#img').attr('src', e.target.result);
+                    }
+                    ImageDir.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
+
+    }
