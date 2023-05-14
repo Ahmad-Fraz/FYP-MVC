@@ -1,0 +1,55 @@
+﻿@model Models.SignInModel
+
+@{
+    ViewData["Title"] = "SignIn Page";
+    ViewData["color"] = "signin_text-muted";
+}
+
+<body style="" class="signin-background">
+
+</body>
+
+@if (TempData["UserCreated"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style=" z-index:1; ">
+        <strong>Account Created Successfully</strong> Your account has been created successfully.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+@*<span class="backshadow shadow rounded"></span>
+*@
+<div class="signin-pageContent bg-opacity-50 bg-black text-white p-3 align-content-center text-center">
+
+    <center><img class="signin-icon" src="~/icons/person-signin (2).svg" /> <h2>Sign In</h2> </center>
+    <form method="post" class="justify-content-center d-grid" asp-controller="Account" asp-action="SignIn">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="@Model.Email" class="form-label"></label>
+            <input asp-for="@Model.Email" class="form-control edit_Form-control" placeholder="ahmad@gmail.com">
+            <span asp-validation-for="@Model.Email" class="bg-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="@Model.password" class="form-label"></label>
+            <input asp-for="@Model.password" class="form-control edit_Form-control">
+            <span asp-validation-for="@Model.password" class="bg-danger"></span>
+        </div>
+
+        <div class="form-check pb-3">
+            <label class="form-check-label" asp-for="@Model.keepMeSignedIn"></label>
+            <input class="form-check-input" asp-for="@Model.keepMeSignedIn" value="">
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Sign In" />
+
+    </form>
+
+    <div class="form-check pb-3 ">
+        <a class="link-light" href="#">Forgot Password?</a>
+    </div>
+
+</div>

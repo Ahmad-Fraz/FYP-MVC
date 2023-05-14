@@ -1,0 +1,117 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signin_manager
+@inject Models.SignUpModel signup
+
+@{
+    var user_TwoFactorAuthentication = User.FindFirst("TwoFactorAuthentication").Value;
+
+    var user_Two_step_Verification_Phone = User.FindFirst("Two_step_Verification_Phone").Value;
+    var user_Recovery_Email = User.FindFirst("Recovery_Email").Value;
+}
+@*--------------------- Security
+*@
+
+<center>
+    <h1 class="text-uppercase fw-bold shadow text-white border m-2 bg-black" style="border-radius:2rem;">Security</h1>
+</center>
+
+<div class="border p-1 rounded m-2 bg-black bg-opacity-50 text-light">
+    <h3>How you sign in to your LMS</h3>
+    <p>Make sure that you can sign in to your LMS anytime by keeping your information Up-to-Date</p>
+    <table class="table fs-5 table-striped table-hover table-sm">
+
+        <tbody>
+            <tr>
+                <td colspan="2" class="col-3 text-info">Two-Step Verification: </td>
+                <td class="text-white col-7">It helps to make your account more secure.</td>
+                <td class=" text-white text-end">
+                    @user_TwoFactorAuthentication
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="col-3 text-info">2-step Verification Phone: </td>
+                <td class="text-white col-7">@user_Two_step_Verification_Phone</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="col-3 text-info">Recovery Email: </td>
+                <td colspan="2" class="text-white col-7">@user_Recovery_Email</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="col-3 text-info bg-black">Edit SignIn Info: </td>
+
+                <td class="text-center bg-black bg-opacity-75">
+                    <a href="#Seditmodel_1" class="text-decoration-none" style="filter:invert(1);" data-bs-toggle="modal" data-bs-target="#Seditmodel">
+                        <img src="/Icons/Edit.svg" class="img-fluid icon" style="border-bottom: 2px solid black;" />
+                    </a>
+                </td>
+                <td class="bg-black bg-opacity-75"></td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="border p-1 rounded m-2 bg-black bg-opacity-50 text-light"> 
+    <h3>Your devices:</h3>
+    <p>Where you are signed in</p>
+    <table class="table fs-5 table-striped table-hover table-sm">
+
+        <tbody>
+            <tr>
+                <td colspan="2" class="col-3 text-info"> Windows Computer</td>
+                <td class="text-white col-7">Windows 10</td>
+                <td class=" text-white text-end">
+                    done
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="col-3 text-info">Vivo y21: </td>
+                <td class="text-white col-7">Android</td>
+                <td class=" text-white text-end">
+                    21 -Feb-2022
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="Seditmodel_1">
+
+    <form method="post" enctype="multipart/form-data">
+        <!-- Button trigger modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="Seditmodel" tabindex="-1" aria-labelledby="SeditmodelLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-black bg-opacity-75 text-white border">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="SeditmodelLabel">Edit SignIn Info</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" asp-for="@signup.Two_step_Verification_Phone"></label>
+                            <input class="form-control text-black" asp-for="@signup.Two_step_Verification_Phone" value="">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" asp-for="@signup.Recovery_Email"></label>
+                            <input class="form-control text-black" asp-for="@signup.Recovery_Email" value="">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

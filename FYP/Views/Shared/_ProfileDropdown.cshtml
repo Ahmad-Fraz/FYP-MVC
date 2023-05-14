@@ -1,0 +1,53 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> manager
+@{
+    var username = User.FindFirst("FullName").Value;
+    var profilePhoto = User.FindFirst("Profile_Photo_Path").Value;
+    var Photofolder = "Profile_Pics/";
+
+    string photo = "";
+    if (profilePhoto != "")
+    {
+        photo = Photofolder + profilePhoto;
+    }
+
+
+}
+<!-- Example split danger button -->
+<div class="btn-group">
+    <button type="button" class="btn btn-outline-light me-1 bg-black bg-opacity-50" title="@username">@if (photo != "")
+        {
+            <img class="" style="height:2.5rem;width:2.5rem;border-radius:5rem" src="@photo" alt="No Image" />
+        }
+        else
+        {
+            @username
+        }</button>
+    <button type="button" class="btn btn-outline-light dropdown-toggle dropdown-toggle-split bg-black text-white" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="visually-hidden">@username</span>
+    </button>
+    <ul class="dropdown-menu">
+
+        <li class="@(Accessor.HttpContext.Request.Path.Value == "/Profile" ? "btn-primary" : "")">
+            <a class="dropdown-item" asp-action="Profile" asp-controller="Account">
+                <div class="m-auto w-50"><img src="/Icons/user-regular.svg" class="img-fluid icon" /> Profile </div>
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item @(Accessor.HttpContext.Request.Path.Value == "/Help" ? "btn-primary" : "")" asp-page="/Account/Profile">
+                <div class="m-auto w-50"><img src="/Icons/Help.svg" class="img-fluid icon" /> Help </div>
+        </a></li>
+        <li class="@(Accessor.HttpContext.Request.Path.Value == "/Setting" ? "btn-primary" : "")">
+            <a class="dropdown-item" asp-action="Setting" asp-controller="Account">
+                <div class="m-auto w-50"><img src="/Icons/Setting.svg" class="img-fluid icon" /> Setting </div>
+            </a>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+            <a class="dropdown-item" asp-action="SignOut" asp-controller="Account">
+                <div class="m-auto w-50"><img src="/Icons/SignOut.svg" class="img-fluid icon" /> SignOut </div>
+            </a>
+        </li>
+    </ul>
+</div>

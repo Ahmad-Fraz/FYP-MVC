@@ -1,0 +1,211 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+/* SignIn Page */
+.signin-icon {
+    width: 5rem;
+    filter: invert(1);
+}
+
+.backshadow {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50% );
+    position: absolute;
+    height: 50%;
+    width: 50%;
+    background: black;
+    opacity: .5;
+}
+
+.signin-pageContent {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50% );
+    position: absolute;
+}
+
+.pageContent {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50% );
+    position: absolute;
+    height: 75%;
+    width: 75%;
+    color: white;
+}
+
+.form-control:focus {
+    color: white !important;
+    background: transparent;
+}
+
+.focus:focus {
+    color: black !important;
+}
+
+.edit_Form-control {
+    background: transparent;
+    color: white;
+}
+
+.signin-background {
+    background-image: url('../Images for background/signin.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.signin_text-muted {
+    --bs-text-opacity: 1;
+    color: lightyellow !important;
+}
+
+/* End SignIn Page */
+
+/*SignUP Page */
+.signup-background {
+    background-image: url('../Images for background/system.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.signup_text-muted {
+    --bs-text-opacity: 1;
+    color: wheat !important;
+}
+
+.degree option, optgroup {
+    background: black;
+}
+
+
+/* End SignUP Page */
+
+input[type=text]::-webkit-input-placeholder {
+    color: aliceblue;
+    opacity: .5;
+}
+
+input[type=email]::-webkit-input-placeholder {
+    color: aliceblue;
+    opacity: .5;
+}
+
+/*--------  Icons 
+*/
+.icon {
+    width: 20px;
+}
+
+.icon2 {
+    width: 50px;
+    filter: invert(1);
+}
+
+.scrollspy {
+    height: 29rem;
+    overflow-y: scroll;
+}
+
+.hover:hover {
+    background-color: darkblue;
+    opacity: .5;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+.dashboard-background {
+    background-image: url('../Images for background/dashboard.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.home-background {
+    background-image: url('../Images for background/home.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.setting-background {
+    background-image: url('../Images for background/setting.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.contactus-background {
+    background-image: url("../Images for background/contactus.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.list-group-item.active {
+    background-color: #0d6efd !important;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545 !important;
+    border-color: #dc3545;
+}
+
+.btn-outline-light:hover {
+    color: black !important;
+    background-color: aliceblue !important;
+    border-color: #f8f9fa;
+}
+
+#carouselExample {
+    height: 25rem;
+}
+
+.btn-outline-light {
+    border: none;
+}
+
+.btn-outline-primary {
+    border: none;
+}
+
+    .btn-outline-primary:hover {
+        color: #fff;
+        background-color: #0d6efd !important;
+        border: white 1px solid;
+    }
+.link:active{
+    color:green;
+}
+
+.event_para {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    color: white;
+    background: black;
+    width: 30rem;
+    opacity: .7;
+    left: 50%;
+    padding: 1rem;
+    transform: translate(-50%, -50%);
+}
+.container_img{
+    position:relative;
+    text-align:center;
+}
