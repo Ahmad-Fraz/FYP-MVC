@@ -1,8 +1,15 @@
 ﻿@model IEnumerable<Models.Dashboard.news_events>
 @inject Models.Dashboard.news_events New_Events
 @{
-
+    Layout = "_Layout";
+    
 }
+
+<body style="" class="events-background">
+
+</body>
+
+<div id="placeHoderHere"></div>
 
 <div class="row">
     @if (TempData["SuccessNotification"] != null)
@@ -29,7 +36,7 @@
         <div class="event_para rounded">
             <center class="h1 bg-success ">News & Events </center>
             <p class="font-monospace text-capitalize">Lok Virsa festival is the largest cultural activity in Pakistan held in October every year. For the last two decades, this festival has attracted international artisans and performers from more than 20 countries around the world to perform</p>
-            <a class="m-3 btn btn-outline-light btn-link link-light border" href="#CreateEvent" data-bs-toggle="modal" data-bs-target="#_CreateEvent">Create New Event</a>
+            <a class="m-3 btn btn-outline-light bg-success link-light border" href="#CreateEvent" data-bs-toggle="modal" data-bs-target="#_CreateEvent">Create New Event</a>
         </div>
         <div id="carouselExample" class="carousel slide">
             <div class="carousel-inner">
@@ -55,21 +62,23 @@
     </div>
 
     <div class="w-100"></div>
-
+    <hr />
     <div class="row">
-        <label>Upcoming Events</label>
+        <label class="fw-bold fs-2 w-auto">Upcoming Events</label>
     </div>
 
     <hr />
 
     @foreach (var events in Model)
     {
+       
         int id = events.id;
         var eventImage = "/profile_pics/" + (events.Event_Image_Name ?? "qm.jpg");
 
-        <div class="row my-1 border-bottom">
+        <div class="row my-1 border-bottom bg-opacity-50 bg-black">
 
             <div class="col-2 p-1 my-auto">
+                <h6 class="text-muted fw-bold text-center">Event Date</h6>
                 <strong>@events.Date</strong>
             </div>
             <div class="col-4 p-1">
@@ -78,16 +87,53 @@
 
             @*        For Text
         *@
-            <div class="col-6">
+            <div class="col-6 m-auto">
                 <div class="w-100" style="">
                     <div class="card-body">
-                        <h5 class="card-title">@events.Title</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary text-muted">
-                            @events.Date <br>Time : @events.FromTime To @events.ToTime
+                        <h5 class="card-title"><h6 class="text-muted d-inline-flex me-3 fw-bold">Title :</h6>@events.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">
+                            <h6 class="text-muted d-inline-flex me-3 fw-bold">Date :</h6>@events.Date
+                            <br> <h6 class="text-muted d-inline-flex me-3 fw-bold">Time :</h6>@events.FromTime To @events.ToTime
                         </h6>
+
+                        <p class=""><h6 class="text-muted d-inline-flex me-3 fw-bold">Intoduction :</h6>@events.ShortDescription</p>
                         <hr />
-                        <a href="#" class="card-link btn btn-outline-success my-2">View Event Details</a> <br>
-                        <div class="justify-content-between">
+                       
+                        <br>
+
+                        <div class="justify-content-between d-flex">
+
+                            <a asp-action="EventDetail" asp-controller="Dashboard" class="card-link btn btn-outline-success my-2" asp-route-id="@id">View Event Details</a> <br>
+
+                            <button class="card-link btn btn-outline-info my-2" type="button" data-toggle="ajax-modal" data-target="#_EditEvent" data-url="@Url.Action($"EditEvent/{id}","Dashboard")">Edit</button>
+
+                            <a href="#_DeleteEvent" data-bs-toggle="modal" data-bs-target="#_DeleteEvent" class="card-link btn btn-outline-danger my-2">Delete Event</a>
+
+                            <form method="post" enctype="multipart/form-data" asp-controller="Dashboard" asp-action="Delete">
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="_DeleteEvent" tabindex="-1" aria-labelledby="DeleteEvent" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content overflow-scroll text-white bg-black bg-opacity-50">
+                                            <div class="modal-header text-center">
+                                                <h1 class="modal-title fs-5 fw-bold text-uppercase" id="DeleteEvent">Do you want to delete this Event</h1>
+                                                <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                                <input type="hidden" asp-for="@id" />
+                                           
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Delete Event</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -102,17 +148,17 @@
             <!-- Modal -->
             <div class="modal fade" id="_CreateEvent" tabindex="-1" aria-labelledby="CreateEvent" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content overflow-scroll" style="height:90vh;">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="CreateEvent">Create a New Event</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-content overflow-scroll text-white bg-black bg-opacity-50" style="height:90vh;">
+                        <div class="modal-header text-center">
+                            <h1 class="modal-title fs-5 fw-bold text-uppercase" id="CreateEvent">Create a New Event</h1>
+                            <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body">
 
                             <div class="mb-3 col">
                                 <label asp-for="@New_Events.Date" class="form-label"></label>
-                                <input class="form-control focus" asp-for="@New_Events.Date" type="date">
+                                <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@New_Events.Date" type="date" type="date">
                                 <span asp-validation-for="@New_Events.Date" class="text-danger"></span>
                             </div>
 
@@ -120,7 +166,7 @@
 
                                 <div class="mb-3 col-5">
                                     <label asp-for="@New_Events.FromTime" class="form-label"></label>
-                                    <input class="form-control focus" asp-for="@New_Events.FromTime">
+                                    <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@New_Events.FromTime" type="time">
                                     <span asp-validation-for="@New_Events.FromTime" class="text-danger"></span>
                                 </div>
 
@@ -128,7 +174,7 @@
 
                                 <div class="mb-3 col-5">
                                     <label asp-for="@New_Events.ToTime" class="form-label"></label>
-                                    <input class="form-control focus" asp-for="@New_Events.ToTime">
+                                    <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@New_Events.ToTime" type="time">
                                     <span asp-validation-for="@New_Events.ToTime" class="text-danger"></span>
                                 </div>
 
@@ -136,38 +182,38 @@
 
                             <div class="mb-3 col">
                                 <label asp-for="@New_Events.Title" class="form-label"></label>
-                                <input class="form-control focus" asp-for="@New_Events.Title">
+                                <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@New_Events.Title">
                                 <span asp-validation-for="@New_Events.Title" class="text-danger"></span>
                             </div>
 
                             <div class="mb-3 col">
                                 <label asp-for="@New_Events.ShortDescription" class="form-label"></label>
-                                <textarea class="form-control focus" asp-for="@New_Events.ShortDescription"></textarea>
+                                <textarea class="form-control focus filt bg-white bg-opacity-10" asp-for="@New_Events.ShortDescription"></textarea>
                                 <span asp-validation-for="@New_Events.ShortDescription" class="text-danger"></span>
                             </div>
 
                             <div class="mb-3 col">
                                 <label asp-for="@New_Events.Description" class="form-label"></label>
-                                <textarea class="form-control focus" asp-for="@New_Events.Description"></textarea>
+                                <textarea class="form-control focus filt bg-white bg-opacity-10" asp-for="@New_Events.Description"></textarea>
                                 <span asp-validation-for="@New_Events.Description" class="text-danger"></span>
                             </div>
 
 
                             <div class="mb-3 col">
                                 <label asp-for="@New_Events.Locations" class="form-label"></label>
-                                <input class="form-control focus" asp-for="@New_Events.Locations" placeholder="Enter the location of event occuring place">
+                                <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@New_Events.Locations" placeholder="Enter the location of event occuring place">
                                 <span asp-validation-for="@New_Events.Locations" class="text-danger"></span>
                             </div>
 
                             <div class="mb-3">
                                 <label asp-for="@New_Events.FormFile" class="form-label"></label>
-                                <input asp-for="@New_Events.FormFile" class="form-control focus" type="file" onchange="ShowPreview(this)">
+                                <input asp-for="@New_Events.FormFile" class="form-control focus filt bg-white bg-opacity-10" type="file" onchange="ShowPreview(this)">
 
                             </div>
 
 
                             <div class="text-center m-auto">
-                                <img id="img" style="height:20rem; text-align:center;width:-webkit-fill-available;}" alt="Choose an image to preview" />
+                                <img id="img" style="height:20rem; text-align:center; width:-webkit-fill-available;}" alt="Choose an image to preview" />
                             </div>
 
                         </div>
@@ -184,6 +230,10 @@
     </form>
 
 
+
+
+
+
     @section Scripts{
         <script type="text/javascript">
 
@@ -196,6 +246,8 @@
                     ImageDir.readAsDataURL(input.files[0]);
                 }
             }
+
+            
         </script>
 
     }

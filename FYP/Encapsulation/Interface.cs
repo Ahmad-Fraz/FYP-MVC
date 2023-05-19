@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FYP.Models.Dashboard;
+using Microsoft.AspNetCore.Identity;
 using Models;
 using Models.Dashboard;
 
@@ -18,6 +19,14 @@ namespace Encapsulation
         public Task<List<news_events>> Event_List();
         public Task<news_events> findEventAsync(int? id);
         public news_events UpdateEvent(news_events news_Events);
+        public Task DeleteEvent(news_events news_Events);
+        public Task<int> AddLink(Links Link);
+        public Task<int> DelLink(int? id);
+        public Task<int> AddAssignmet(Assignments assignments);
+        public Task<int> DelAssignment(int? id);
+        public Task<string> getUserNameByid(string id);
+
+
 
     }
 }

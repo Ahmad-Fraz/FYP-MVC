@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.InteropServices;
 using Models.Dashboard;
 using Microsoft.EntityFrameworkCore;
+using FYP.Models.Dashboard;
 
 namespace Encapsulation
 {
@@ -31,7 +32,7 @@ namespace Encapsulation
 
         public async Task<IdentityResult> signup(SignUpModel signUp)
         {
-            
+
             var user = new ApplicationUser()
             {
                 UserName = signUp.Email,
@@ -46,9 +47,16 @@ namespace Encapsulation
                 Home_Address = signUp.Home_Address,
                 Profile_Photo_Path = signUp.Profile_Photo_Path
             };
-            
+
             var result = await userManager.CreateAsync(user, signUp.password);
             return result;
+        }
+
+        public async Task<string> getUserNameByid(string id)
+        {
+            var user = await userManager.FindByIdAsync(id);
+            var username = user.FullName;
+            return username;
         }
 
         public async Task signout()
@@ -107,7 +115,7 @@ namespace Encapsulation
             user.Recovery_Email = signUp.Recovery_Email;
             await userManager.UpdateAsync(user);
 
-        }       
+        }
 
         public async Task<int> Create_News_Event(news_events news_Events)
         {
@@ -126,7 +134,7 @@ namespace Encapsulation
         {
             var events = new List<news_events>();
             var result = await dBase.News_Events.ToListAsync();
-            if(result?.Any() == true)
+            if (result?.Any() == true)
             {
                 foreach (var data in result)
                 {
@@ -141,9 +149,9 @@ namespace Encapsulation
                         Locations = data.Locations,
                         Event_Image_Name = data.Event_Image_Name,
                         ShortDescription = data.ShortDescription
-                        
-                        
-                    }) ;
+
+
+                    });
                 }
             }
             return events;
@@ -153,12 +161,49 @@ namespace Encapsulation
 
         {
             var _event = dBase.News_Events.Attach(news_Events);
+
             _event.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             dBase.SaveChanges();
             return news_Events;
         }
 
+        public async Task DeleteEvent(news_events news_Events)
+        {
+            dBase.News_Events.Remove(news_Events);
+            await dBase.SaveChangesAsync();
+        }
 
+        public async Task<int> AddLink(Links Link)
+        {
+            _ = dBase.Links.AddAsync(Link);
+            var result = await dBase.SaveChangesAsync();
+            return result;
+        }
+
+        public async Task<int> DelLink(int? id)
+        {
+            var link = dBase.Links.Where(x => x.id == id).FirstOrDefault();
+            dBase.Links.Remove(link);
+            var result = await dBase.SaveChangesAsync();
+            return result;
+        }
+        public async Task<int> AddAssignmet(Assignments assignments)
+        {
+           
+            
+            _ = dBase.Assignments.AddAsync(assignments);
+           
+            var result = await dBase.SaveChangesAsync();
+            return result;
+        }
+
+        public async Task<int> DelAssignment(int? id)
+        {
+            var assignments = dBase.Assignments.Where(x => x.id == id).FirstOrDefault();
+            dBase.Assignments.Remove(assignments);
+            var result = await dBase.SaveChangesAsync();
+            return result;
+        }
 
     }
 }

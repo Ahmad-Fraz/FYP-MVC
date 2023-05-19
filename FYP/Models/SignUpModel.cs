@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,6 +36,7 @@ namespace Models
 
         public string Degree { get; set; }
 
+        [Display(Name = "I m joining As:")]
         public string Member_Type { get; set; }
 
         [NotMapped, Display(Name = "Profile Picture")]
@@ -55,14 +57,6 @@ namespace Models
         public string? Two_step_Verification_Phone { get; set; }
         public string? Recovery_Email { get; set; }
 
-        [Display(Name = "Faculty Member")]
-        public bool? isSelected { get; set; } = true;
-
-        public enum Select
-        {
-            [Display(Name = "Faculty Member")]
-            Faculty_Member,
-            Student
-        }
+      
     }
 }

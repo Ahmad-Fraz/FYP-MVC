@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using FYP.Models.Dashboard;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.Dashboard;
 
 namespace DataBase
 {
-    public class DBase:IdentityDbContext<ApplicationUser>
+    public class DBase : IdentityDbContext<ApplicationUser>
     {
         public DBase(DbContextOptions<DBase> options) : base(options)
         {
@@ -14,6 +15,7 @@ namespace DataBase
         public DbSet<ContactUsModel> ContactUs { get; set; }
         public DbSet<Mail> Mail { get; set; }
         public DbSet<news_events> News_Events { get; set; }
-       
+        public DbSet<Links> Links { get; set; }
+        public DbSet<Assignments> Assignments { get; set; }
     }
 }

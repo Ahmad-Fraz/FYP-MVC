@@ -9,6 +9,8 @@
 
 </body>
 
+
+
 @if (TempData["signout_notification"] != null)
 {
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -111,7 +113,7 @@
             <div class="w-100"></div>
 
             <div class="col-3 m-1 bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
-                <a href="#" class="text-decoration-none link-dark">
+                <a asp-action="News_and_Events" asp-controller="Dashboard" class="text-decoration-none link-dark">
                     <center>
                         <img class="icon2" src="~/icons/news.svg " />
                     </center>
@@ -120,7 +122,7 @@
             </div>
 
             <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
-                <a href="#" class=" text-decoration-none link-dark">
+                <a asp-action="Links" asp-controller="Dashboard" class=" text-decoration-none link-dark">
                     <center>
                         <img class="icon2" src="~/icons/links.svg " />
                     </center>

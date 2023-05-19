@@ -13,13 +13,13 @@ namespace Models.Dashboard
         [Key]
         public int id { get; set; }
 
-        [Required(ErrorMessage ="Please provide the event date."), Display(Name = "Event Date"),DataType(DataType.Date)]
+        [Required(ErrorMessage ="Please provide the event date."), Display(Name = "Event Date")]
         public string? Date { get; set; }
 
-        [Required(ErrorMessage = "Please provide the event Start time."),Display(Name = "Event Start Time"), DataType(DataType.Time)]
+        [Required(ErrorMessage = "Please provide the event Start time."),Display(Name = "Event Start Time")]
         public string? FromTime { get; set; }
 
-        [Required(ErrorMessage = "Please provide the event End time."), Display(Name = "Event End Time"), DataType(DataType.Time)]
+        [Required(ErrorMessage = "Please provide the event End time."), Display(Name = "Event End Time")]
         public string? ToTime { get; set; }
 
         [Required(ErrorMessage = "Please provide the event Occuring Locations.")]
@@ -31,7 +31,7 @@ namespace Models.Dashboard
         [Required(ErrorMessage = "Please provide the event Description."),DataType(DataType.MultilineText)]
         public string? Description { get; set; }
 
-        [Required(ErrorMessage = "Please provide the event Short Description."), DataType(DataType.MultilineText),Display(Name ="Short Description")]
+        [Required(ErrorMessage = "Please provide the event Short Description."), DataType(DataType.MultilineText),Display(Name ="Short Description"),MinLength(20,ErrorMessage ="Please enter minimun 20 charachters"),MaxLength(150,ErrorMessage ="Please enter maximum 150 charachters")]
         public string? ShortDescription { get; set; }
 
 

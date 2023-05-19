@@ -60,7 +60,7 @@ namespace FYP.Controllers
         {
             
             bool Modelvalid = false;
-
+            
             if (signUp.Member_Type == null || signUp.Email == null || signUp.Degree == null || signUp.confirm_password == null || signUp.password == null || signUp.PhoneNo == null || signUp.Name == null || signUp.DOB == null)
             {
                 Modelvalid = false;

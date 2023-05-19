@@ -1,0 +1,71 @@
+﻿@model FYP.Models.Dashboard.Links
+
+@{
+    ViewData["Title"] = "Links";
+}
+<body style="" class="links-background">
+
+</body>
+
+
+
+<div class="row">
+    <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded">
+        <center>
+            <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Add a new Link</h1>
+        </center>
+        <form method="post" asp-action="AddLinks" asp-controller="Dashboard" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="input-group mb-3 justify-content-center">
+                <span class="input-group-text bg-black bg-opacity-10 text-white"> <img class="icon" src="~/Icons/Contactus/name.svg" style="filter:invert(1);" /> </span>
+                <div class="form-floating col-6">
+                    <input asp-for="@Model.Title" class="form-control bg-black bg-opacity-10 text-white " placeholder="Title">
+                    <label asp-for="Title" class="text-white"></label>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="input-group mb-3 justify-content-center">
+                <span class="input-group-text bg-black bg-opacity-10 text-white"><img class="icon" src="~/Icons/Contactus/subject.svg" style="filter:invert(1);" /></span>
+                <div class="form-floating col-6">
+                    <input asp-for="SubTitle" class="form-control bg-black bg-opacity-10 text-white" placeholder="Sub-Title">
+                    <label asp-for="SubTitle" class="text-white"></label>
+                    <span asp-validation-for="SubTitle" class="text-danger"></span>
+
+                </div>
+            </div>
+
+            <div class="input-group mb-3 justify-content-center">
+                <span class="input-group-text bg-black bg-opacity-10 text-white"><img class="icon" src="~/Icons/Contactus/description1.svg" style="filter:invert(1);" /></span>
+                <div class="form-floating col-6">
+                    <input asp-for="Description" class="form-control bg-black bg-opacity-10 text-white" placeholder="Description">
+                    <label asp-for="Description" class="text-white"></label>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+
+                </div>
+            </div>
+
+            <div class="input-group mb-3 justify-content-center">
+                <span class="input-group-text bg-black bg-opacity-10 text-white"><img class="icon" src="~/Icons/links.svg" style="filter:invert(1);" /></span>
+                <div class="form-floating col-6">
+                    <textarea asp-for="links" class="form-control bg-black bg-opacity-10 text-white" placeholder="Links"><</textarea>
+                    <label asp-for="links" class="text-white"></label>
+                    <span asp-validation-for="links" class="text-danger"></span>
+
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a asp-action="Links" asp-controller="Dashboard" value="" class="btn btn-light col-3 mx-1">
+                    All Links
+                </a>
+
+                <input type="submit" value="Add Link" class="btn btn-light col-3 mx-1" />
+            </div>
+        </form>
+
+    </div>
+</div>
+

@@ -1,0 +1,107 @@
+﻿@model Models.Dashboard.news_events
+
+@{
+    ViewData["Title"] = "EventDetail";
+    var Image = "/Profile_Pics/" + Model.Event_Image_Name;
+}
+
+
+<body style="" class="Detailevents-background">
+
+</body>
+
+<div id="placeHoderHere"></div>
+
+@*    Bread Crumb
+    *@
+
+<div class="col container_img">
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="@Image" class="d-block w-100" alt="..." style="height:25rem;">
+            </div>
+
+
+            <nav aria-label="breadcrumb" class="clearfix bg-black bg-opacity-75 btn fw-bold w-100 position-relative" style="bottom:45px;">
+                <ol class="breadcrumb float-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Library</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="w-100"></div>
+    <hr />
+    <div class="row">
+        <label class="fw-bold fs-2 w-auto">
+            Event Name : @Html.DisplayFor(model => model.Title)
+        </label>
+    </div>
+
+    <hr />
+
+    <div class="row">
+
+
+        <div class="col-9 bg-black bg-opacity-50">
+            <dl class="row">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item bg-transparent">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                @Html.DisplayNameFor(model => model.ShortDescription)
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show bg-black bg-opacity-50 text-start" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                @Html.DisplayFor(model => model.ShortDescription)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item bg-transparent">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                @Html.DisplayNameFor(model => model.Description)
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse bg-black bg-opacity-50 text-start" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                @Html.DisplayFor(model => model.Description)
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>             
+        </div>
+
+        <div class="col-3 border-start">
+            <div class="bg-body">
+                <label asp-for="@Model.Date" class="text-muted fw-bold d-block"></label>
+                @Html.DisplayFor(model => model.Date,new {@class="text-muted fw-bold"})
+            </div>
+            <hr />
+            <div class="bg-body">
+                <label asp-for="@Model.FromTime" class="text-muted fw-bold d-block"></label>
+                @Html.DisplayFor(model => model.FromTime,new {@class="text-muted fw-bold"})
+            </div>
+            <hr />
+            <div class="bg-body">
+                <label asp-for="@Model.ToTime" class="text-muted fw-bold d-block"></label>
+                @Html.DisplayFor(model => model.ToTime,new {@class="text-muted fw-bold"})
+            </div>
+            <hr />
+            <div class="bg-body">
+                <label asp-for="@Model.Locations" class="text-muted fw-bold d-block"></label>
+                @Html.DisplayFor(model => model.Locations,new {@class="text-muted fw-bold"})
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-dark bg-opacity-75 position-relative w-100" style="top:2rem;">
+        <button class="card-link btn btn-outline-warning m-2" type="button" data-toggle="ajax-modal" data-target="#_EditEvent" data-url="@Url.Action($"EditEvent/{@Model?.id}","Dashboard")">Edit</button>
+
+        <a class="btn btn-outline-info m-2" asp-action="News_and_Events" asp-controller="Dashboard">All Events</a>
+    </div>

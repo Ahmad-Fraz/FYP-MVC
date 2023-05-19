@@ -1,0 +1,88 @@
+﻿@model Models.Dashboard.news_events
+@{
+    var img = "/Profile_Pics/" + Model.Event_Image_Name;
+}
+<form method="post" enctype="multipart/form-data" asp-controller="Dashboard" asp-action="EditEvent">
+    <!-- Modal -->
+    <div class="modal fade" id="_EditEvent" tabindex="-1" aria-labelledby="EditEvent" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content overflow-scroll text-white bg-black bg-opacity-75" style="height:90vh;">
+                <div class="modal-header text-center">
+                    <h1 class="modal-title fs-5 fw-bold text-uppercase" id="CreateEvent">Edit Event</h1>
+                    <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <input type="hidden" asp-for="@Model.Event_Image_Name"/>
+                <div class="modal-body">
+
+                    <div class="mb-3 col">
+                        <label asp-for="@Model.Date" class="form-label"></label>
+                        <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@Model.Date">
+                        <span asp-validation-for="@Model.Date" class="text-danger"></span>
+                    </div>
+
+                    <div class="row justify-content-between">
+
+                        <div class="mb-3 col-5">
+                            <label asp-for="@Model.FromTime" class="form-label"></label>
+                            <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@Model.FromTime">
+                            <span asp-validation-for="@Model.FromTime" class="text-danger"></span>
+                        </div>
+
+                        <label class="col-2 text-center m-auto">To</label>
+
+                        <div class="mb-3 col-5">
+                            <label asp-for="@Model.ToTime" class="form-label"></label>
+                            <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@Model.ToTime">
+                            <span asp-validation-for="@Model.ToTime" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3 col">
+                        <label asp-for="@Model.Title" class="form-label"></label>
+                        <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@Model.Title">
+                        <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col">
+                        <label asp-for="@Model.ShortDescription" class="form-label"></label>
+                        <textarea class="form-control focus filt bg-white bg-opacity-10" asp-for="@Model.ShortDescription"></textarea>
+                        <span asp-validation-for="@Model.ShortDescription" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col">
+                        <label asp-for="@Model.Description" class="form-label"></label>
+                        <textarea class="form-control focus filt bg-white bg-opacity-10" asp-for="@Model.Description"></textarea>
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="mb-3 col">
+                        <label asp-for="@Model.Locations" class="form-label"></label>
+                        <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@Model.Locations" placeholder="Enter the location of event occuring place">
+                        <span asp-validation-for="@Model.Locations" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="@Model.FormFile" class="form-label"></label>
+                        <input asp-for="@Model.FormFile" class="form-control focus filt bg-white bg-opacity-10" type="file" onchange="ShowPreview(this)">
+
+                    </div>
+
+
+                    <div class="text-center m-auto">
+                      
+                        <img src="@img" id="img" style="height:20rem; text-align:center;width:-webkit-fill-available;}" alt="Choose an image to preview" />
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

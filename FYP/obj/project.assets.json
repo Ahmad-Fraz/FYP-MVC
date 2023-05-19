@@ -10999,11 +10999,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Visual Studio Projects\\FYP\\FYP\\FYP.csproj",
+      "projectUniqueName": "D:\\VS Projects\\FYP\\FYP.csproj",
       "projectName": "FYP",
-      "projectPath": "E:\\Visual Studio Projects\\FYP\\FYP\\FYP.csproj",
+      "projectPath": "D:\\VS Projects\\FYP\\FYP.csproj",
       "packagesPath": "C:\\Users\\Ahmad\\.nuget\\packages\\",
-      "outputPath": "E:\\Visual Studio Projects\\FYP\\FYP\\obj\\",
+      "outputPath": "D:\\VS Projects\\FYP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ahmad\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -11014,6 +11014,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11104,7 +11105,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

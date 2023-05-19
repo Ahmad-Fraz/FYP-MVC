@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Links - StudentConnect</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/site.css?v=iqSf2swfA2ehsyE8Z2JR1rH9VqGDs-Bq-EJbPHOHOKE" />
+    <link rel="stylesheet" href="/StudentConnect.styles.css" />
+   
+    <script src="/jquery/jquery.min.js"></script>
+  
+    <script src="/jquery/jquery.js"></script>
+    
+
+  
+    <script src="/twitter-bootstrap/js/bootstrap.min.js"></script>
+    <script src="/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black bg-opacity-25 border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand text-white" href="/Dashboard/Assignments/bd703ea7-c22d-4f30-9bf8-40ef439aed20%20Learning%20(1).docx?page=%2FIndex">StudentConnect</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item mx-2 bg-black bg-opacity-50">
+                            <a class="nav-link text-white btn btn-outline-light " href="/Dashboard">Dashboard</a>
+                        </li>
+                        
+                        <li class="nav-item mx-2 bg-black bg-opacity-50">
+                            <a class="nav-link text-white btn btn-outline-light " href="/ContactUs">Contact Us</a>
+                        </li>
+                        <li class="nav-item mx-2 bg-black bg-opacity-50">
+                            <a class="nav-link text-white btn btn-outline-light " href="/Dashboard/Assignments/bd703ea7-c22d-4f30-9bf8-40ef439aed20%20Learning%20(1).docx">Assignments</a>
+                        </li>
+
+                        <li class="nav-item mx-2 bg-black bg-opacity-50">
+                            <a class="nav-link text-white btn btn-outline-light" href="/Dashboard/Assignments/bd703ea7-c22d-4f30-9bf8-40ef439aed20%20Learning%20(1).docx?page=%2FPrivacy">Send Email</a>
+                        </li>
+
+                    </ul>
+
+                    <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item mx-2 bg-black bg-opacity-50">
+                                <a class="nav-link text-white btn btn-outline-light " href="/SignIn">SignIn</a>
+                            </li>
+                            <li class="nav-item mx-2 bg-black bg-opacity-50">
+                                <a class="nav-link text-white btn btn-outline-light " href="/SignUp">SignUp</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            <i class="fa-thin fa-circle-info"></i>
+            
+<body style="" class="links-background">
+
+</body>
+
+<form method="post">
+    
+
+
+    <div class="row">
+        <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded">
+
+            <div class="text-center ">
+                <a class="btn btn-light col-3 mx-1" href="/Dashboard/AddAssignment">Add a new Assignment</a>
+            </div>
+            <hr />
+
+            <center>
+                <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Assignments</h1>
+            </center>
+                    <center>
+                        <div class="row my-2 w-100">
+                            <div class="col-3 col-lg-2 border">
+                                <a href="Assignments/" class="btn btn-outline-info m-1" title="download this file"> <img class="d-block" src="/Icons/links.svg" style="filter:invert(1);height:4rem;" /> Link</a>
+                            </div>
+                            <div class="border bg-black bg-opacity-50 text-white col-8 row m-0 flex-grow-1">
+
+                                <div class="col-4 d-flex">
+                                    <label class="text-success fw-bold d-block mx-2 text-uppercase" for="item_Subject">Subject</label> :
+                                    BBA-510
+                                </div>
+
+                                <div class="col-8 d-flex border-start">
+                                    <label class="text-info fw-bold d-block mx-2 text-uppercase" for="item_SubTitle">SubTitle</label> :
+                                    Assignment-2
+                                </div>
+
+                                <div class="w-100"></div>
+                                <hr>
+                                <div class="d-flex">
+                                    <label class="text-light fw-bold d-block text-uppercase" for="item_Description">Description</label> :
+                                    Make a plan of and evaloution it.
+                                </div>
+                            </div>
+
+                            <div class="col-3 col-lg-2 border m-0 row">
+                                <div class="my-auto d-xl-flex">
+                                    <a class="btn btn-outline-light m-1" href="/Dashboard/DeleteLink/1">Details</a>
+
+                                    <a class="btn btn-outline-danger m-1" href="/Dashboard/DeleteAssignment/1">Delete</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                    <center>
+                        <div class="row my-2 w-100">
+                            <div class="col-3 col-lg-2 border">
+                                <a href="Assignments/bd703ea7-c22d-4f30-9bf8-40ef439aed20 Learning (1).docx" class="btn btn-outline-info m-1" title="download this file" download="bd703ea7-c22d-4f30-9bf8-40ef439aed20 Learning (1).docx"> <img class="d-block" src="/Icons/links.svg" style="filter:invert(1);height:4rem;" /> Link</a>
+                            </div>
+                            <div class="border bg-black bg-opacity-50 text-white col-8 row m-0 flex-grow-1">
+
+                                <div class="col-4 d-flex">
+                                    <label class="text-success fw-bold d-block mx-2 text-uppercase" for="item_Subject">Subject</label> :
+                                    SE-510
+                                </div>
+
+                                <div class="col-8 d-flex border-start">
+                                    <label class="text-info fw-bold d-block mx-2 text-uppercase" for="item_SubTitle">SubTitle</label> :
+                                    Final Year Project
+                                </div>
+
+                                <div class="w-100"></div>
+                                <hr>
+                                <div class="d-flex">
+                                    <label class="text-light fw-bold d-block text-uppercase" for="item_Description">Description</label> :
+                                    This is doc file .check it.
+                                </div>
+                            </div>
+
+                            <div class="col-3 col-lg-2 border m-0 row">
+                                <div class="my-auto d-xl-flex">
+                                    <a class="btn btn-outline-light m-1" href="/Dashboard/DeleteLink/2">Details</a>
+
+                                    <a class="btn btn-outline-danger m-1" href="/Dashboard/DeleteAssignment/2">Delete</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+
+        </div>
+    </div>
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8HuTwHTMBz9GuUKdb4DXN6f5qIc-u4xuV7zPsD_PILlpCbGPFe_VS48DoauuYoLsVQxUTAvqZ2yM-qwpblb0mztkxTImVTGFfTt4GVGEvC_QXQ1hTsiOj-Ok8SDs-AabKTHRXq6pWVLYFiVf-gLwddw" /></form>
+        </main>
+    </div>
+
+
+
+    <script src="/js/site.js?v=yOCJ-JxYWwlORY5SvGDQWNJN_Szl4ABQ6SjbK9qoV70"></script>
+    <script src="/jquery-validate/jquery.validate.min.js"></script>
+<script src="/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</partial>
+    
+
+</body>
+</html>

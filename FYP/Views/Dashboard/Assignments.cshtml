@@ -1,0 +1,105 @@
+﻿@model IEnumerable<FYP.Models.Dashboard.Assignments>
+
+@{
+    ViewData["Title"] = "Links";
+    var folder = "Assignments/";
+}
+<body style="" class="links-background">
+
+</body>
+
+@if (TempData["assignmentadded"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="z-index:1;">
+        <strong>Assignment created Successfully ||</strong> A new assignmetn has been added.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["assignmenteleted"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="z-index:1;">
+        <strong>Assignment deleted Successfully ||</strong> An Assignment has been removed.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+    <div class="row">
+        <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded" style="height:75vh;">
+
+            <div class="text-center ">
+                <a asp-action="AddAssignment" asp-controller="Dashboard" class="btn btn-light col-3 mx-1">Add a new Assignment</a>
+            </div>
+            <hr />
+
+            <center>
+                <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Assignments</h1>
+            </center>
+            @if (Model?.Any() == false)
+            {
+                <center><label class="text-white fw-bold text-uppercase"> No Assignments are uploaded</label></center>
+            }
+            else
+            {
+                <div>
+
+                    @foreach (var item in Model)
+                    {
+
+                        var file = folder + item.File_Name;
+                        <center>
+                            <div class="row my-2 w-100">
+                                <div class="col-3 col-lg-2 border bg-black bg-opacity-50 text-white">
+                                    @if (item.File_Name != null)
+                                    {
+                                        <a href="@file" class="btn btn-outline-info m-1" title="download this file" download="@item.File_Name"> <img class="d-block icon2 mx-auto" src="~/Icons/download.svg" style="filter:invert(1);height:4rem;" /> Download</a>
+                                    }
+                                    else
+                                    {
+                                        <div class="my-auto position-relative" style="top: 25%;">
+                                            <label class="text-white fw-bold text-uppercase">No file</label>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="border bg-black bg-opacity-50 text-white col-8 row m-0 flex-grow-1">
+
+                                    <div class="col-5 d-lg-flex">
+                                        <label asp-for="@item.Subject" class="text-success fw-bold d-block mx-2 text-uppercase"></label> :
+                                        @Html.DisplayFor(x=>@item.Subject)
+                                    </div>
+
+                                    <div class="col-7 d-lg-flex border-start">
+                                        <label asp-for="@item.SubTitle" class="text-info fw-bold d-block mx-2 text-uppercase"></label> :
+                                        @Html.DisplayFor(x=>@item.SubTitle)
+                                    </div>
+
+                                    <div class="w-100"></div>
+                                    <hr>
+                                    <div class="d-xl-flex col-5">
+                                        <label asp-for="@item.Uploaded_By" class="text-light fw-bold d-block text-uppercase text-nowrap"></label> :
+                                        @Html.DisplayFor(x=>@item.Uploaded_By)
+                                    </div>
+                                    <div class="col-7 d-xl-flex border-start">
+                                        <label asp-for="@item.Submission_Date" class="text-warning fw-bold d-block mx-2 text-uppercase"></label> :
+                                        @Html.DisplayFor(x=>@item.Submission_Date)
+                                    </div>
+                                </div>
+
+                                <div class="col-3 col-lg-2 border m-0 row">
+                                    <div class="my-auto">
+                                        <a asp-action="DetailsAssignemt" asp-controller="Dashboard" class="btn btn-outline-info m-1" asp-route-id="@item.id">Details</a>
+
+                                        <a asp-action="DeleteAssignment" asp-controller="Dashboard" class="btn btn-outline-danger m-1" asp-route-id="@item.id">Delete</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</form>

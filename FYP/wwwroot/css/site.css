@@ -209,3 +209,29 @@ input[type=email]::-webkit-input-placeholder {
     position:relative;
     text-align:center;
 }
+
+.filt {
+    filter: invert(1);
+}
+
+.events-background {
+    background-image: url('../Images for background/news2.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color:white;
+}
+.Detailevents-background {
+    background-image: url('../Images for background/Devent.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+.links-background {
+    background-image: url('../Images for background/Devent.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+.datetime:focus {
+    color: black !important;
+}

@@ -1,0 +1,84 @@
+﻿@model FYP.Models.Dashboard.Assignments
+@{
+    ViewData["Title"] = "Links";
+}
+<body style="" class="links-background">
+
+</body>
+
+<div class="row">
+    <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded">
+        <center>
+            <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Add a new Assignment</h1>
+        </center>
+        <center>
+            <form method="post" class="col-9" asp-action="AddAssignment" asp-controller="Dashboard" enctype="multipart/form-data" >
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                <div class="input-group mb-3 justify-content-center">
+                    <span class="input-group-text bg-black bg-opacity-10 text-white"> <img class="icon" src="~/Icons/Contactus/name.svg" style="filter:invert(1);" /> </span>
+                    <div class="form-floating col-9">
+                        <input asp-for="@Model.Subject" class="form-control bg-black bg-opacity-10 text-white " placeholder="Subject" tabindex="1">
+                        <label asp-for="Subject" class="text-white"></label>
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3 justify-content-center">
+                    <span class="input-group-text bg-black bg-opacity-10 text-white"><img class="icon" src="~/Icons/Contactus/subject.svg" style="filter:invert(1);" /></span>
+                    <div class="form-floating col-9">
+                        <input asp-for="SubTitle" class="form-control bg-black bg-opacity-10 text-white" placeholder="Sub-Title" tabindex="2">
+                        <label asp-for="SubTitle" class="text-white"></label>
+                        <span asp-validation-for="SubTitle" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="w-75">
+
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control text-white bg-black bg-opacity-10 w-50" asp-for="File" tabindex="10" tabindex="3">
+                        <label class="input-group-text" asp-for="File">Upload Assignment File</label>
+                    </div>
+
+                </div>
+                <div class="input-group mb-3 justify-content-center">
+                    <div class="col-6 me-1">
+
+                        <label asp-for="Submission_Date" class="text-white"></label>
+                        <input asp-for="Submission_Date" class="form-control bg-white bg-opacity-10 datetime" style="filter:invert(1)" placeholder="Submission Date" type="date" tabindex="4">
+                        <span asp-validation-for="Submission_Date" class="text-danger"></span>
+
+                    </div>
+                    <div class="col-4 ms-1">
+
+                        <label asp-for="Time" class="text-white"></label>
+                        <input asp-for="Time" class="form-control bg-white bg-opacity-10 datetime" style="filter:invert(1)" placeholder="Last Submit Time" type="time" tabindex="5">
+                        <span asp-validation-for="Time" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="input-group mb-3 justify-content-center">
+                    <span class="input-group-text bg-black bg-opacity-10 text-white"><img class="icon" src="~/Icons/links.svg" style="filter:invert(1);" /></span>
+                    <div class="form-floating col-9">
+                        <textarea asp-for="Description" class="form-control bg-black bg-opacity-10 text-white" placeholder="Links" tabindex="6"><</textarea>
+                        <label asp-for="Description" class="text-white"></label>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <a asp-action="Assignments" asp-controller="Dashboard" class="btn btn-light m-1">
+                        All Assignments
+                    </a>
+
+                    <input type="submit" value="Add Assignment" class="btn btn-light m-1" />
+                </div>
+            </form>
+        </center>
+    </div>
+</div>
+
