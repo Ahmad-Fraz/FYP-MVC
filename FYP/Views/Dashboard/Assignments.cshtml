@@ -54,7 +54,7 @@
                                 <div class="col-3 col-lg-2 border bg-black bg-opacity-50 text-white">
                                     @if (item.File_Name != null)
                                     {
-                                        <a href="@file" class="btn btn-outline-info m-1" title="download this file" download="@item.File_Name"> <img class="d-block icon2 mx-auto" src="~/Icons/download.svg" style="filter:invert(1);height:4rem;" /> Download</a>
+                                        <a asp-action="DownloadFile" asp-controller="Dashboard" asp-route-filename="@item.File_Name" class="btn btn-outline-info m-1" title="download this file"> <img class="d-block icon2 mx-auto" src="~/Icons/download.svg" style="filter:invert(1);height:4rem;" /> Download</a>
                                     }
                                     else
                                     {

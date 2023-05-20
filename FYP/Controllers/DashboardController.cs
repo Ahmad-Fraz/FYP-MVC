@@ -206,9 +206,10 @@ namespace FYP.Controllers
                 assignments.Uploaded_By = await Interface.getUserNameByid(Getid());
 
                 folder = "Assignments/";
-
+                bool ext = assignments.File.FileName.EndsWith(".docx");
+                //if (ext)
                 assignments.File_Name = AddFile(assignments.File);
-
+               
                 var result = await Interface.AddAssignmet(assignments);
                 if (result > 0)
                 {
@@ -225,6 +226,12 @@ namespace FYP.Controllers
                 ModelState.AddModelError("", "Please fill the  fields");
             }
             return View();
+        }
+        
+        public IActionResult DownloadFile(string filename)
+        {
+            var memory = DownloadSinghFile(filename, "Assignments/");
+            return File(memory.ToArray(), "image/png", filename);
         }
 
         public IActionResult DetailsAssignemt(int? id)
@@ -258,7 +265,7 @@ namespace FYP.Controllers
             string filename = null;
             if (formFile != null)
             {
-
+                
                 string Imagefolder = folder;
                 filename = (Guid.NewGuid().ToString()) + " " + formFile.FileName;
                 string path = Imagefolder + filename;
@@ -270,21 +277,19 @@ namespace FYP.Controllers
             return filename;
         }
 
-        private string AddAssigment(IFormFile formFile)
+        private MemoryStream DownloadSinghFile(string filename, string uploadPath)
         {
-            string filename = null;
-            if (formFile != null)
+            var path = Path.Combine(WebHostEnvironment.WebRootPath, uploadPath, filename);
+            var memory = new MemoryStream();
+            if (System.IO.File.Exists(path))
             {
-
-                string Imagefolder = folder;
-                filename =formFile.FileName;
-                string path = Imagefolder + filename;
-
-                string serverPath = Path.Combine(WebHostEnvironment.WebRootPath, path);
-
-                formFile.CopyTo(new FileStream(serverPath, FileMode.Create));
+                var net = new System.Net.WebClient();
+                var data = net.DownloadData(path);
+                var content = new System.IO.MemoryStream(data);
+                memory = content;
             }
-            return filename;
+            memory.Position = 0;
+            return memory;
         }
 
 

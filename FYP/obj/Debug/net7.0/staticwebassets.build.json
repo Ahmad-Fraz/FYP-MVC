@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zTEM3cD4hmm79mxGnYsRepq6mBGK6kd5qkdQWL30VJM=",
+  "Hash": "6mcPcwLwEtz37gxDQcQt7u8FyVfNhzlYRlpKb9XpRDg=",
   "Source": "FYP",
   "BasePath": "_content/FYP",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assignments\\01adab5c-3d61-439b-965a-312322936efb myw3schoolsimage.jpg"
+    },
+    {
+      "Identity": "D:\\VS Projects\\FYP\\wwwroot\\Assignments\\06baf509-00b3-4229-a5c7-b7c6ded85f98 CV(Ahmad Faraz).docx",
+      "SourceId": "FYP",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VS Projects\\FYP\\wwwroot\\",
+      "BasePath": "_content/FYP",
+      "RelativePath": "Assignments/06baf509-00b3-4229-a5c7-b7c6ded85f98 CV(Ahmad Faraz).docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assignments\\06baf509-00b3-4229-a5c7-b7c6ded85f98 CV(Ahmad Faraz).docx"
+    },
+    {
+      "Identity": "D:\\VS Projects\\FYP\\wwwroot\\Assignments\\1621f331-8d24-4c9f-912c-7e5ca8875ea0 boehm1984.docx",
+      "SourceId": "FYP",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VS Projects\\FYP\\wwwroot\\",
+      "BasePath": "_content/FYP",
+      "RelativePath": "Assignments/1621f331-8d24-4c9f-912c-7e5ca8875ea0 boehm1984.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assignments\\1621f331-8d24-4c9f-912c-7e5ca8875ea0 boehm1984.docx"
     },
     {
       "Identity": "D:\\VS Projects\\FYP\\wwwroot\\Assignments\\1b6144a0-2fdc-4312-bc41-4166fb3b65bf w3logo.jpeg",
@@ -187,6 +221,23 @@
       "OriginalItemSpec": "wwwroot\\Assignments\\76a73ac1-27d6-47c5-b957-9515596ebec3 rings-684944_1920.jpg"
     },
     {
+      "Identity": "D:\\VS Projects\\FYP\\wwwroot\\Assignments\\77601d30-cbc1-4c49-9407-0d4b0bbe1ea3 stephen-dawson-qwtCeJ5cLYs-unsplash.jpg",
+      "SourceId": "FYP",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VS Projects\\FYP\\wwwroot\\",
+      "BasePath": "_content/FYP",
+      "RelativePath": "Assignments/77601d30-cbc1-4c49-9407-0d4b0bbe1ea3 stephen-dawson-qwtCeJ5cLYs-unsplash.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assignments\\77601d30-cbc1-4c49-9407-0d4b0bbe1ea3 stephen-dawson-qwtCeJ5cLYs-unsplash.jpg"
+    },
+    {
       "Identity": "D:\\VS Projects\\FYP\\wwwroot\\Assignments\\9d1c2069-610a-432c-b24c-a4c864771063 myw3schoolsimage.jpg",
       "SourceId": "FYP",
       "SourceType": "Discovered",
@@ -202,6 +253,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assignments\\9d1c2069-610a-432c-b24c-a4c864771063 myw3schoolsimage.jpg"
+    },
+    {
+      "Identity": "D:\\VS Projects\\FYP\\wwwroot\\Assignments\\af1c11f3-4a8a-447e-bcf6-578842b025f6 links page design.png",
+      "SourceId": "FYP",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VS Projects\\FYP\\wwwroot\\",
+      "BasePath": "_content/FYP",
+      "RelativePath": "Assignments/af1c11f3-4a8a-447e-bcf6-578842b025f6 links page design.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assignments\\af1c11f3-4a8a-447e-bcf6-578842b025f6 links page design.png"
     },
     {
       "Identity": "D:\\VS Projects\\FYP\\wwwroot\\Assignments\\af69e34f-5c39-4d95-823a-794b29f31cc9 w3logo.jpeg",
