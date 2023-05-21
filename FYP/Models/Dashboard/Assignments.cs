@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FYP.Models.Dashboard
@@ -21,8 +23,13 @@ namespace FYP.Models.Dashboard
         public string? File_Name { get; set; }
 
         [NotMapped]
-        public IFormFile? File { get; set; }
+        public IList<IFormFile>? File { get; set; }
 
+        [NotMapped]
+        public MultipleImages? Multiple { get; set; }
+        [NotMapped]
+        public IList<MultipleImages>? multiImages { get; set; }
 
+        public ICollection<MultipleImages>? MultipleImages { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Models.Dashboard;
 using System.ComponentModel.DataAnnotations;
+using System.IO.Compression;
 using System.Security.Claims;
 
 namespace FYP.Controllers
@@ -97,7 +98,8 @@ namespace FYP.Controllers
         [HttpPost]
         public IActionResult EditEvent(news_events news_Events)
         {
-            var imageName = ReplaceFile(news_Events);
+            var file = news_Events.FormFile;
+            var imageName = ReplaceFile(file,news_Events.Event_Image_Name);
             news_Events.Event_Image_Name = imageName;
             Interface.UpdateEvent(news_Events);
             return RedirectToAction("News_and_Events");
@@ -170,16 +172,11 @@ namespace FYP.Controllers
         public IList<Assignments> AssignmentsList { get; set; }
         public IActionResult Assignments()
         {
-            
+
             var assignments = DBase.Assignments.ToList();
             return View(assignments);
         }
 
-        public IActionResult EditAssignment(int? id)
-        {
-            var assignments = DBase.Assignments.Where(x => x.id == id).FirstOrDefault();
-            return PartialView("_assignments", assignments);
-        }
 
         public IActionResult AddAssignment()
         {
@@ -191,14 +188,16 @@ namespace FYP.Controllers
         [BindProperty]
         public DateOnly Submission_Date { get; set; }
 
-       
+
         [HttpPost]
         public async Task<IActionResult> AddAssignment(Assignments assignments)
         {
-        
+            string filenames = "";
+            string collectnames = "";
+          
             if (!string.IsNullOrEmpty(assignments.Subject) && !string.IsNullOrEmpty(assignments.Submission_Date))
             {
-                var multipleImages = new List<MultipleImages>();
+               
                 assignments.Time = String.Format("{0:t}", Time);
                 assignments.Submission_Date = String.Format("{0:D}", Submission_Date);
                 assignments.Uploaded_Time = DateTime.Now.ToString();
@@ -206,10 +205,15 @@ namespace FYP.Controllers
                 assignments.Uploaded_By = await Interface.getUserNameByid(Getid());
 
                 folder = "Assignments/";
-                bool ext = assignments.File.FileName.EndsWith(".docx");
-                //if (ext)
-                assignments.File_Name = AddFile(assignments.File);
+                foreach (var file in assignments.File)
+                {
+                 var filename = AddFile(file);
+                    filenames = filename+":";
+                    collectnames += filenames;
+                }
+                assignments.File_Name = collectnames;
                
+
                 var result = await Interface.AddAssignmet(assignments);
                 if (result > 0)
                 {
@@ -227,7 +231,44 @@ namespace FYP.Controllers
             }
             return View();
         }
-        
+
+        public IActionResult EditAssignment(int? id)
+        {
+            var assignment = DBase.Assignments.Where(_ => _.id == id).FirstOrDefault();
+            return PartialView("_assignments", assignment);
+        }
+
+        [HttpPost]
+        public IActionResult EditAssignment(Assignments assignments,int id)
+        {
+            string filenames = "";
+            string collectnames = "";
+            assignments.Time = String.Format("{0:t}", Time);
+            assignments.Submission_Date = String.Format("{0:D}", Submission_Date);
+            folder = "Assignments/";
+            string[] names = null;
+            if (assignments.File_Name != null)
+                names = assignments.File_Name.Split(":");
+            
+            foreach (var file in names)
+            {
+                if(file !="")
+                    deleteFile(file);
+            }
+            foreach (var file in assignments.File)
+            {
+                var filename = AddFile(file);
+                filenames = filename + ":";
+                collectnames += filenames;
+            }
+            assignments.File_Name = collectnames;
+
+            Interface.UpdateAssignment(assignments);
+            TempData["AssignmentUpdated"] = "true";
+            return RedirectToAction("DetailsAssignemt", new {id=id});
+        }
+
+
         public IActionResult DownloadFile(string filename)
         {
             var memory = DownloadSinghFile(filename, "Assignments/");
@@ -237,7 +278,7 @@ namespace FYP.Controllers
         public IActionResult DetailsAssignemt(int? id)
         {
             var assignment = DBase.Assignments.Where(_ => _.id == id).FirstOrDefault();
-           
+
             return View(assignment);
         }
 
@@ -256,8 +297,6 @@ namespace FYP.Controllers
             return View();
         }
 
-
-
         //Add Files |  Replace files && get current user
 
         private string AddFile(IFormFile formFile)
@@ -265,7 +304,7 @@ namespace FYP.Controllers
             string filename = null;
             if (formFile != null)
             {
-                
+
                 string Imagefolder = folder;
                 filename = (Guid.NewGuid().ToString()) + " " + formFile.FileName;
                 string path = Imagefolder + filename;
@@ -293,34 +332,40 @@ namespace FYP.Controllers
         }
 
 
-        private string ReplaceFile(news_events news_Events)
+        private string ReplaceFile(IFormFile form,string oldFie)
         {
-            string folder = "Profile_Pics/";
-            if (news_Events.Event_Image_Name != null)
+            
+            if (oldFie != null)
             {
-                var oldImage = news_Events.Event_Image_Name;
+                var oldImage = oldFie;
                 string oldPath = folder + oldImage;
                 var Old_serverPath = Path.Combine(WebHostEnvironment.WebRootPath, oldPath);
                 System.IO.File.Delete(Old_serverPath);
 
             }
-            var formFile = news_Events.FormFile;
+           
             string filename = null;
-            if (formFile != null)
+            if (form != null)
             {
 
 
-                filename = (Guid.NewGuid().ToString()) + " " + formFile.FileName;
+                filename = (Guid.NewGuid().ToString()) + " " + form.FileName;
                 string path = folder + filename;
 
                 string serverPath = Path.Combine(WebHostEnvironment.WebRootPath, path);
 
-                formFile.CopyTo(new FileStream(serverPath, FileMode.Create));
+                form.CopyTo(new FileStream(serverPath, FileMode.Create));
             }
             return filename;
         }
 
-
+        private void deleteFile(string name)
+        {
+            var oldImage = name;
+            string oldPath = folder + oldImage;
+            var Old_serverPath = Path.Combine(WebHostEnvironment.WebRootPath, oldPath);
+            System.IO.File.Delete(Old_serverPath);
+        }
         public string Getid()
         {
             return httpContext.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;

@@ -187,14 +187,33 @@ namespace Encapsulation
             var result = await dBase.SaveChangesAsync();
             return result;
         }
+        
         public async Task<int> AddAssignmet(Assignments assignments)
         {
-           
-            
+            //assignments.MultipleImages = new List<MultipleImages>();
+            //foreach (var images in assignments.multiImages)
+            //{
+            //    MultipleImages multipleImages = new MultipleImages();
+            //    multipleImages.id = images.id;
+            //    multipleImages.FileName = images.FileName;
+            //    multipleImages.URL = images.URL;
+            //    assignments.MultipleImages.Add(multipleImages);
+            //}
+
             _ = dBase.Assignments.AddAsync(assignments);
            
             var result = await dBase.SaveChangesAsync();
             return result;
+        }
+
+        public Assignments UpdateAssignment(Assignments Assignment)
+
+        {
+            var _assignment = dBase.Assignments.Attach(Assignment);
+
+            _assignment.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            dBase.SaveChanges();
+            return Assignment;
         }
 
         public async Task<int> DelAssignment(int? id)

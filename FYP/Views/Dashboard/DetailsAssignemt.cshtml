@@ -1,13 +1,38 @@
 ﻿@model FYP.Models.Dashboard.Assignments
 @{
-    var folder = "Assignments";
-    var file = folder + Model.File_Name;
+    var folder = "Assignments/";
+    string[] names = null;
+    if(Model.File_Name !=null)
+        names = Model.File_Name.Split(":");
 }
 
 
 <body style="" class="Detailevents-background">
 
 </body>
+@if (TempData["AssignmentUpdated"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Updated Successfully||</strong> Assignment was updated.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["FileIsRemoved"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>File Deleted Successfully ||</strong> A file was deleted.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["FileNotRemoved"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Sorry file cannot be deleted ||</strong> There was a problem.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 <div id="placeHoderHere"></div>
 
@@ -36,9 +61,28 @@
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show bg-black bg-opacity-50 text-start" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
+                           
+                            @if (Model.File_Name != null)
+                            {
 
-                            <a href="@file" class="btn btn-outline-info m-1" title="download this file" download="@Model.File_Name"> <img class="d-block icon2 mx-auto" src="~/Icons/download.svg" style="filter:invert(1);height:4rem;" /> Download</a>
+                                @foreach (var filename in names)
+                                {
+                                    if (filename != "")
+                                    {
+                                        <div>
 
+                                            <a asp-action="DownloadFile" asp-controller="Dashboard" asp-route-filename="@filename" class="btn btn-outline-info m-1" title="download this file" download="@filename"> <img class="d-block icon2 mx-auto" src="~/Icons/download.svg" style="filter:invert(1);height:4rem;" /> Download</a>
+                                            <a asp-action="DeleteAssignment" asp-controller="Dashboard" asp-route-id="@Model.id" asp-route-filename="@filename" class="btn btn-outline-danger">Delete</a>
+                                        </div>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                <div class="my-auto position-relative text-center" style="top: 25%;">
+                                    <label class="text-white fw-bold text-uppercase">No Assignment file Provided</label>
+                                </div>
+                            }
 
                         </div>
                     </div>
@@ -81,7 +125,7 @@
 </div>
 
 <div class="bg-dark bg-opacity-75 position-relative w-100" style="top:2rem;">
-    <button class="card-link btn btn-outline-warning m-2" type="button" data-toggle="ajax-modal" data-target="#_EditAssignment" data-url="@Url.Action($"EditAssignment/{@Model?.id}","Dashboard")">Edit</button>
+    <button class="card-link btn btn-outline-warning m-2" asp-route-id="@Model.id" type="button" data-toggle="ajax-modal" data-target="#_EditAssignment" data-url="@Url.Action($"EditAssignment/{@Model?.id}","Dashboard")">Edit</button>
 
     <a class="btn btn-outline-info m-2" asp-action="Assignments" asp-controller="Dashboard">All Assignmets</a>
 </div>
