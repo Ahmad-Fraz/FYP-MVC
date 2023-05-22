@@ -190,30 +190,6 @@ namespace DataBase.Migrations
                     b.ToTable("Links");
                 });
 
-            modelBuilder.Entity("FYP.Models.Dashboard.MultipleImages", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<int?>("Assignmentsid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("URL")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("Assignmentsid");
-
-                    b.ToTable("MultipleImages");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -446,13 +422,6 @@ namespace DataBase.Migrations
                     b.ToTable("Mail");
                 });
 
-            modelBuilder.Entity("FYP.Models.Dashboard.MultipleImages", b =>
-                {
-                    b.HasOne("FYP.Models.Dashboard.Assignments", null)
-                        .WithMany("MultipleImages")
-                        .HasForeignKey("Assignmentsid");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -502,11 +471,6 @@ namespace DataBase.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FYP.Models.Dashboard.Assignments", b =>
-                {
-                    b.Navigation("MultipleImages");
                 });
 #pragma warning restore 612, 618
         }

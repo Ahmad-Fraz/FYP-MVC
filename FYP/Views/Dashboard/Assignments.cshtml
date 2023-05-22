@@ -4,7 +4,7 @@
     ViewData["Title"] = "Links";
     var folder = "Assignments/";
 }
-<body style="" class="links-background">
+<body style="" class="Assignment-background">
 
 </body>
 
@@ -17,78 +17,101 @@
 }
 @if (TempData["assignmenteleted"] != null)
 {
-    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="z-index:1;">
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="z-index:1;">
         <strong>Assignment deleted Successfully ||</strong> An Assignment has been removed.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
-<form method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+<div class="row">
+    <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded " style="height:85vh;">
 
-    <div class="row">
-        <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded" style="height:75vh;">
+        <div class="text-center ">
+            <a asp-action="AddAssignment" asp-controller="Dashboard" class="btn btn-light col-3 mx-1">Add a new Assignment</a>
+        </div>
+        <hr />
 
-            <div class="text-center ">
-                <a asp-action="AddAssignment" asp-controller="Dashboard" class="btn btn-light col-3 mx-1">Add a new Assignment</a>
-            </div>
-            <hr />
+        <center>
+            <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Assignments</h1>
+        </center>
+        @if (Model?.Any() == false)
+        {
+            <center><label class="text-white fw-bold text-uppercase"> No Assignments are uploaded</label></center>
+        }
+        else
+        {
+            <div class="overflow-scroll p-3" style="height:62vh;">
 
-            <center>
-                <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Assignments</h1>
-            </center>
-            @if (Model?.Any() == false)
-            {
-                <center><label class="text-white fw-bold text-uppercase"> No Assignments are uploaded</label></center>
-            }
-            else
-            {
-                <div>
+                @foreach (var item in Model)
+                {
 
-                    @foreach (var item in Model)
-                    {
+                    var file = folder + item.File_Name;
+                
+                    <center>
+                        <div class="row my-2 w-100">
 
-                        var file = folder + item.File_Name;
-                        <center>
-                            <div class="row my-2 w-100">
-                               
-                                <div class="border bg-black bg-opacity-50 text-white col-8 row m-0 flex-grow-1">
+                            <div class="border bg-black bg-opacity-50 text-white col-8 row m-0 flex-grow-1">
 
-                                    <div class="col-5 d-lg-flex">
-                                        <label asp-for="@item.Subject" class="text-success fw-bold d-block mx-2 text-uppercase"></label> :
-                                        @Html.DisplayFor(x=>@item.Subject)
-                                    </div>
-
-                                    <div class="col-7 d-lg-flex border-start">
-                                        <label asp-for="@item.SubTitle" class="text-info fw-bold d-block mx-2 text-uppercase"></label> :
-                                        @Html.DisplayFor(x=>@item.SubTitle)
-                                    </div>
-
-                                    <div class="w-100"></div>
-                                    <hr>
-                                    <div class="d-xl-flex col-5">
-                                        <label asp-for="@item.Uploaded_By" class="text-light fw-bold d-block text-uppercase text-nowrap"></label> :
-                                        @Html.DisplayFor(x=>@item.Uploaded_By)
-                                    </div>
-                                    <div class="col-7 d-xl-flex border-start">
-                                        <label asp-for="@item.Submission_Date" class="text-warning fw-bold d-block mx-2 text-uppercase"></label> :
-                                        @Html.DisplayFor(x=>@item.Submission_Date)
-                                    </div>
+                                <div class="col-5 d-lg-flex">
+                                    <label asp-for="@item.Subject" class="text-success fw-bold d-block mx-2 text-uppercase"></label> :
+                                    @Html.DisplayFor(x=>@item.Subject)
                                 </div>
 
-                                <div class="col-3 col-lg-2 border m-0 row">
-                                    <div class="my-auto">
-                                        <a asp-action="DetailsAssignemt" asp-controller="Dashboard" class="btn btn-outline-info m-1" asp-route-id="@item.id">Details</a>
+                                <div class="col-7 d-lg-flex border-start">
+                                    <label asp-for="@item.SubTitle" class="text-info fw-bold d-block mx-2 text-uppercase"></label> :
+                                    @Html.DisplayFor(x=>@item.SubTitle)
+                                </div>
 
-                                        <a asp-action="DeleteAssignment" asp-controller="Dashboard" class="btn btn-outline-danger m-1" asp-route-id="@item.id">Delete</a>
-
-                                    </div>
+                                <div class="w-100"></div>
+                                <hr>
+                                <div class="d-xl-flex col-5">
+                                    <label asp-for="@item.Uploaded_By" class="text-light fw-bold d-block text-uppercase text-nowrap"></label> :
+                                    @Html.DisplayFor(x=>@item.Uploaded_By)
+                                </div>
+                                <div class="col-7 d-xl-flex border-start">
+                                    <label asp-for="@item.Submission_Date" class="text-warning fw-bold d-block mx-2 text-uppercase"></label> :
+                                    @Html.DisplayFor(x=>@item.Submission_Date)
                                 </div>
                             </div>
-                        </center>
-                    }
-                </div>
-            }
-        </div>
+
+                            <div class="col-3 col-lg-2 border m-0">
+                                <div class="my-auto">
+                                    <a asp-action="DetailsAssignemt" asp-controller="Dashboard" class="btn btn-outline-info m-1" asp-route-id="@item.id">Details</a>
+
+                                    <a href="#_Delete" data-bs-toggle="modal" data-bs-target="#_Delete" class="btn btn-outline-danger m-1">Delete</a>
+
+                                    <form method="post" enctype="multipart/form-data" asp-controller="Dashboard" asp-action="DeleteAssignment" asp-route-id="@item.id">
+
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="_Delete" tabindex="-1" aria-labelledby="Delete" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content text-white bg-black bg-opacity-50">
+                                                    <div class="modal-header text-center">
+                                                        <h1 class="modal-title fs-5 fw-bold text-uppercase" id="DeleteEvent">Do you want to delete this Assignment</h1>
+                                                        <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+
+                                                    <input type="hidden" asp-for="@item.id" />
+
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                        <button type="submit" class="btn btn-primary">Yes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                    <hr />
+                }
+            </div>
+        }
     </div>
-</form>
+</div>

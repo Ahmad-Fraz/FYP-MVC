@@ -25,11 +25,5 @@ namespace FYP.Models.Dashboard
         [NotMapped]
         public IList<IFormFile>? File { get; set; }
 
-        [NotMapped]
-        public MultipleImages? Multiple { get; set; }
-        [NotMapped]
-        public IList<MultipleImages>? multiImages { get; set; }
-
-        public ICollection<MultipleImages>? MultipleImages { get; set; }
     }
 }

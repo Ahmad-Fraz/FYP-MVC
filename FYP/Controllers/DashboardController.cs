@@ -99,7 +99,7 @@ namespace FYP.Controllers
         public IActionResult EditEvent(news_events news_Events)
         {
             var file = news_Events.FormFile;
-            var imageName = ReplaceFile(file,news_Events.Event_Image_Name);
+            var imageName = ReplaceFile(file, news_Events.Event_Image_Name);
             news_Events.Event_Image_Name = imageName;
             Interface.UpdateEvent(news_Events);
             return RedirectToAction("News_and_Events");
@@ -194,10 +194,10 @@ namespace FYP.Controllers
         {
             string filenames = "";
             string collectnames = "";
-          
+
             if (!string.IsNullOrEmpty(assignments.Subject) && !string.IsNullOrEmpty(assignments.Submission_Date))
             {
-               
+
                 assignments.Time = String.Format("{0:t}", Time);
                 assignments.Submission_Date = String.Format("{0:D}", Submission_Date);
                 assignments.Uploaded_Time = DateTime.Now.ToString();
@@ -207,12 +207,12 @@ namespace FYP.Controllers
                 folder = "Assignments/";
                 foreach (var file in assignments.File)
                 {
-                 var filename = AddFile(file);
-                    filenames = filename+":";
+                    var filename = AddFile(file);
+                    filenames = filename + ":";
                     collectnames += filenames;
                 }
                 assignments.File_Name = collectnames;
-               
+
 
                 var result = await Interface.AddAssignmet(assignments);
                 if (result > 0)
@@ -239,21 +239,23 @@ namespace FYP.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditAssignment(Assignments assignments,int id)
+        public IActionResult EditAssignment(Assignments assignments, int id)
         {
             string filenames = "";
             string collectnames = "";
+            string[] names = null;
             assignments.Time = String.Format("{0:t}", Time);
             assignments.Submission_Date = String.Format("{0:D}", Submission_Date);
             folder = "Assignments/";
-            string[] names = null;
             if (assignments.File_Name != null)
-                names = assignments.File_Name.Split(":");
-            
-            foreach (var file in names)
             {
-                if(file !="")
-                    deleteFile(file);
+                names = assignments.File_Name.Split(":");
+
+                foreach (var file in names)
+                {
+                    if (file != "")
+                        deleteFile(file);
+                }
             }
             foreach (var file in assignments.File)
             {
@@ -265,7 +267,7 @@ namespace FYP.Controllers
 
             Interface.UpdateAssignment(assignments);
             TempData["AssignmentUpdated"] = "true";
-            return RedirectToAction("DetailsAssignemt", new {id=id});
+            return RedirectToAction("DetailsAssignemt", new { id = id });
         }
 
 
@@ -311,7 +313,18 @@ namespace FYP.Controllers
 
                 string serverPath = Path.Combine(WebHostEnvironment.WebRootPath, path);
 
-                formFile.CopyTo(new FileStream(serverPath, FileMode.Create));
+                FileStream fs = null;
+                try
+                {
+
+                    fs = (new FileStream(serverPath, FileMode.Create));
+                    formFile.CopyTo(fs);
+                }
+                finally
+                {
+                    fs.Close();
+                }
+
             }
             return filename;
         }
@@ -332,9 +345,9 @@ namespace FYP.Controllers
         }
 
 
-        private string ReplaceFile(IFormFile form,string oldFie)
+        private string ReplaceFile(IFormFile form, string oldFie)
         {
-            
+
             if (oldFie != null)
             {
                 var oldImage = oldFie;
@@ -343,7 +356,7 @@ namespace FYP.Controllers
                 System.IO.File.Delete(Old_serverPath);
 
             }
-           
+
             string filename = null;
             if (form != null)
             {
