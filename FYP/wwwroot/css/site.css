@@ -228,11 +228,20 @@ input[type=email]::-webkit-input-placeholder {
     color: white;
 }
 .links-background {
-    background-image: url('../Images for background/Devent.jpg');
+    background-image: url('../Images for background/link (2).jpg');
     background-size: cover;
     background-attachment: fixed;
     color: white;
 }
+
+.Addlinks-background {
+    background-image: url('../Images for background/link (1).jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+
+
 .datetime:focus {
     color: black !important;
 }
@@ -249,9 +258,7 @@ input[type=email]::-webkit-input-placeholder {
     background-attachment: fixed;
     color: white;
 }
-.modal-backdrop {
-    display: none;
-}
+
 
 /* width */
 ::-webkit-scrollbar {

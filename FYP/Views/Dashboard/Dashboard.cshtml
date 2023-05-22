@@ -18,6 +18,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
+@if (TempData["NeedsSignInagain"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style=" z-index:1; ">
+        <strong>User Personalize data was Updated</strong> You need to sign in again to access your updated account.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 
 <div class="row">

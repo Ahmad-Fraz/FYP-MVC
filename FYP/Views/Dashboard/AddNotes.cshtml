@@ -1,0 +1,68 @@
+﻿@model FYP.Models.Dashboard.Assignments
+@{
+    ViewData["Title"] = "Links";
+}
+<body style="" class="AddAssginment-background">
+
+</body>
+
+<div class="row">
+    <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded">
+        <center>
+            <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Add A New Note</h1>
+        </center>
+        <center>
+            <form method="post" class="col-9" asp-action="AddNotes" asp-controller="Dashboard" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                <div class="input-group mb-3 justify-content-center">
+                    <span class="input-group-text bg-black bg-opacity-10 text-white"> <img class="icon" src="~/Icons/Contactus/name.svg" style="filter:invert(1);" /> </span>
+                    <div class="form-floating col-9">
+                        <input asp-for="@Model.Subject" class="form-control bg-black bg-opacity-10 text-white " placeholder="Subject" tabindex="1">
+                        <label asp-for="Subject" class="text-white"></label>
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3 justify-content-center">
+                    <span class="input-group-text bg-black bg-opacity-10 text-white"><img class="icon" src="~/Icons/Contactus/subject.svg" style="filter:invert(1);" /></span>
+                    <div class="form-floating col-9">
+                        <input asp-for="SubTitle" class="form-control bg-black bg-opacity-10 text-white" placeholder="Sub-Title" tabindex="2">
+                        <label asp-for="SubTitle" class="text-white"></label>
+                        <span asp-validation-for="SubTitle" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="w-75">
+
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control text-white bg-black bg-opacity-10 w-50" asp-for="File" multiple tabindex="3">
+                        <label class="input-group-text" asp-for="File">Upload File</label>
+                    </div>
+
+                </div>
+                
+
+                <div class="input-group mb-3 justify-content-center">
+                    <span class="input-group-text bg-black bg-opacity-10 text-white"><img class="icon" src="~/Icons/notes.svg" style="filter:invert(1);" /></span>
+                    <div class="form-floating col-9">
+                        <textarea asp-for="Description" class="form-control bg-black bg-opacity-10 text-white" placeholder="Links" tabindex="6"><</textarea>
+                        <label asp-for="Description" class="text-white"></label>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a asp-action="Notes" asp-controller="Dashboard" class="btn btn-light m-1 fs-5 hover">
+                        All Notes
+                    </a>
+                    <input type="submit" value="Add Note" class="btn btn-light m-1 fs-5 hover" />
+                </div>
+            </form>
+        </center>
+    </div>
+</div>
+

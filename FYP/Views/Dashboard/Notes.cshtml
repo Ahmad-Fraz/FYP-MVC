@@ -1,0 +1,116 @@
+﻿@model IEnumerable<FYP.Models.Dashboard.Notes>
+
+@{
+    ViewData["Title"] = "MyNotes";
+
+}
+<body style="" class="Assignment-background">
+
+</body>
+
+@if (TempData["noteadded"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="z-index:1;">
+        <strong>Note added Successfully ||</strong> A new note has been added.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["noteDeleted"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="z-index:1;">
+        <strong>Note deleted Successfully ||</strong> A Note has been removed.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded " style="height:85vh;">
+
+        <div class="text-center ">
+            <a asp-action="AddNotes" asp-controller="Dashboard" class="btn btn-light col-3 mx-1 hover">Add A New Note</a>
+        </div>
+        <hr />
+
+        <center>
+            <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Notes</h1>
+        </center>
+        @if (Model?.Any() == false)
+        {
+            <center><label class="text-white fw-bold text-uppercase"> No Notes are uploaded</label></center>
+        }
+        else
+        {
+            <div class="overflow-scroll p-3 d-flex" style="height:62vh;">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="card bg-black bg-opacity-50 text-white m-2 col-3" style="width: 18rem; height: 13rem;}">
+
+                            <div class="card-header bg-black bg-opacity-50">
+                                <div class="d-flex">
+                                    <label asp-for="@item.Subject" class="text-success fw-bold d-block mx-2 text-uppercase"></label>
+                                    <label>:@Html.DisplayFor(x=>@item.Subject)</label>
+                                </div>
+                            </div>
+                            <hr class="m-0">
+                            <ul class="list-group list-group-flush bg-black bg-opacity-10">
+                                <li class="list-group-item bg-black bg-opacity-10 text-white">
+
+                                    <div class="d-flex">
+                                        <label asp-for="@item.SubTitle" class="text-info fw-bold d-block mx-2 text-uppercase"></label> :
+                                        @Html.DisplayFor(x=>@item.SubTitle)
+                                    </div>
+
+                                </li>
+                                <li class="list-group-item bg-black bg-opacity-10 text-white">
+                                    <div class="d-flex">
+                                        <label asp-for="@item.Uploaded_By" class="text-light fw-bold d-block text-uppercase text-nowrap"></label> :
+                                        @Html.DisplayFor(x=>@item.Uploaded_By)
+                                    </div>
+                                </li>
+
+                            </ul>
+                            <hr class="m-0">
+                            <div class="card-body">
+                                <a asp-action="DetailsNote" asp-controller="Dashboard" class="btn btn-outline-info m-1" asp-route-id="@item.id">Details</a>
+                                <a href="#_Delete" data-bs-toggle="modal" data-bs-target="#_Delete" class="btn btn-outline-danger m-1">Delete</a>
+                            </div>
+                        </div>
+
+                        <form class="d-none" method="post" enctype="multipart/form-data" asp-controller="Dashboard" asp-action="DeleteNote" asp-route-id="@item.id">
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="_Delete" tabindex="-1" aria-labelledby="Delete" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content text-white bg-black bg-opacity-50">
+                                        <div class="modal-header text-center">
+                                            <h1 class="modal-title fs-5 fw-bold text-uppercase" id="DeleteEvent">Do you want to delete this Assignment</h1>
+                                            <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+
+                                        <input type="hidden" asp-for="@item.id" />
+
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                            <button type="submit" class="btn btn-primary">Yes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    }
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+<style>
+    .modal-backdrop {
+        display: none;
+    }
+</style>

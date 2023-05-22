@@ -26,8 +26,9 @@ namespace Encapsulation
         public Task<int> DelAssignment(int? id);
         public Task<string> getUserNameByid(string id);
         public Assignments UpdateAssignment(Assignments Assignment);
-
-
+        public Task<int> AddNote(Notes notes);
+        public Notes UpdateNote(Notes notes);
+        public Task<int> DelNote(int? id);
 
     }
 }

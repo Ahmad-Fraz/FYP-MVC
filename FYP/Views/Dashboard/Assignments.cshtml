@@ -11,7 +11,7 @@
 @if (TempData["assignmentadded"] != null)
 {
     <div class="alert alert-success alert-dismissible fade show" role="alert" style="z-index:1;">
-        <strong>Assignment created Successfully ||</strong> A new assignmetn has been added.
+        <strong>Assignment created Successfully ||</strong> A new assignment has been added.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
@@ -27,7 +27,7 @@
     <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded " style="height:85vh;">
 
         <div class="text-center ">
-            <a asp-action="AddAssignment" asp-controller="Dashboard" class="btn btn-light col-3 mx-1">Add a new Assignment</a>
+            <a asp-action="AddAssignment" asp-controller="Dashboard" class="btn btn-light col-3 mx-1 hover">Add A New Assignment</a>
         </div>
         <hr />
 
@@ -115,3 +115,8 @@
         }
     </div>
 </div>
+<style>
+    .modal-backdrop {
+        display: none;
+    }
+</style>

@@ -40,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFkZExpbmtzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/VS Projects/FYP/Views/Dashboard/AddNotes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFkZE5vdGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/VS Projects/FYP/Views/Dashboard/Assignments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFzc2lnbm1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -50,6 +54,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/VS Projects/FYP/Views/Dashboard/DetailsAssignemt.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXERldGFpbHNBc3NpZ25lbXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VS Projects/FYP/Views/Dashboard/DetailsNote.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXERldGFpbHNOb3RlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/VS Projects/FYP/Views/Dashboard/EventDetail.cshtml]
@@ -64,12 +72,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE5ld3NfYW5kX0V2ZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/VS Projects/FYP/Views/Dashboard/Notes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE5vdGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/VS Projects/FYP/Views/Dashboard/_assignments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9hc3NpZ25tZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/VS Projects/FYP/Views/Dashboard/_Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VS Projects/FYP/Views/Dashboard/_EditNote.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9FZGl0Tm90ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/VS Projects/FYP/Views/Home/ContactUs.cshtml]

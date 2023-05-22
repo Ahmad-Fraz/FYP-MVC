@@ -54,44 +54,14 @@
                         @if (profilePhoto != "")
                         {
                             <img class="" style="height:4rem;width:4rem;border-radius:5rem" src="@photo"/>
+                            <input type="button" class="btn btn-outline-light btn-link" data-bs-toggle="modal" data-bs-target="#fileUpload" value="Change Profile Photo" />
+
                         }
                         else
                         {
                             <input type="button" class="btn btn-outline-light border" data-bs-toggle="modal" data-bs-target="#fileUpload" value="Upload Profile Photo" />
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="fileUpload" tabindex="-1" aria-labelledby="propic" aria-hidden="true">
-                                <div class="modal-dialog text-white bg-black bg-opacity-50">
-                                    <div class="modal-content bg-black  bg-opacity-75">
-
-                                        <div class="modal-header  text-white ">
-                                            <h1 class="modal-title fs-5" id="propic">Upload Profile Photo</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-
-                                        <form method="post" enctype="multipart/form-data">
-                                            <input type="hidden" asp-for="@user_id" />
-
-                                            <div class="modal-body">
-                                                @*choose file*@
-
-                                                <div class="input-group mb-3">
-                                                    <input type="file" class="form-control text-black" asp-for="@signup.Profile_pic">
-                                                    <label class="input-group-text" asp-for="@signup.Profile_pic">Upload</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </form>
-
-
-
-                                    </div>
-                                </div>
-                            </div>
+                           
 
                         }
                     </td>
@@ -202,7 +172,7 @@
 
 <div id="editmodel">
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" asp-action="Profile" asp-controller="Account">
         <!-- Button trigger modal -->
         <!-- Modal -->
         <div class="modal fade" id="editmodel1" tabindex="-1" aria-labelledby="editmodelLabel" aria-hidden="true">
@@ -213,13 +183,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" asp-for="@signup.Profile_Photo_Path" value="@profilePhoto" />
-                        <div class="input-group mb-3">
-                            <input type="file" class="form-control" asp-for="@signup.Profile_pic" >
-                            <label class="input-group-text" asp-for="@signup.Profile_pic">Upload</label>
-                            <label class="form-label"></label>
-                        </div>
-
+                        
                         <div class="input-group mb-3">
                             <label class="input-group-text" asp-for="@signup.Name"></label>
                             <input class="form-control text-black" asp-for="@signup.Name" value="@username">
@@ -250,7 +214,7 @@
 
 <div id="editmodal_2">
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" asp-action="Profile" asp-controller="Account">
         <!-- Button trigger modal -->
         <!-- Modal -->
         <div class="modal fade" id="editmodal2" tabindex="-1" aria-labelledby="editmodal2Label" aria-hidden="true">
@@ -287,7 +251,7 @@
 
 <div id="editmodel_3">
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" asp-action="Profile" asp-controller="Account">
         <!-- Button trigger modal -->
         <!-- Modal -->
         <div class="modal fade" id="editmodel3" tabindex="-1" aria-labelledby="editmodel3Label" aria-hidden="true">
@@ -320,4 +284,38 @@
         </div>
     </form>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="fileUpload" tabindex="-1" aria-labelledby="propic" aria-hidden="true">
+    <div class="modal-dialog text-white bg-black bg-opacity-50">
+        <div class="modal-content bg-black  bg-opacity-75">
+
+            <div class="modal-header  text-white ">
+                <h1 class="modal-title fs-5" id="propic">Upload Profile Photo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form method="post" enctype="multipart/form-data" asp-action="Profile" asp-controller="Account">
+                <input type="hidden" asp-for="@user_id" />
+
+                <div class="modal-body">
+                    @*choose file*@
+
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control text-black" asp-for="@signup.Profile_pic">
+                        <label class="input-group-text" asp-for="@signup.Profile_pic">Upload</label>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+
+
+
+        </div>
+    </div>
 </div>

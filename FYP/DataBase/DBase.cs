@@ -17,6 +17,7 @@ namespace DataBase
         public DbSet<news_events> News_Events { get; set; }
         public DbSet<Links> Links { get; set; }
         public DbSet<Assignments> Assignments { get; set; }
+        public DbSet<Notes> MyNotes { get; set; }
     }
 
 

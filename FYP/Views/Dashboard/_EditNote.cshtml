@@ -1,0 +1,56 @@
+﻿@model FYP.Models.Dashboard.Notes
+@{
+
+}
+<form method="post" enctype="multipart/form-data" asp-controller="Dashboard" asp-action="EditNote">
+    <!-- Modal -->
+    <div class="modal fade" id="_EditAssignment" tabindex="-1" aria-labelledby="EditAssignment" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content overflow-scroll text-white bg-black bg-opacity-75" style="height:70vh;">
+                <div class="modal-header text-center">
+                    <h1 class="modal-title fs-5 fw-bold text-uppercase" id="CreateEvent">Edit Note</h1>
+                    <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <input type="hidden" asp-for="File_Name" />
+                <div class="modal-body">
+
+                  
+                    <div class="row justify-content-between">
+
+
+                    <div class="mb-3">
+                        <label asp-for="@Model.Subject" class="form-label"></label>
+                        <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@Model.Subject">
+                        <span asp-validation-for="@Model.Subject" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="@Model.SubTitle" class="form-label"></label>
+                        <input class="form-control focus filt bg-white bg-opacity-10" asp-for="@Model.SubTitle" />
+                        <span asp-validation-for="@Model.SubTitle" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="@Model.Description" class="form-label"></label>
+                        <textarea class="form-control focus filt bg-white bg-opacity-10" asp-for="@Model.Description"></textarea>
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="@Model.File" class="form-label"></label>
+                        <input asp-for="@Model.File" class="form-control focus filt bg-white bg-opacity-10" type="file" multiple>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

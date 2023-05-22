@@ -190,16 +190,7 @@ namespace Encapsulation
         
         public async Task<int> AddAssignmet(Assignments assignments)
         {
-            //assignments.MultipleImages = new List<MultipleImages>();
-            //foreach (var images in assignments.multiImages)
-            //{
-            //    MultipleImages multipleImages = new MultipleImages();
-            //    multipleImages.id = images.id;
-            //    multipleImages.FileName = images.FileName;
-            //    multipleImages.URL = images.URL;
-            //    assignments.MultipleImages.Add(multipleImages);
-            //}
-
+            
             _ = dBase.Assignments.AddAsync(assignments);
            
             var result = await dBase.SaveChangesAsync();
@@ -220,6 +211,36 @@ namespace Encapsulation
         {
             var assignments = dBase.Assignments.Where(x => x.id == id).FirstOrDefault();
             dBase.Assignments.Remove(assignments);
+            var result = await dBase.SaveChangesAsync();
+            return result;
+        }
+
+
+
+        //Notes Section Starts Here
+
+        public async Task<int> AddNote(Notes notes)
+        {
+
+            _ = dBase.MyNotes.AddAsync(notes);
+
+            var result = await dBase.SaveChangesAsync();
+            return result;
+        }
+
+        public Notes UpdateNote(Notes notes)
+
+        {
+            var note = dBase.MyNotes.Attach(notes);
+
+            note.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            dBase.SaveChanges();
+            return notes;
+        }
+        public async Task<int> DelNote(int? id)
+        {
+            var Notes = dBase.MyNotes.Where(x => x.id == id).FirstOrDefault();
+            dBase.MyNotes.Remove(Notes);
             var result = await dBase.SaveChangesAsync();
             return result;
         }

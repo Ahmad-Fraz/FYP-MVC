@@ -169,7 +169,6 @@ namespace FYP.Controllers
             return View();
         }
 
-        public IList<Assignments> AssignmentsList { get; set; }
         public IActionResult Assignments()
         {
 
@@ -247,7 +246,7 @@ namespace FYP.Controllers
             assignments.Time = String.Format("{0:t}", Time);
             assignments.Submission_Date = String.Format("{0:D}", Submission_Date);
             folder = "Assignments/";
-            if (assignments.File_Name != null)
+            if (assignments.File != null)
             {
                 names = assignments.File_Name.Split(":");
 
@@ -257,13 +256,16 @@ namespace FYP.Controllers
                         deleteFile(file);
                 }
             }
-            foreach (var file in assignments.File)
+            if (assignments.File != null)
             {
-                var filename = AddFile(file);
-                filenames = filename + ":";
-                collectnames += filenames;
+                foreach (var file in assignments.File)
+                {
+                    var filename = AddFile(file);
+                    filenames = filename + ":";
+                    collectnames += filenames;
+                }
+                assignments.File_Name = collectnames;
             }
-            assignments.File_Name = collectnames;
 
             Interface.UpdateAssignment(assignments);
             TempData["AssignmentUpdated"] = "true";
@@ -297,6 +299,132 @@ namespace FYP.Controllers
                 ModelState.AddModelError("", "Assignment cannot be deleted");
             }
             return View();
+        }
+
+        //Notes Starting Here
+
+        public IActionResult Notes()
+        {
+
+            var notes = DBase.MyNotes.ToList();
+            return View(notes);
+        }
+
+        public IActionResult AddNotes()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNotes(Notes notes)
+        {
+            string filenames = "";
+            string collectnames = "";
+
+            if (!string.IsNullOrEmpty(notes.Subject))
+            {
+
+
+                notes.Uploaded_Time = DateTime.Now.ToString();
+
+                notes.Uploaded_By = await Interface.getUserNameByid(Getid());
+
+                folder = "MyNotes/";
+                foreach (var file in notes.File)
+                {
+                    var filename = AddFile(file);
+                    filenames = filename + ":";
+                    collectnames += filenames;
+                }
+                notes.File_Name = collectnames;
+
+
+                var result = await Interface.AddNote(notes);
+                if (result > 0)
+                {
+                    TempData["noteadded"] = "successfull";
+                    return RedirectToAction("Notes");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Note cannot be added");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Please fill the  fields");
+            }
+            return View();
+        }
+
+        public IActionResult DetailsNote(int? id)
+        {
+            var note = DBase.MyNotes.Where(_ => _.id == id).FirstOrDefault();
+
+            return View(note);
+        }
+
+        public IActionResult EditNote(int? id)
+        {
+            var notes = DBase.MyNotes.Where(_ => _.id == id).FirstOrDefault();
+            return PartialView("_EditNote", notes);
+        }
+
+        [HttpPost]
+        public IActionResult EditNote(Notes notes, int id)
+        {
+            string filenames = "";
+            string collectnames = "";
+            string[] names = null;
+
+            folder = "MyNotes/";
+            if (notes.File != null)
+            {
+                names = notes.File_Name.Split(":");
+
+                foreach (var file in names)
+                {
+                    if (file != "")
+                        deleteFile(file);
+                }
+
+            }
+            if (notes.File != null)
+            {
+                foreach (var file in notes.File)
+                {
+                    var filename = AddFile(file);
+                    filenames = filename + ":";
+                    collectnames += filenames;
+                }
+                notes.File_Name = collectnames;
+            }
+
+            Interface.UpdateNote(notes);
+            TempData["NoteUpdated"] = "true";
+            return RedirectToAction("DetailsNote", new { id = id });
+        }
+
+
+        public async Task<IActionResult> DeleteNote(int? id)
+        {
+            var result = await Interface.DelNote(id);
+            if (result == 1)
+            {
+                TempData["noteDeleted"] = "successfully";
+                return RedirectToAction("Notes");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Assignment cannot be deleted");
+            }
+            return View();
+        }
+
+        public IActionResult DownloadNoteFile(string filename)
+        {
+            var memory = DownloadSinghFile(filename, "MyNotes/");
+            return File(memory.ToArray(), "image/png", filename);
         }
 
         //Add Files |  Replace files && get current user
