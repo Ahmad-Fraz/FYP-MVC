@@ -3858,6 +3858,21 @@
         "runtime": {
           "lib/net7.0/X.PagedList.dll": {}
         }
+      },
+      "X.PagedList.Mvc.Core/8.4.7": {
+        "type": "package",
+        "dependencies": {
+          "X.PagedList": "8.4.7"
+        },
+        "compile": {
+          "lib/net7.0/X.PagedList.Mvc.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/X.PagedList.Mvc.Core.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -11037,6 +11052,19 @@
         "x.pagedlist.8.4.7.nupkg.sha512",
         "x.pagedlist.nuspec"
       ]
+    },
+    "X.PagedList.Mvc.Core/8.4.7": {
+      "sha512": "dS8sJr/aT3AoV9ePaqmF4wijh/2vqS9rxpOvzjPPStkQcR8rUaGPVezPgY/kJwWCZ2hdgKNralbU08So0otNxw==",
+      "type": "package",
+      "path": "x.pagedlist.mvc.core/8.4.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net6.0/X.PagedList.Mvc.Core.dll",
+        "lib/net7.0/X.PagedList.Mvc.Core.dll",
+        "x.pagedlist.mvc.core.8.4.7.nupkg.sha512",
+        "x.pagedlist.mvc.core.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -11053,7 +11081,8 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Core >= 7.0.6",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.6",
       "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore >= 7.0.6",
-      "X.PagedList >= 8.4.7"
+      "X.PagedList >= 8.4.7",
+      "X.PagedList.Mvc.Core >= 8.4.7"
     ]
   },
   "packageFolders": {
@@ -11149,6 +11178,10 @@
             "version": "[7.0.6, )"
           },
           "X.PagedList": {
+            "target": "Package",
+            "version": "[8.4.7, )"
+          },
+          "X.PagedList.Mvc.Core": {
             "target": "Package",
             "version": "[8.4.7, )"
           }

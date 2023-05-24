@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5dfE1nBB4VZRyjrCzUMOWdfOVFJ+446//l6neDnoaDLArYTtk6Gv0R1+3he7kwjcdmG+FDlf5I5sl2q1PIyGOw==",
+  "dgSpecHash": "e8uTjuL/zC0kQtESyfUawVFo9Q4Gimf8Y0lzjdtWao/rLAXI/b61ApsytxDyBT7uLVGztAMrNdcy5WFsBQq7Lw==",
   "success": true,
   "projectFilePath": "D:\\VS Projects\\FYP\\FYP.csproj",
   "expectedPackageFiles": [
@@ -195,7 +195,8 @@
     "C:\\Users\\Ahmad\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\Ahmad\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Ahmad\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Ahmad\\.nuget\\packages\\x.pagedlist\\8.4.7\\x.pagedlist.8.4.7.nupkg.sha512"
+    "C:\\Users\\Ahmad\\.nuget\\packages\\x.pagedlist\\8.4.7\\x.pagedlist.8.4.7.nupkg.sha512",
+    "C:\\Users\\Ahmad\\.nuget\\packages\\x.pagedlist.mvc.core\\8.4.7\\x.pagedlist.mvc.core.8.4.7.nupkg.sha512"
   ],
   "logs": []
 }

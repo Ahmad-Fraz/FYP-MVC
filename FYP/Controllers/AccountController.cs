@@ -1,6 +1,7 @@
 ﻿using Encapsulation;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Models;
@@ -14,12 +15,14 @@ namespace FYP.Controllers
         private readonly Interface @interface;
         private readonly IHttpContextAccessor httpContext;
 
+
         public AccountController(Interface @interface, IWebHostEnvironment webHostEnvironment, IHttpContextAccessor httpContext)
         {
 
             this.@interface = @interface;
             WebHostEnvironment = webHostEnvironment;
             this.httpContext = httpContext;
+   
         }
 
 
@@ -171,6 +174,10 @@ namespace FYP.Controllers
             return RedirectToAction("Dashboard", "Dashboard", new { signout_notification });
         }
 
+       
+
+
+        //Woring with files
 
         private string AddFile(SignUpModel signUpModel)
         {

@@ -127,7 +127,7 @@ input[type=email]::-webkit-input-placeholder {
     background-color: darkblue;
     opacity: .5;
     cursor: pointer;
-    color:white;
+    color: white;
 }
 
 .hide {
@@ -190,8 +190,9 @@ input[type=email]::-webkit-input-placeholder {
         background-color: #0d6efd !important;
         border: white 1px solid;
     }
-.link:active{
-    color:green;
+
+.link:active {
+    color: green;
 }
 
 .event_para {
@@ -206,9 +207,10 @@ input[type=email]::-webkit-input-placeholder {
     padding: 1rem;
     transform: translate(-50%, -50%);
 }
-.container_img{
-    position:relative;
-    text-align:center;
+
+.container_img {
+    position: relative;
+    text-align: center;
 }
 
 .filt {
@@ -219,14 +221,16 @@ input[type=email]::-webkit-input-placeholder {
     background-image: url('../Images for background/news2.jpg');
     background-size: cover;
     background-attachment: fixed;
-    color:white;
+    color: white;
 }
+
 .Detailevents-background {
     background-image: url('../Images for background/Devent.jpg');
     background-size: cover;
     background-attachment: fixed;
     color: white;
 }
+
 .links-background {
     background-image: url('../Images for background/link (2).jpg');
     background-size: cover;
@@ -252,6 +256,7 @@ input[type=email]::-webkit-input-placeholder {
     background-attachment: fixed;
     color: white;
 }
+
 .AddAssginment-background {
     background-image: url('../Images for background/Assignment4.jpg');
     background-size: cover;
@@ -259,9 +264,46 @@ input[type=email]::-webkit-input-placeholder {
     color: white;
 }
 
+.notes-background {
+    background-image: url('../Images for background/notes1 (1).jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+
+.Addnote-background {
+    background-image: url('../Images for background/notes1 (2).jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+
+.DetailNote-background {
+    background-image: url('../Images for background/notes.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+
+.quizz-background {
+    background-image: url('../Images for background/question1.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+.open-background {
+    background-image: url('../Images for background/question2.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
 
 /* width */
 ::-webkit-scrollbar {
+    width: 5px;
+}
+
+:: -webkit-scrollbar {
     width: 5px;
 }
 
@@ -281,3 +323,5 @@ input[type=email]::-webkit-input-placeholder {
     ::-webkit-scrollbar-thumb:hover {
         background: #b30000;
     }
+
+

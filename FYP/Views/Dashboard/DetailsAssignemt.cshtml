@@ -86,28 +86,28 @@
             </div>
     </div>
 
-    <div class="col-3 border-start">
-        <div class="bg-body">
+    <div class="col-3 ">
+        <div class="bg-body p-3 text-center rounded border-start">
             <label asp-for="@Model.Submission_Date" class="text-muted fw-bold d-block"></label>
             @Html.DisplayFor(model => model.Submission_Date,new {@class="text-muted fw-bold"}) at
             @Html.DisplayFor(model => model.Time,new {@class="text-muted fw-bold"})
         </div>
         <hr />
-        <div class="bg-body">
+        <div class="bg-body p-3 text-center rounded border-start">
             <label asp-for="@Model.Uploaded_Time" class="text-muted fw-bold d-block"></label>
             @Html.DisplayFor(model => model.Uploaded_Time,new {@class="text-muted fw-bold"})
         </div>
         <hr />
-        <div class="bg-body">
+        <div class="bg-body p-3 text-center rounded border-start">
             <label asp-for="@Model.Uploaded_By" class="text-muted fw-bold d-block"></label>
             @Html.DisplayFor(model => model.Uploaded_By,new {@class="text-muted fw-bold"})
         </div>
-        <hr />
+       
 
     </div>
 </div>
-
-<div class="bg-dark bg-opacity-75 position-relative w-100 text-center" style="top:2rem;">
+<hr />
+<div class="bg-dark bg-opacity-75 w-100 text-center rounded">
     <button class="card-link btn btn-outline-warning m-2" asp-route-id="@Model.id" type="button" data-toggle="ajax-modal" data-target="#_EditAssignment" data-url="@Url.Action($"EditAssignment/{@Model?.id}","Dashboard")">Edit</button>
 
     <a href="#_Delete" data-bs-toggle="modal" data-bs-target="#_Delete" class="btn btn-outline-danger m-2">Delete</a>

@@ -1,10 +1,14 @@
-﻿@model IEnumerable<FYP.Models.Dashboard.Notes>
+﻿@using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
+@using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Web.Common
+@model IEnumerable<FYP.Models.Dashboard.Notes>
 
 @{
     ViewData["Title"] = "MyNotes";
-
+    var pagedList = (IPagedList)ViewBag.Notes;
 }
-<body style="" class="Assignment-background">
+<body style="" class="notes-background">
 
 </body>
 
@@ -34,13 +38,26 @@
         <center>
             <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Notes</h1>
         </center>
+        <center>
+
+            @Html.PagedListPager(pagedList,
+            page => Url.Action("Notes","Dashboard",
+            new { page }),
+            new PagedListRenderOptions()
+            {
+            DisplayItemSliceAndTotal = true,
+            ItemSliceAndTotalPosition = ItemSliceAndTotalPosition.End,
+            MaximumPageNumbersToDisplay=3
+            })
+
+        </center>
         @if (Model?.Any() == false)
         {
             <center><label class="text-white fw-bold text-uppercase"> No Notes are uploaded</label></center>
         }
         else
         {
-            <div class="overflow-scroll p-3 d-flex" style="height:62vh;">
+            <div class="overflow-scroll p-3 d-flex" style="height:54vh;">
                 <div class="row">
                     @foreach (var item in Model)
                     {
@@ -104,8 +121,10 @@
                         </form>
                     }
                 </div>
+
             </div>
         }
+       
 
     </div>
 </div>

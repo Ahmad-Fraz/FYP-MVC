@@ -1,0 +1,100 @@
+﻿@model EditRole
+@{
+    var addnotify = ViewBag.AddNotify;
+    var remnotify = ViewBag.RemNotify;
+}       
+<body style="" class="Assignment-background">
+
+</body>
+
+@if (addnotify == "1add")
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>A new User is Added to the role</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (addnotify == "2add")
+
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Users are Added to the role</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (remnotify == "1rem")
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>A user was removed from the role</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (remnotify == "2rem")
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Users were removed from the role</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div>
+
+    <form asp-action="EditRole" asp-controller="Administration" method="post">
+
+
+        <div class="card bg-black bg-opacity-50 mb-5">
+
+            <div class="card-body text-white bg-black bg-opacity-50">
+
+                <center class="rounded bg-black">
+                    <label class="fw-bold fs-2">Edit Role</label>
+                </center>
+                <p class="fs-5">
+                    <label asp-for="Id" class="text-success fw-bold text-uppercase"></label>
+                    @Html.DisplayFor(x=>x.Id)
+                </p>
+            </div>
+
+            <ul class="list-group list-group-flush bg-black bg-opacity-50">
+                <li class="list-group-item bg-body">
+                    <div class="col-7 d-flex form-group">
+
+                        <label asp-for="RoleName" class="form-label col-3 my-auto text-info fw-bold text-uppercase"></label>
+                        <input asp-for="RoleName" class="form-control" />
+                    </div>
+                </li>
+            </ul>
+
+            <hr />
+
+            <div class="card-body bg-black bg-opacity-50">
+                <input type="submit" class="btn btn-outline-info m-1" value="Update" />
+                <a asp-action="RolesList" asp-controller="Administration" class="btn btn-outline-info m-1">All Roles</a>
+            </div>
+        </div>
+
+    </form>
+
+
+    <div class="card bg-black bg-opacity-50 mt-5">
+        <div class="card-body text-white bg-black bg-opacity-50">
+            <h5>Users in this Role</h5>
+        </div>
+        @if (Model.Users.Any() == true)
+            @foreach (var user in Model.Users)
+            {
+                @user
+            }
+        else
+        {
+            <center><label class="text-white fw-bold text-uppercase"> No Users are Added Yet</label></center>
+        }
+
+        <div class="card-body bg-black bg-opacity-50">
+            <a asp-action="AddUsers" asp-controller="Administration" class="btn btn-outline-info m-1" asp-route-id="@Model.Id">Add/Remove Users From This Role</a>
+        </div>
+    </div>
+
+
+</div>

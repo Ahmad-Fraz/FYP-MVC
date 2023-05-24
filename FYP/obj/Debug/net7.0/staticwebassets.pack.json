@@ -449,8 +449,40 @@
       "PackagePath": "staticwebassets\\Images for background\\news2.jpg"
     },
     {
+      "Id": "D:\\VS Projects\\FYP\\wwwroot\\Images for background\\note1.jpg",
+      "PackagePath": "staticwebassets\\Images for background\\note1.jpg"
+    },
+    {
+      "Id": "D:\\VS Projects\\FYP\\wwwroot\\Images for background\\note2.jpg",
+      "PackagePath": "staticwebassets\\Images for background\\note2.jpg"
+    },
+    {
+      "Id": "D:\\VS Projects\\FYP\\wwwroot\\Images for background\\note3.jpg",
+      "PackagePath": "staticwebassets\\Images for background\\note3.jpg"
+    },
+    {
+      "Id": "D:\\VS Projects\\FYP\\wwwroot\\Images for background\\notes.jpg",
+      "PackagePath": "staticwebassets\\Images for background\\notes.jpg"
+    },
+    {
+      "Id": "D:\\VS Projects\\FYP\\wwwroot\\Images for background\\notes1 (1).jpg",
+      "PackagePath": "staticwebassets\\Images for background\\notes1 (1).jpg"
+    },
+    {
+      "Id": "D:\\VS Projects\\FYP\\wwwroot\\Images for background\\notes1 (2).jpg",
+      "PackagePath": "staticwebassets\\Images for background\\notes1 (2).jpg"
+    },
+    {
       "Id": "D:\\VS Projects\\FYP\\wwwroot\\Images for background\\qm.jpg",
       "PackagePath": "staticwebassets\\Images for background\\qm.jpg"
+    },
+    {
+      "Id": "D:\\VS Projects\\FYP\\wwwroot\\Images for background\\question1.jpg",
+      "PackagePath": "staticwebassets\\Images for background\\question1.jpg"
+    },
+    {
+      "Id": "D:\\VS Projects\\FYP\\wwwroot\\Images for background\\question2.jpg",
+      "PackagePath": "staticwebassets\\Images for background\\question2.jpg"
     },
     {
       "Id": "D:\\VS Projects\\FYP\\wwwroot\\Images for background\\setting.jpg",
@@ -469,8 +501,16 @@
       "PackagePath": "staticwebassets\\Images for background\\system.jpg"
     },
     {
+      "Id": "D:\\VS Projects\\FYP\\wwwroot\\MyNotes\\036db034-b974-48ae-8446-7eed59a11db1 da9cd9f8-5214-4804-8040-b3caed672dff noimg (5).jpg",
+      "PackagePath": "staticwebassets\\MyNotes\\036db034-b974-48ae-8446-7eed59a11db1 da9cd9f8-5214-4804-8040-b3caed672dff noimg (5).jpg"
+    },
+    {
       "Id": "D:\\VS Projects\\FYP\\wwwroot\\MyNotes\\93492023-d250-4590-939f-cc3d7bf60992 c1fac55f-3f43-4bfd-b433-4f3f494def6f link (2).jpg",
       "PackagePath": "staticwebassets\\MyNotes\\93492023-d250-4590-939f-cc3d7bf60992 c1fac55f-3f43-4bfd-b433-4f3f494def6f link (2).jpg"
+    },
+    {
+      "Id": "D:\\VS Projects\\FYP\\wwwroot\\MyNotes\\d81ebe88-79b5-4a72-af32-a30d751c4e05 93492023-d250-4590-939f-cc3d7bf60992 c1fac55f-3f43-4bfd-b433-4f3f494def6f link (2).jpg",
+      "PackagePath": "staticwebassets\\MyNotes\\d81ebe88-79b5-4a72-af32-a30d751c4e05 93492023-d250-4590-939f-cc3d7bf60992 c1fac55f-3f43-4bfd-b433-4f3f494def6f link (2).jpg"
     },
     {
       "Id": "D:\\VS Projects\\FYP\\wwwroot\\MyNotes\\noimg.jpg",
@@ -599,6 +639,10 @@
     {
       "Id": "D:\\VS Projects\\FYP\\wwwroot\\Profile_Pics\\ff05687e-3503-4d9b-8c95-ea79681660f5 Assignment2.jpg",
       "PackagePath": "staticwebassets\\Profile_Pics\\ff05687e-3503-4d9b-8c95-ea79681660f5 Assignment2.jpg"
+    },
+    {
+      "Id": "D:\\VS Projects\\FYP\\wwwroot\\css\\PagedList.css",
+      "PackagePath": "staticwebassets\\css\\PagedList.css"
     },
     {
       "Id": "D:\\VS Projects\\FYP\\wwwroot\\css\\site.css",

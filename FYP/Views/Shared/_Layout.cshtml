@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/StudentConnect.styles.css" asp-append-version="true" />
-   
+    <link href="~/css/pagedlist.css" rel="stylesheet" />
     <script src="~/jquery/jquery.min.js"></script>
   
     <script src="~/jquery/jquery.js"></script>
@@ -25,7 +25,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black bg-opacity-25 border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand text-white" asp-area="" asp-page="/Index">StudentConnect</a>
+                <a class="navbar-brand text-white" >StudentConnect</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,17 +34,19 @@
 
                     <ul class="navbar-nav flex-grow-1">
 
-                        <li class="nav-item mx-2 bg-black bg-opacity-50">
-                            <a class="nav-link text-white btn btn-outline-light @(Accessor.HttpContext.Request.Path.Value == "/" ? "btn-primary" : "")" asp-area="" asp-action="Dashboard" asp-controller="Dashboard">Dashboard</a>
+                        <li class="nav-item mx-2 @(ViewContext.RouteData.Values["Action"].ToString() == "Dashboard" ? "btn-primary" : "" ) ">
+                            <a class="nav-link text-white btn btn-outline-light  bg-black bg-opacity-50" asp-action="Dashboard" asp-controller="Dashboard">Dashboard</a>
                         </li>
                         
-                        <li class="nav-item mx-2 bg-black bg-opacity-50">
-                            <a class="nav-link text-white btn btn-outline-light @(Accessor.HttpContext.Request.Path.Value == "/ContactUs" ? "btn-primary" : "")" asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+                        <li class="nav-item mx-2  @(ViewContext.RouteData.Values["Action"].ToString() == "ContactUs" ? "btn-primary" : "" )">
+                            <a class="nav-link text-white btn btn-outline-light bg-black bg-opacity-50" asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+                        </li>
+                        <li class="nav-item mx-2 ">
+                            <a class="nav-link text-white btn btn-outline-light bg-black bg-opacity-50" asp-area="" asp-controller="Administration" asp-action="RolesList">RolesList</a>
                         </li>
                         <li class="nav-item mx-2 bg-black bg-opacity-50">
-                            <a class="nav-link text-white btn btn-outline-light @(Accessor.HttpContext.Request.Path.Value == "/news&events" ? "btn-primary" : "")" asp-area="" asp-controller="Dashboard" asp-action="Notes">Notes</a>
+                            <a class="nav-link text-white btn btn-outline-light @(Accessor.HttpContext.Request.Path.Value == "/news&events" ? "btn-primary" : "")" asp-area="" asp-controller="Administration" asp-action="CreateRoles">Create Roles</a>
                         </li>
-
                         <li class="nav-item mx-2 bg-black bg-opacity-50">
                             <a class="nav-link text-white btn btn-outline-light" asp-area="" asp-page="/Privacy">Send Email</a>
                         </li>

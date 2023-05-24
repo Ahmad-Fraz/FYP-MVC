@@ -18,6 +18,8 @@ namespace DataBase
         public DbSet<Links> Links { get; set; }
         public DbSet<Assignments> Assignments { get; set; }
         public DbSet<Notes> MyNotes { get; set; }
+        public DbSet<Quizz> Quizzs { get; set; }
+
     }
 
 

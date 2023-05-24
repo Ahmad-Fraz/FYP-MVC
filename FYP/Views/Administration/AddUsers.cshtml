@@ -1,0 +1,39 @@
+﻿@model List<AddUsersToRoles>
+@{
+    ViewData["Title"] = "AddUsers";
+    var id = ViewBag.roleId;
+
+}
+<body style="" class="Assignment-background">
+
+</body>
+
+<form asp-action="AddUsers" asp-controller="Administration" asp-route-id="@id" method="post">
+
+    <div class="card signin-pageContent bg-black bg-opacity-50 text-white" >
+        <h5 class="card-header bg-black bg-opacity-50 text-white">Add users to  Role <strong class="text-warning">@ViewBag.roleName</strong></h5>
+        <ul class="list-group list-group-flush ">
+            <li class="list-group-item bg-black bg-opacity-50 text-white">  <h1>List of Users</h1> </li>
+            <li class="list-group-item bg-black bg-opacity-50 text-white overflow-scroll" style="max-height: 60vh;">
+                @if (Model.Any())
+                {
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        <input asp-for="@Model[i].isMember" class="form-check-input" />
+                        <label asp-for="@Model[i].isMember"> @Model[i].UserName</label>
+                        <input type="hidden" asp-for="@Model[i].id" />
+                        <input type="hidden" asp-for="@Model[i].UserName" />
+                        <br />
+                    }
+                }
+                else
+                {
+                    <h6>No roles yet.</h6>
+                }
+            </li>
+            <li class="list-group-item bg-black bg-opacity-50 text-white">
+                <button class="btn-primary btn hover">Add to Role</button>
+            </li>
+        </ul>
+    </div>
+</form>
