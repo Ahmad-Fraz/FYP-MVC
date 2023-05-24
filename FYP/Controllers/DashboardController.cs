@@ -3,15 +3,20 @@ using Encapsulation;
 using FYP.Models.Dashboard;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Models.Dashboard;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing.Printing;
 using System.IO.Compression;
 using System.Security.Claims;
+using X.PagedList;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FYP.Controllers
 {
     public class DashboardController : Controller
     {
+        private const int PageSize = 20;
         private readonly IHttpContextAccessor httpContext;
 
         [Display(Name = "Picture")]
@@ -20,7 +25,7 @@ namespace FYP.Controllers
         public Interface Interface { get; }
         public IWebHostEnvironment WebHostEnvironment { get; }
         public DBase DBase { get; }
-        public IEnumerable<news_events> Events { get; set; }
+        
         string folder = "Profile_Pics/";
         public DashboardController(Interface @interface, IWebHostEnvironment webHostEnvironment, DBase dBase, IHttpContextAccessor _httpContext)
         {
@@ -41,11 +46,12 @@ namespace FYP.Controllers
         }
 
         [Route("/news&events")]
-        public async Task<IActionResult> News_and_Events()
+        public async Task<IActionResult> News_and_Events(int page=1)
         {
-            Events = await Interface.Event_List();
-
-            return View(Events);
+            //var Events = await Interface.Event_List();
+            var events = GetEventsPagedNames(page);
+            ViewBag.Events = events;
+            return View(events);
         }
 
         public bool? Update { get; set; }
@@ -63,10 +69,10 @@ namespace FYP.Controllers
         [Route("/news&events")]
         public async Task<IActionResult> News_and_Events(news_events new_Events)
         {
-            new_Events.FromTime = String.Format("{0:t}", fromtime);
-            new_Events.ToTime = String.Format("{0:t}", totime);
+            new_Events.FromTime = System.String.Format("{0:t}", fromtime);
+            new_Events.ToTime = System.String.Format("{0:t}", totime);
 
-            new_Events.Date = String.Format("{0:D}", Date);
+            new_Events.Date = System.String.Format("{0:D}", Date);
 
             if (ModelState.IsValid)
             {
@@ -119,9 +125,11 @@ namespace FYP.Controllers
             return RedirectToAction("News_and_Events");
         }
 
-        public IActionResult Links()
+        public IActionResult Links(int page = 1)
         {
-            var linkList = DBase.Links.ToList();
+            var linkList = GetLinksPagedNames(page);
+            //var linkList = DBase.Links.ToList();
+            ViewBag.LinkList = linkList;
             return View(linkList);
         }
 
@@ -169,10 +177,11 @@ namespace FYP.Controllers
             return View();
         }
 
-        public IActionResult Assignments()
+        public IActionResult Assignments(int page = 1)
         {
-
-            var assignments = DBase.Assignments.ToList();
+            var assignments = GetAssignmentPagedNames(page);
+            //var assignments = DBase.Assignments.ToList();
+            ViewBag.Assignments = assignments;
             return View(assignments);
         }
 
@@ -197,8 +206,8 @@ namespace FYP.Controllers
             if (!string.IsNullOrEmpty(assignments.Subject) && !string.IsNullOrEmpty(assignments.Submission_Date))
             {
 
-                assignments.Time = String.Format("{0:t}", Time);
-                assignments.Submission_Date = String.Format("{0:D}", Submission_Date);
+                assignments.Time = System.String.Format("{0:t}", Time);
+                assignments.Submission_Date = System.String.Format("{0:D}", Submission_Date);
                 assignments.Uploaded_Time = DateTime.Now.ToString();
 
                 assignments.Uploaded_By = await Interface.getUserNameByid(Getid());
@@ -243,8 +252,8 @@ namespace FYP.Controllers
             string filenames = "";
             string collectnames = "";
             string[] names = null;
-            assignments.Time = String.Format("{0:t}", Time);
-            assignments.Submission_Date = String.Format("{0:D}", Submission_Date);
+            assignments.Time = System.String.Format("{0:t}", Time);
+            assignments.Submission_Date = System.String.Format("{0:D}", Submission_Date);
             folder = "Assignments/";
             if (assignments.File != null)
             {
@@ -303,10 +312,12 @@ namespace FYP.Controllers
 
         //Notes Starting Here
 
-        public IActionResult Notes()
+        public IActionResult Notes(int page = 1)
         {
 
-            var notes = DBase.MyNotes.ToList();
+            //var notes = DBase.MyNotes.ToList();
+            var notes = GetNotesPagedNames(page);
+            ViewBag.Notes = notes;
             return View(notes);
         }
 
@@ -427,7 +438,166 @@ namespace FYP.Controllers
             return File(memory.ToArray(), "image/png", filename);
         }
 
+
+        public IActionResult Quizzes(int page =1)
+        {
+            var quizzes = GetQuizzesPagedNames(page);
+            ViewBag.Quizz = quizzes;
+            //var quizzes = DBase.Quizzs.ToList();
+            return View(quizzes);
+        }
+
+        public async Task<IActionResult> AddQuizzAsync(Quizz quizz)
+        {
+            quizz.UploadedBy = await Interface.getUserNameByid(Getid());
+            quizz.CreateDate = DateTime.Now.ToString();
+            var result =DBase.Quizzs.AddAsync(quizz);
+            await DBase.SaveChangesAsync();
+            TempData["quizzAdded"] = "true";
+            return RedirectToAction("Quizzes");
+        }
+         
+
+        public IActionResult OpenQuiz(int id)
+        {
+            var quizz = DBase.Quizzs.Where(x => x.id == id).FirstOrDefault();
+            return View(quizz);
+        }
+
+        public async Task<IActionResult> DeleteQuiz(int? id)
+        {
+            var result = await Interface.DelQuiz(id);
+            if (result == 1)
+            {
+                TempData["quizDeleted"] = "successfully";
+                return RedirectToAction("Quizzes");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Assignment cannot be deleted");
+            }
+            return View();
+        }
+
         //Add Files |  Replace files && get current user
+
+        private IPagedList<Notes> GetNotesPagedNames(int? page)
+        {
+            // return a 404 if user browses to before the first page
+            if (page.HasValue && page < 1)
+            {
+                return null;
+            }
+            
+            // retrieve list from database/whereverand
+            var listUnPaged = DBase.MyNotes.ToList();
+
+            // page the list
+
+            var listPaged = listUnPaged.ToPagedList(page ?? 1, PageSize);
+
+            // return a 404 if user browses to pages beyond last page. special case first page if no items exist
+            if (listPaged.PageNumber != 1 && page.HasValue && page > listPaged.PageCount)
+            {
+                return null;
+            }
+
+            return listPaged;
+        }
+        private IPagedList<Links> GetLinksPagedNames(int? page)
+        {
+            // return a 404 if user browses to before the first page
+            if (page.HasValue && page < 1)
+            {
+                return null;
+            }
+
+            // retrieve list from database/whereverand
+            var listUnPaged = DBase.Links.ToList();
+
+            // page the list
+
+            var listPaged = listUnPaged.ToPagedList(page ?? 1, PageSize);
+
+            // return a 404 if user browses to pages beyond last page. special case first page if no items exist
+            if (listPaged.PageNumber != 1 && page.HasValue && page > listPaged.PageCount)
+            {
+                return null;
+            }
+
+            return listPaged;
+        }
+        private IPagedList<Assignments> GetAssignmentPagedNames(int? page)
+        {
+            // return a 404 if user browses to before the first page
+            if (page.HasValue && page < 1)
+            {
+                return null;
+            }
+
+            // retrieve list from database/whereverand
+            var listUnPaged = DBase.Assignments.ToList();
+
+            // page the list
+
+            var listPaged = listUnPaged.ToPagedList(page ?? 1, PageSize);
+
+            // return a 404 if user browses to pages beyond last page. special case first page if no items exist
+            if (listPaged.PageNumber != 1 && page.HasValue && page > listPaged.PageCount)
+            {
+                return null;
+            }
+
+            return listPaged;
+        }
+        private IPagedList<Quizz> GetQuizzesPagedNames(int? page)
+        {
+            // return a 404 if user browses to before the first page
+            if (page.HasValue && page < 1)
+            {
+                return null;
+            }
+
+            // retrieve list from database/whereverand
+            var listUnPaged = DBase.Quizzs.ToList();
+
+            // page the list
+
+            var listPaged = listUnPaged.ToPagedList(page ?? 1, PageSize);
+
+            // return a 404 if user browses to pages beyond last page. special case first page if no items exist
+            if (listPaged.PageNumber != 1 && page.HasValue && page > listPaged.PageCount)
+            {
+                return null;
+            }
+
+            return listPaged;
+        }
+        private IPagedList<news_events> GetEventsPagedNames(int? page)
+        {
+            // return a 404 if user browses to before the first page
+            if (page.HasValue && page < 1)
+            {
+                return null;
+            }
+
+            // retrieve list from database/whereverand
+            var listUnPaged =  DBase.News_Events.ToList();
+
+            // page the list
+
+            var listPaged = listUnPaged.ToPagedList(page ?? 1, PageSize);
+
+            // return a 404 if user browses to pages beyond last page. special case first page if no items exist
+            if (listPaged.PageNumber != 1 && page.HasValue && page > listPaged.PageCount)
+            {
+                return null;
+            }
+
+            return listPaged;
+        }
+
+        
 
         private string AddFile(IFormFile formFile)
         {
@@ -511,7 +681,5 @@ namespace FYP.Controllers
         {
             return httpContext.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
-
-
     }
 }

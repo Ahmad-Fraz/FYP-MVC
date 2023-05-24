@@ -16,6 +16,8 @@ builder.Services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, UserCla
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<DBase>();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<SignUpModel>();
+builder.Services.AddScoped<FYP.Models.CreateRoles>();
+builder.Services.AddScoped<FYP.Models.Dashboard.Quizz>();
 builder.Services.AddScoped<ContactUsModel>();
 builder.Services.AddScoped<Microsoft.AspNetCore.Http.HttpContextAccessor>();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -47,6 +49,6 @@ app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Dashboard}/{action=Dashboard}/{id?}");
 
 app.Run();

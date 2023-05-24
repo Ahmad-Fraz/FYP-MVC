@@ -16,7 +16,7 @@ namespace Encapsulation
         public Task ContactInfoUpdateAsync(string id, SignUpModel signUp);
         public Task BasicInfoUpdateAsync(string id, SignUpModel signUp);
         public Task<int> Create_News_Event(news_events news_Events);
-        public Task<List<news_events>> Event_List();
+  
         public Task<news_events> findEventAsync(int? id);
         public news_events UpdateEvent(news_events news_Events);
         public Task DeleteEvent(news_events news_Events);
@@ -29,6 +29,7 @@ namespace Encapsulation
         public Task<int> AddNote(Notes notes);
         public Notes UpdateNote(Notes notes);
         public Task<int> DelNote(int? id);
+        public Task<int> DelQuiz(int? id);
 
     }
 }

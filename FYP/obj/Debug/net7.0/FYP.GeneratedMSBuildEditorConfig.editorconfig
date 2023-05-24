@@ -32,6 +32,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/VS Projects/FYP/Views/Administration/AddUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpb25cQWRkVXNlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VS Projects/FYP/Views/Administration/CreateRoles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpb25cQ3JlYXRlUm9sZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VS Projects/FYP/Views/Administration/EditRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpb25cRWRpdFJvbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VS Projects/FYP/Views/Administration/RolesList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpb25cUm9sZXNMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/VS Projects/FYP/Views/Dashboard/AddAssignment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFkZEFzc2lnbm1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -76,6 +92,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE5vdGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/VS Projects/FYP/Views/Dashboard/OpenQuiz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE9wZW5RdWl6LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VS Projects/FYP/Views/Dashboard/Quizzes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFF1aXp6ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/VS Projects/FYP/Views/Dashboard/_assignments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9hc3NpZ25tZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -90,10 +114,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/VS Projects/FYP/Views/Home/ContactUs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0VXMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/VS Projects/FYP/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/VS Projects/FYP/Views/Home/Privacy.cshtml]

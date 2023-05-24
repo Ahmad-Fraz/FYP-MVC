@@ -1,8 +1,13 @@
-﻿@model IEnumerable<FYP.Models.Dashboard.Links>
+﻿@using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
+@using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Web.Common
+@model IEnumerable<FYP.Models.Dashboard.Links>
 
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Links";
+    var pagedList = (IPagedList)ViewBag.LinkList;
 }
 <body style="" class="links-background">
 
@@ -10,14 +15,14 @@
 
 @if (TempData["linkadded"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="z-index:1">
         <strong>Link created Successfully ||</strong> A new link has been added.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
-@if (TempData["linkdeleted"] !=null)
+@if (TempData["linkdeleted"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="z-index:1">
         <strong>Link deleted Successfully ||</strong> A link has been removed.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -27,7 +32,7 @@
 
 
     <div class="row">
-        <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded">
+        <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded" style="height:85vh;">
 
             <div class="text-center ">
                 <a asp-action="AddLinks" asp-controller="Dashboard" class="btn btn-light col-3 mx-1">Add a new Link</a>
@@ -37,53 +42,69 @@
             <center>
                 <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Links List</h1>
             </center>
+            <center >
+
+                @Html.PagedListPager(pagedList,
+                page => Url.Action("Links","Dashboard",
+                new { page }),
+                new PagedListRenderOptions()
+                {
+                DisplayItemSliceAndTotal = true,
+                ItemSliceAndTotalPosition = ItemSliceAndTotalPosition.End,
+                MaximumPageNumbersToDisplay=3
+                })
+
+            </center>
             @if (Model?.Any() == false)
             {
                 <center><label class="text-white fw-bold text-uppercase"> No Links are available</label></center>
             }
             else
             {
-                @foreach (var item in Model)
-                {
-                   
-                        
-                    <center>
-                        <div class="row my-2 w-100">
-                            <div class="col-3 col-lg-2 border">
-                                <a href="@item.links" target="_blank" class="btn btn-outline-info m-1" title="@item.links"> <img class="d-block" src="~/Icons/links.svg" style="filter:invert(1);height:4rem;" /> Link</a>                                                               
+                <div class="overflow-scroll p-3" style="height:54vh;">
+                    @foreach (var item in Model)
+                    {
+
+
+                        <center>
+                            <div class="row mb-2 w-100">
+                                <div class="col-3 col-lg-2 border p-2">
+                                    <a href="@item.links" target="_blank" class="btn btn-outline-info m-auto" title="@item.links"> <img class="d-block" src="~/Icons/links.svg" style="filter:invert(1);height:4rem;" /> Link</a>
+                                </div>
+                                <div class="border bg-black bg-opacity-50 text-white col-8 row m-0 flex-grow-1">
+
+                                    <div class="col-4 d-flex">
+                                        <label asp-for="@item.Title" class="text-success fw-bold d-block mx-2 text-uppercase"></label> :
+                                        @Html.DisplayFor(x=>@item.Title)
+                                    </div>
+
+                                    <div class="col-8 d-flex border-start">
+                                        <label asp-for="@item.SubTitle" class="text-info fw-bold d-block mx-2 text-uppercase"></label> :
+                                        @Html.DisplayFor(x=>@item.SubTitle)
+                                    </div>
+
+                                    <div class="w-100"></div>
+                                    <hr>
+                                    <div class="d-flex">
+                                        <label asp-for="@item.Description" class="text-light fw-bold d-block text-uppercase"></label> :
+                                        @Html.DisplayFor(x=>@item.Description)
+                                    </div>
+                                </div>
+
+                                <div class="col-3 col-lg-2 border m-0 row">
+                                    <div class="my-auto d-xl-flex">
+
+                                        <a asp-action="DeleteLink" asp-controller="Dashboard" class="btn btn-outline-danger m-1" asp-route-id="@item.id">Delete</a>
+
+                                    </div>
+                                </div>
                             </div>
-                            <div class="border bg-black bg-opacity-50 text-white col-8 row m-0 flex-grow-1">
-
-                                <div class="col-4 d-flex">
-                                    <label asp-for="@item.Title" class="text-success fw-bold d-block mx-2 text-uppercase"></label> :
-                                    @Html.DisplayFor(x=>@item.Title)
-                                </div>
-
-                                <div class="col-8 d-flex border-start">
-                                    <label asp-for="@item.SubTitle" class="text-info fw-bold d-block mx-2 text-uppercase"></label> :
-                                    @Html.DisplayFor(x=>@item.SubTitle)
-                                </div>
-
-                                <div class="w-100"></div>
-                                <hr>
-                                <div class="d-flex">
-                                    <label asp-for="@item.Description" class="text-light fw-bold d-block text-uppercase"></label> :
-                                    @Html.DisplayFor(x=>@item.Description)
-                                </div>
-                            </div>
-                        
-                            <div class="col-3 col-lg-2 border m-0 row">
-                                <div class="my-auto d-xl-flex">
-                                   
-                                    <a asp-action="DeleteLink" asp-controller="Dashboard" class="btn btn-outline-danger m-1" asp-route-id="@item.id">Delete</a>                                                                     
-
-                                </div>
-                            </div>
-                        </div>
-                    </center>
-                }
+                        </center>
+                        <hr />
+                    }
+                </div>
             }
-
+           
         </div>
     </div>
 </form>

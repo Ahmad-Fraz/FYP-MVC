@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    Layout = "_Layout";
+}
+<body style="" class="Assignment-background">
+
+
+</body>
+
+@if (TempData["roledel"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Role Deleted Successfully.</strong>A Role was deleted.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["roleAdded"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>A new role is Added</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["roleUpdate"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>A Role was Updated</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<div id="placeHoderHere"></div>
+<center><label class="text-white fw-bold text-uppercase bg-black bg-opacity-50 border p-3 col-12 fs-3"> Roles List </label></center>
+
+
+@if (Model?.Any() == false)
+{
+    <center><label class="text-white fw-bold text-uppercase"> No Roles are Created Yet</label></center>
+
+    <button type="button" href="#_createrole" data-toggle="ajax-modal" data-target="#createrole" class="btn btn-outline-warning m-1 d-block" data-url=@Url.Action($"CreateRoles","Administration")>Add a New Role</button>
+}
+else
+{
+    <div class="overflow-scroll p-3 d-flex" style="max-height:75vh;">
+
+        @foreach (var item in Model)
+        {
+            <div class="card col-3 bg-black bg-opacity-50 m-2" style="height:17rem;">
+
+                <div class="card-body text-white bg-black bg-opacity-50">
+
+                    <button type="button" href="#_createrole" data-toggle="ajax-modal" data-target="#createrole" class="btn btn-outline-warning m-1 d-block" data-url=@Url.Action($"CreateRoles","Administration")>Add a New Role</button>
+
+                    <p class="card-text">
+                        <label asp-for="@item.Id" class="text-success fw-bold d-block mx-2 text-uppercase"></label>
+                        @Html.DisplayFor(x=>@item.Id)
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush bg-black bg-opacity-50 bg-black bg-opacity-50">
+                    <li class="list-group-item text-white bg-black bg-opacity-75">
+                        <div class="">
+                            <label asp-for="@item.Name" class="text-info fw-bold text-uppercase"></label> :
+                            @Html.DisplayFor(x=>@item.Name)
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="card-body bg-black bg-opacity-50">
+                    <a asp-action="EditRole" asp-controller="Administration" class="btn btn-outline-info m-1" asp-route-id="@item.Id">Edit</a>
+                    <a href="#_Delete" data-bs-toggle="modal" data-bs-target="#_Delete" class="btn btn-outline-danger m-1">Delete</a>
+                </div>
+            </div>
+
+
+            <form method="post" enctype="multipart/form-data" asp-controller="Administration" asp-action="DeleteRole" asp-route-id="@item.Id">
+                <!-- Modal -->
+                <div class="modal fade" id="_Delete" tabindex="-1" aria-labelledby="Delete" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content text-white bg-black bg-opacity-50">
+                            <div class="modal-header text-center">
+                                <h1 class="modal-title fs-5 fw-bold text-uppercase" id="DeleteEvent">Do you want to delete this Role</h1>
+                                <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <input type="hidden" asp-for="@item.Id" />
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="submit" class="btn btn-primary">Yes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <hr />
+        }
+    </div>
+}
+

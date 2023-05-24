@@ -1,0 +1,160 @@
+﻿@using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
+@using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Web.Common
+
+@model IEnumerable<FYP.Models.Dashboard.Quizz>
+@inject FYP.Models.Dashboard.Quizz quizz
+
+@{
+
+    Layout = "_Layout";
+    ViewData["Title"] = "Quizzes";
+    var pagedList = (IPagedList)ViewBag.Quizz;
+}
+<body style="" class="quizz-background">
+
+</body>
+
+@if (TempData["quizzAdded"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="z-index:1">
+        <strong>Quiz Added Successfully||</strong> A new Quizz was added.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["quizDeleted"]!= null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="z-index:1">
+        <strong>Quiz Deleted Successfully||</strong> A Quizz was Deleted.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded" style="height:85vh;">
+
+        <div class="text-center ">
+            <a href="#AddQuizz" data-bs-toggle="modal" data-bs-target="#_AddQuizz" class="btn hover btn-light col-3 mx-1">Add a new Quizz</a>
+        </div>
+        <hr />
+
+        <center>
+            <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Quizzes List</h1>
+        </center>
+        <center>
+
+            @Html.PagedListPager(pagedList,
+            page => Url.Action("Links","Dashboard",
+            new { page }),
+            new PagedListRenderOptions()
+            {
+            DisplayItemSliceAndTotal = true,
+            ItemSliceAndTotalPosition = ItemSliceAndTotalPosition.End,
+            MaximumPageNumbersToDisplay=3
+            })
+
+        </center>
+        @if (Model?.Any() == false)
+        {
+            <center><label class="text-white fw-bold text-uppercase"> No Quizzes are available</label></center>
+        }
+        else
+        {
+            <div class="overflow-scroll p-3" style="height:54vh;">
+                @foreach (var item in Model)
+                {
+
+
+                    <center>
+                        <div class="row mb-2 w-100">
+                            
+                            <div class="border bg-black bg-opacity-50 text-white col-8 row m-0 flex-grow-1">
+
+                                <div class="col-4 text-center">
+                                    <label asp-for="@item.QuizzName" class="text-success fw-bold d-block mx-2 text-uppercase"></label>
+                                    @Html.DisplayFor(x=>@item.QuizzName)
+                                </div>
+
+                                <div class="col-4 text-center border-start">
+                                    <label asp-for="@item.UploadedBy" class="text-info fw-bold d-block mx-2 text-uppercase"></label> 
+                                    @Html.DisplayFor(x=>@item.UploadedBy)
+                                </div>
+
+                                <div class="col-4 text-center border-start">
+                                    <label asp-for="@item.CreateDate" class="text-info fw-bold d-block mx-2 text-uppercase"></label> 
+                                    @Html.DisplayFor(x=>@item.CreateDate)
+                                </div>
+
+                                <div class="w-100"></div>
+                                <hr>
+                                <div class="d-flex justify-content-center">
+                                    <a asp-action="OpenQuiz" asp-controller="Dashboard" class="btn btn-outline-success m-1" asp-route-id="@item.id">Open Quizz</a>
+                                    <a asp-action="DeleteQuiz" asp-controller="Dashboard" class="btn btn-outline-danger m-1" asp-route-id="@item.id">Delete</a>
+
+                                </div>
+                            </div>                            
+                        </div>
+                    </center>
+                    <hr />
+                }
+            </div>
+        }
+
+    </div>
+</div>
+
+
+@*Creating New Event*@
+<form method="post" enctype="multipart/form-data" asp-controller="Dashboard" asp-action="AddQuizz">
+    <div class="" id="AddQuizz">
+
+        <!-- Modal -->
+        <div class="modal fade" id="_AddQuizz" tabindex="-1" aria-labelledby="_AddQuizz" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content text-white bg-black bg-opacity-50">
+                    <div class="modal-header text-center">
+                        <h1 class="modal-title fs-5 fw-bold text-uppercase" id="CreateEvent">Add a New Quizz</h1>
+                        <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="mb-3 col">
+                            <label class="form-label">Note:</label>
+
+                            <ul>
+                                You need to create a new google form.
+                                <a href="https://docs.google.com/forms/u/0/?tgif=d" target="_blank" class="link-info">Go to Google Form</a>
+                                <li>Click Save button at top right corner of Google Form.</li>
+                                    <li>A new popup will appear.Click embed code button</li>    
+                                    <li>Copy the embeded html</li>
+                                    <li>Paste it below</li>
+                                </ul>
+
+                        
+                        </div>
+                        <div class="mb-3 col">
+                            <label asp-for="@quizz.QuizzName" class="form-label"></label>
+                            <input class="form-control text-white bg-white bg-opacity-10" asp-for="@quizz.QuizzName" placeholder="Write Quizz Name">
+                            <span asp-validation-for="@quizz.QuizzName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col">
+                            <label asp-for="@quizz.GoogleFormLink" class="form-label"></label>
+                            <input class="form-control text-white bg-white bg-opacity-10" asp-for="@quizz.GoogleFormLink" placeholder="Paste Embeded HTML Here">
+                            <span asp-validation-for="@quizz.GoogleFormLink" class="text-danger"></span>
+                        </div>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Quizz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+

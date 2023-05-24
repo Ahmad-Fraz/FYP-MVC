@@ -1,8 +1,13 @@
-﻿@model IEnumerable<FYP.Models.Dashboard.Assignments>
+﻿@using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
+@using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Web.Common
+@model IEnumerable<FYP.Models.Dashboard.Assignments>
 
 @{
     ViewData["Title"] = "Links";
     var folder = "Assignments/";
+    var pagedList = (IPagedList)ViewBag.Assignments;
 }
 <body style="" class="Assignment-background">
 
@@ -17,7 +22,7 @@
 }
 @if (TempData["assignmenteleted"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show" role="alert" style="z-index:1;">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="z-index:1;">
         <strong>Assignment deleted Successfully ||</strong> An Assignment has been removed.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -34,19 +39,32 @@
         <center>
             <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Assignments</h1>
         </center>
+        <center>
+
+            @Html.PagedListPager(pagedList,
+            page => Url.Action("Assignments","Dashboard",
+            new { page }),
+            new PagedListRenderOptions()
+            {
+            DisplayItemSliceAndTotal = true,
+            ItemSliceAndTotalPosition = ItemSliceAndTotalPosition.End,
+            MaximumPageNumbersToDisplay=3
+            })
+
+        </center>
         @if (Model?.Any() == false)
         {
             <center><label class="text-white fw-bold text-uppercase"> No Assignments are uploaded</label></center>
         }
         else
         {
-            <div class="overflow-scroll p-3" style="height:62vh;">
+            <div class="overflow-scroll p-3" style="height:54vh;">
 
                 @foreach (var item in Model)
                 {
 
                     var file = folder + item.File_Name;
-                
+
                     <center>
                         <div class="row my-2 w-100">
 
@@ -111,8 +129,10 @@
                     </center>
                     <hr />
                 }
+
             </div>
         }
+        
     </div>
 </div>
 <style>

@@ -130,32 +130,7 @@ namespace Encapsulation
 
         }
 
-        public async Task<List<news_events>> Event_List()
-        {
-            var events = new List<news_events>();
-            var result = await dBase.News_Events.ToListAsync();
-            if (result?.Any() == true)
-            {
-                foreach (var data in result)
-                {
-                    events.Add(new news_events()
-                    {
-                        id = data.id,
-                        Title = data.Title,
-                        Description = data.Description,
-                        FromTime = data.FromTime,
-                        ToTime = data.ToTime,
-                        Date = data.Date,
-                        Locations = data.Locations,
-                        Event_Image_Name = data.Event_Image_Name,
-                        ShortDescription = data.ShortDescription
-
-
-                    });
-                }
-            }
-            return events;
-        }
+        
 
         public news_events UpdateEvent(news_events news_Events)
 
@@ -241,6 +216,14 @@ namespace Encapsulation
         {
             var Notes = dBase.MyNotes.Where(x => x.id == id).FirstOrDefault();
             dBase.MyNotes.Remove(Notes);
+            var result = await dBase.SaveChangesAsync();
+            return result;
+        }
+
+        public async Task<int> DelQuiz(int? id)
+        {
+            var quizz = dBase.Quizzs.Where(x => x.id == id).FirstOrDefault();
+            dBase.Quizzs.Remove(quizz);
             var result = await dBase.SaveChangesAsync();
             return result;
         }

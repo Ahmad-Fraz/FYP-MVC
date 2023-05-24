@@ -1,0 +1,30 @@
+﻿@model FYP.Models.Dashboard.Quizz
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Layout";
+}
+<body style="" class="open-background">
+
+</body>
+
+
+<div class="row">
+    <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded" style="height:85vh;">
+
+        <div class="text-center ">
+            <a asp-action="Quizzes" asp-controller="Dashboard" class="btn btn-light col-3 mx-1 hover">All Quizzes</a>
+        </div>
+        <div class="text-center ">
+            <a href="https://docs.google.com/forms/u/0/?tgif=d" target="_blank" class="m-2 btn-secondary hover btn">Go to Google Form to check Responses</a>
+        </div>
+        <hr />
+        <div style="height:65vh;" class="overflow-scroll text-center">
+            @Html.Raw(@Model.GoogleFormLink)
+        </div>
+       
+
+    </div>
+</div>
