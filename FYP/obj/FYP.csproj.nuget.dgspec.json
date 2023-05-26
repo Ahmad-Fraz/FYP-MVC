@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\VS Projects\\FYP\\FYP.csproj": {}
+    "D:\\FYP\\New folder\\FYP\\FYP.csproj": {}
   },
   "projects": {
-    "D:\\VS Projects\\FYP\\FYP.csproj": {
+    "D:\\FYP\\New folder\\FYP\\FYP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\VS Projects\\FYP\\FYP.csproj",
+        "projectUniqueName": "D:\\FYP\\New folder\\FYP\\FYP.csproj",
         "projectName": "FYP",
-        "projectPath": "D:\\VS Projects\\FYP\\FYP.csproj",
+        "projectPath": "D:\\FYP\\New folder\\FYP\\FYP.csproj",
         "packagesPath": "C:\\Users\\Ahmad\\.nuget\\packages\\",
-        "outputPath": "D:\\VS Projects\\FYP\\obj\\",
+        "outputPath": "D:\\FYP\\New folder\\FYP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ahmad\\AppData\\Roaming\\NuGet\\NuGet.Config",

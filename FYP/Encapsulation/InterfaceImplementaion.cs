@@ -227,6 +227,12 @@ namespace Encapsulation
             var result = await dBase.SaveChangesAsync();
             return result;
         }
-
+        public async Task<int> DelQuestion(int? id)
+        {
+            var question = dBase.Discussion.Where(x => x.id == id).FirstOrDefault();
+            dBase.Discussion.Remove(question);
+            var result = await dBase.SaveChangesAsync();
+            return result;
+        }
     }
 }

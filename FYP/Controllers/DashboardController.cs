@@ -474,11 +474,44 @@ namespace FYP.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Assignment cannot be deleted");
+                ModelState.AddModelError("", "Quizz cannot be deleted");
             }
             return View();
         }
 
+
+        public IActionResult Discussion(int page=1)
+        {
+            var discusion = GetDicussionPagedNames(page);
+            ViewBag.discus = discusion;
+            return View();
+        }
+
+        public async Task<IActionResult> AskQuestionAsync(Discussion discussion)
+        {
+            discussion.Asked_By = await Interface.getUserNameByid(Getid());
+            ViewBag.AskerName = discussion.Asked_By;
+            discussion.Date = DateTime.Now.ToString("f");
+            var result = DBase.Discussion.AddAsync(discussion);
+            await DBase.SaveChangesAsync();
+            TempData["QAdded"] = "true";
+            return RedirectToAction("Discussion");
+        }
+
+        public async Task<IActionResult> DeleteQuestion(int? id)
+        {
+            var result = await Interface.DelQuestion(id);
+            if (result == 1)
+            {
+                TempData["QDeleted"] = "successfully";
+                return RedirectToAction("Discussion");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Question cannot be deleted");
+            }
+            return View();
+        }
         //Add Files |  Replace files && get current user
 
         private IPagedList<Notes> GetNotesPagedNames(int? page)
@@ -596,8 +629,31 @@ namespace FYP.Controllers
 
             return listPaged;
         }
+        private IPagedList<Discussion> GetDicussionPagedNames(int? page)
+        {
+            // return a 404 if user browses to before the first page
+            if (page.HasValue && page < 1)
+            {
+                return null;
+            }
 
-        
+            // retrieve list from database/whereverand
+            var listUnPaged = DBase.Discussion.ToList();
+
+            // page the list
+
+            var listPaged = listUnPaged.ToPagedList(page ?? 1, PageSize);
+
+            // return a 404 if user browses to pages beyond last page. special case first page if no items exist
+            if (listPaged.PageNumber != 1 && page.HasValue && page > listPaged.PageCount)
+            {
+                return null;
+            }
+
+            return listPaged;
+        }
+
+
 
         private string AddFile(IFormFile formFile)
         {

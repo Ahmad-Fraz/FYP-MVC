@@ -30,6 +30,7 @@ namespace Encapsulation
         public Notes UpdateNote(Notes notes);
         public Task<int> DelNote(int? id);
         public Task<int> DelQuiz(int? id);
+        public Task<int> DelQuestion(int? id);
 
     }
 }

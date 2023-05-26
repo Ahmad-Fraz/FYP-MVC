@@ -160,6 +160,40 @@ namespace DataBase.Migrations
                     b.ToTable("Assignments");
                 });
 
+            modelBuilder.Entity("FYP.Models.Dashboard.Discussion", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Answered_By")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Asked_By")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sub_Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Discussion");
+                });
+
             modelBuilder.Entity("FYP.Models.Dashboard.Links", b =>
                 {
                     b.Property<int>("id")
