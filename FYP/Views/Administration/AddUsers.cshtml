@@ -14,7 +14,7 @@
         <h5 class="card-header bg-black bg-opacity-50 text-white">Add users to  Role <strong class="text-warning">@ViewBag.roleName</strong></h5>
         <ul class="list-group list-group-flush ">
             <li class="list-group-item bg-black bg-opacity-50 text-white">  <h1>List of Users</h1> </li>
-            <li class="list-group-item bg-black bg-opacity-50 text-white overflow-scroll" style="max-height: 60vh;">
+            <li class="list-group-item bg-black bg-opacity-50 text-white overflow-auto" style="max-height: 60vh;">
                 @if (Model.Any())
                 {
                     for (int i = 0; i < Model.Count; i++)

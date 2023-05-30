@@ -234,5 +234,60 @@ namespace Encapsulation
             var result = await dBase.SaveChangesAsync();
             return result;
         }
+        public async Task<int> DelAnswer(int? id)
+        {
+            var answer = dBase.Answers.Where(x => x.id == id).FirstOrDefault();
+            dBase.Answers.Remove(answer);
+            var result = await dBase.SaveChangesAsync();
+            return result;
+        }
+        public Answer UpdateAnswer(Answer answer)
+
+        {
+            var _answer = dBase.Answers.Attach(answer);
+
+            _answer.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            dBase.SaveChanges();
+            return answer;
+        }
+
+
+        //---------------------  ----------    Course Reltaed Functions
+
+        public async Task<int> CreateCourseAsync(CourseList courseList)
+        {
+            _ = dBase.Course.AddAsync(courseList);
+            var result = await dBase.SaveChangesAsync();
+            return result;
+        }
+
+        public async Task<CourseList> findCourseAsync(int? id)
+        {
+            return await dBase.Course.FindAsync(id);
+        }
+
+        public CourseList UpdateCourse(CourseList courseList)
+        {
+            var _event = dBase.Course.Attach(courseList);
+
+            _event.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            dBase.SaveChanges();
+            return courseList;
+        }
+
+        public async Task DeleteCourseAsync(CourseList courseList)
+        {
+            dBase.Course.Remove(courseList);
+            await dBase.SaveChangesAsync();
+        }
+
+        public Enroll UpdateEnroll(Enroll enroll)
+        {
+            var enrollReuest = dBase.Enroll.Attach(enroll);
+
+            enrollReuest.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            dBase.SaveChanges();
+            return enroll;
+        }
     }
 }

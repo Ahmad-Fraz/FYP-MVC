@@ -7,20 +7,22 @@
     ViewData["title1"] = "Home";
     ViewBag.title = "home";
 
-    var username = User.FindFirst("FullName").Value;
-    var user_email = User.FindFirst("Email").Value;
-    var user_phoneNo = User.FindFirst("PhoneNo").Value;
-
-    var user_Home_Address = User.FindFirst("Home_Address").Value;
-    var user_cityName = User.FindFirst("City_Name").Value;
-
-    var user_Gender = User.FindFirst("Gender").Value;
-
-    var user_id = User.FindFirst("id").Value;
-
-    var profilePhoto = User.FindFirst("Profile_Photo_Path").Value;
-
-    var Photofolder = "Profile_Pics/";
+    string username = "", user_email = "", user_phoneNo = "", user_Home_Address = "", user_id = "", user_Gender = "",
+    profilePhoto = "", Photofolder = "",user_cityName="";
+    if (User.Identity.IsAuthenticated)
+    {
+        username = User.Identity.Name;
+        var user = await user_manager.FindByNameAsync(username);
+        profilePhoto = user.Profile_Photo_Path;       
+        Photofolder = "Profile_Pics/";
+        user_email = user.Email;
+        user_Home_Address = user.Home_Address;
+        user_id = user.Id;
+        user_Gender = user.Gender;
+        user_cityName = user.City_Name;
+        user_phoneNo = user.PhoneNumber;
+    }
+    
 
     string photo = "";
     if (profilePhoto != "")

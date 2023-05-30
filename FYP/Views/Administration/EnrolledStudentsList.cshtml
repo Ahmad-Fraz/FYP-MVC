@@ -1,0 +1,84 @@
+﻿@model List<FYP.Models.Dashboard.Enroll>
+@{
+    ViewData["Title"] = "AddUsers";
+    var id = ViewBag.roleId;
+
+}
+<body style="" class="Assignment-background">
+
+</body>
+
+@if (TempData["EnrollmentCanceled"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Enrollment Canceled Successfully ||</strong> An Enrollment was Canceled.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<div class="card signin-pageContent bg-black bg-opacity-50 text-white col-5">
+    <ul class="list-group list-group-flush ">
+        <li class="list-group-item bg-black bg-opacity-50 text-white">  <h2>List of Enrolled Students for This Course</h2> </li>
+        <li class="list-group-item bg-black bg-opacity-50 text-white overflow-auto" style="max-height: 60vh;">
+            @if (Model.Any())
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+
+                    <input type="hidden" asp-for="@Model[i].id" />
+                    <div class="form-group bg-success bg-opacity-10 rounded p-3 m-1 d-flex">
+                        <div class="col-8">
+                            <label class="form-label fw-bold" asp-for="@Model[i].CandidateName"></label>
+                            <input class="form-control  text-white w-50 bg-black bg-opacity-25" asp-for="@Model[i].CandidateName" disabled />
+                        </div>
+                        <div class="col-4 m-auto">
+
+                            <a class="link-danger m-auto" href="#_DeleteEvent" data-bs-toggle="modal" data-bs-target="#_DeleteEvent">
+                                Cancel The Enrollment
+                            </a>
+                        </div>
+                    </div>
+                    <br />
+                    <form asp-action="DeleteEnrollment" asp-controller="Administration" asp-route-id="@Model[i].id">
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="_DeleteEvent" tabindex="-1" aria-labelledby="DeleteEvent" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content overflow-scroll text-white bg-black bg-opacity-75">
+                                    <div class="modal-header text-center">
+                                        <h1 class="modal-title fs-5 fw-bold text-uppercase" id="DeleteEvent">Do you want to Cancel this User Enrollment</h1>
+                                        <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
+                                    <input type="hidden" asp-for="@Model[i].id" />
+
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                }
+            }
+            else
+            {
+                <h6>No Enrollements yet.</h6>
+            }
+        </li>
+        <li class="list-group-item bg-black bg-opacity-50 text-white">
+            <a class="btn-primary btn hover" asp-action="CourseList" asp-controller="Dashboard">Back to Course Details</a>
+        </li>
+    </ul>
+</div>
+
+<style>
+    .modal-backdrop{
+        display:none;
+    }
+</style>

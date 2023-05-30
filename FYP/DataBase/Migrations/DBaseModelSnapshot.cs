@@ -120,6 +120,32 @@ namespace DataBase.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("FYP.Models.Dashboard.Answer", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("Answered_By")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Question_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("_Answer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Answers");
+                });
+
             modelBuilder.Entity("FYP.Models.Dashboard.Assignments", b =>
                 {
                     b.Property<int>("id")
@@ -160,6 +186,81 @@ namespace DataBase.Migrations
                     b.ToTable("Assignments");
                 });
 
+            modelBuilder.Entity("FYP.Models.Dashboard.CourseList", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("CourseDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CourseEndDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CourseEnds")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CourseNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CoursePicName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CourseShortDescription")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("CourseStartDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CourseStarts")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CourseTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DegreeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EnrollEndDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("EnrollStartDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EnrollmentEndDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EnrollmentStartDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Instructor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Semester")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Course");
+                });
+
             modelBuilder.Entity("FYP.Models.Dashboard.Discussion", b =>
                 {
                     b.Property<int>("id")
@@ -168,12 +269,6 @@ namespace DataBase.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<string>("Answer")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Answered_By")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Asked_By")
                         .HasColumnType("nvarchar(max)");
 
@@ -181,6 +276,7 @@ namespace DataBase.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Question")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sub_Title")
@@ -192,6 +288,37 @@ namespace DataBase.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Discussion");
+                });
+
+            modelBuilder.Entity("FYP.Models.Dashboard.Enroll", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("CandidateEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CandidateName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CandidatePhoneNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("EnrollInCourse")
+                        .HasColumnType("bit");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Enroll");
                 });
 
             modelBuilder.Entity("FYP.Models.Dashboard.Links", b =>
@@ -457,18 +584,25 @@ namespace DataBase.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("Date")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EventFromTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EventToTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Event_Image_Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FromTime")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Locations")
@@ -485,7 +619,6 @@ namespace DataBase.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ToTime")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");

@@ -2,6 +2,7 @@ using DataBase;
 using Encapsulation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,14 +14,28 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<Models.Dashboard.news_events>();
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, UserClaims>();
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<DBase>();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<DBase>()
+    .AddRoles<IdentityRole>();
+
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<SignUpModel>();
 builder.Services.AddScoped<FYP.Models.CreateRoles>();
 builder.Services.AddScoped<FYP.Models.Dashboard.Quizz>();
+builder.Services.AddScoped<FYP.Models.Dashboard.Discussion>();
 builder.Services.AddScoped<ContactUsModel>();
+builder.Services.AddScoped<FYP.Models.Dashboard.CourseList>();
 builder.Services.AddScoped<Microsoft.AspNetCore.Http.HttpContextAccessor>();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+//Authorization
+
+builder.Services.ConfigureApplicationCookie(config =>
+{
+    config.AccessDeniedPath = new PathString("/Dashboard/AccessDenied");
+    config.LoginPath = new PathString("/Account/SignIn");
+});
+
+
 
 builder.Services.AddDbContextPool<DBase>(
     options => options.UseSqlServer(
@@ -44,8 +59,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",

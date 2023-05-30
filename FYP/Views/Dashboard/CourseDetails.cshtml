@@ -1,0 +1,144 @@
+﻿@model FYP.Models.Dashboard.CourseList
+
+@{
+    ViewData["Title"] = "CourseDetail";
+    Layout = "_Layout";
+    var Image = "/Profile_Pics/" + Model.CoursePicName;
+}
+
+<body style="" class="CourseDetails-background">
+
+</body>
+
+<div id="placeHoderHere"></div>
+
+<center class="fs-2 fw-bold bg-dark p-2 rounded"><label>Course Detail</label></center>
+<hr />
+<div class="col ">
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="@Image" class="d-block w-100" alt="..." style="height:25rem;">
+            </div>
+
+
+            <nav aria-label="breadcrumb" class="clearfix bg-black bg-opacity-75 btn fw-bold w-100 position-relative" style="bottom:45px;">
+                <ol class="breadcrumb float-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Library</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="w-100"></div>
+<hr />
+
+<div class="row bg-black bg-opacity-75 rounded">
+
+    <div class="text-center">
+        <label class="fw-bold fs-2 w-auto text-success">
+            Course Title : @Html.DisplayFor(model => model.CourseTitle)
+        </label>
+
+
+
+        <div class="">
+            <label class="fw-bold fs-5 text-info">
+                Course No: @Html.DisplayFor(model => model.CourseNo)
+            </label>
+
+        </div>
+        <div>
+            <label class="fw-bold small text-danger ms-3">
+                (Professor: @Html.DisplayFor(model => model.Instructor))
+            </label>
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="bg-body p-3 text-center rounded border-start col-5 m-1">
+            <label asp-for="@Model.Department" class="text-muted fw-bold d-block"></label>
+            @Html.DisplayFor(model => model.Department,new {@class="text-muted fw-bold"})
+        </div>
+
+        <div class="bg-body p-3 text-center rounded border-start col-5 m-1">
+            <label asp-for="@Model.DegreeName" class="text-muted fw-bold d-block"></label>
+            @Html.DisplayFor(model => model.DegreeName,new {@class="text-muted fw-bold"})
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+
+
+    <div class="col-9 bg-black bg-opacity-50">
+        <div class="row">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item bg-transparent">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            @Html.DisplayNameFor(model => model.CourseShortDescription)
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show bg-black bg-opacity-50 text-start" data-bs-parent="#accordionExample">
+                        <div class="accordion-body ">
+                            @Html.DisplayFor(model => model.CourseShortDescription)
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-transparent">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            @Html.DisplayNameFor(model => model.CourseDescription)
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse bg-black bg-opacity-50 text-start" data-bs-parent="#accordionExample">
+                        <div class="accordion-body overflow-auto" style="max-height:45vh;">
+                            @Html.DisplayFor(model => model.CourseDescription)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-3 ">
+
+        <div class="bg-body p-3 text-center rounded border-start">
+
+            <label asp-for="@Model.CourseStartDate" class="text-muted fw-bold d-block"></label>
+            @Html.DisplayFor(model => model.CourseStartDate,new {@class="text-muted fw-bold"})
+        </div>
+        <hr />
+        <div class="bg-body p-3 text-center rounded border-start">
+            <label asp-for="@Model.CourseEndDate" class="text-muted fw-bold d-block"></label>
+            @Html.DisplayFor(model => model.CourseEndDate,new {@class="text-muted fw-bold"})
+        </div>
+        <hr />
+        <div class="bg-body p-3 text-center rounded border-start">
+            <label asp-for="@Model.EnrollmentStartDate" class="text-muted fw-bold d-block"></label>
+            @Html.DisplayFor(model => model.EnrollmentStartDate,new {@class="text-muted fw-bold"})
+        </div>
+        <hr />
+        <div class="bg-body p-3 text-center rounded border-start">
+            <label asp-for="@Model.EnrollmentEndDate" class="text-muted fw-bold d-block"></label>
+            @Html.DisplayFor(model => model.EnrollmentEndDate,new {@class="text-muted fw-bold"})
+        </div>
+
+    </div>
+</div>
+<hr />
+<div class="bg-dark bg-opacity-75 rounded w-100 text-center">
+    <a class="btn btn-outline-info m-2" asp-action="CourseList" asp-controller="Dashboard">All Courses</a>
+    @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Professor")))
+    {
+        <button class="card-link btn btn-outline-warning my-2" type="button" data-toggle="ajax-modal" data-target="#_EditCourse" data-url="@Url.Action($"EditCourse/{Model.id}","Dashboard")">Edit</button>
+        <a data-target="#" class="btn btn-outline-info m-2" asp-action="EnrolledStudentsList" asp-controller="Administration" asp-route-id="@Model.id">Enrolled Students</a>
+    }
+</div>

@@ -1,0 +1,124 @@
+﻿@model FYP.Models.Dashboard.CourseList
+
+@{
+    ViewData["Title"] = "_CreateCourse";
+}
+
+<body style="" class="createCourse-background m-0">
+
+</body>
+
+<h4 class="text-center bg-dark bg-opacity-75 fw-bold fs-2 p-2 rounded">Create Course</h4>
+<hr />
+<div class="row bg-black bg-opacity-50">
+    <div class="col-md-6 bg-black bg-opacity-75">
+        <form method="post" enctype="multipart/form-data" asp-controller="Dashboard" asp-action="CreateCourse">
+            <div asp-validation-summary="All"></div>
+            <div class="overflow-auto p-4" style="height:55vh;">
+
+                <div class="mb-3 col">
+                    <label asp-for="@Model.Department" class="form-label"></label>
+                    <input class="form-control text-white  bg-black bg-opacity-10" asp-for="@Model.Department" placeholder="Enter Department Name">
+                    <span asp-validation-for="@Model.Department" class="text-danger"></span>
+                </div>
+
+                <div class="row justify-content-between">
+
+                    <div class="mb-3 col-5">
+                        <label asp-for="@Model.DegreeName" class="form-label"></label>
+                        <input class="form-control text-white  bg-black bg-opacity-10" asp-for="@Model.DegreeName" placeholder="Enter the Degree Name">
+                        <span asp-validation-for="@Model.DegreeName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 col-5">
+                        <label asp-for="@Model.CourseNo" class="form-label"></label>
+                        <input class="form-control text-white  bg-black bg-opacity-10" asp-for="@Model.CourseNo" placeholder="Enter Course No">
+                        <span asp-validation-for="@Model.CourseNo" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="mb-3 col">
+                    <label asp-for="@Model.CourseTitle" class="form-label"></label>
+                    <input class="form-control text-white  bg-black bg-opacity-10" asp-for="@Model.CourseTitle" placeholder="Enter Course Title">
+                    <span asp-validation-for="@Model.CourseTitle" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col">
+                    <label asp-for="@Model.Instructor" class="form-label"></label>
+                    <input class="form-control text-white  bg-black bg-opacity-10" asp-for="@Model.Instructor" placeholder="Enter the Constructor Name" />
+                    <span asp-validation-for="@Model.Instructor" class="text-danger"></span>
+                </div>
+
+                <div class="row justify-content-between">
+
+                    <div class="mb-3 col">
+                        <label asp-for="@Model.CourseStarts" class="form-label"></label>
+                        <input class="form-control filt bg-black bg-opacity-10" asp-for="@Model.CourseStarts" type="date" />
+                        <span asp-validation-for="@Model.CourseStarts" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="mb-3 col">
+                        <label asp-for="@Model.CourseEnds" class="form-label"></label>
+                        <input class="form-control filt bg-black bg-opacity-10" asp-for="@Model.CourseEnds" type="date">
+                        <span asp-validation-for="@Model.CourseEnds" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="mb-3 col">
+                    <label asp-for="@Model.Semester" class="form-label"></label>
+                    <input class="form-control text-white  bg-black bg-opacity-10" asp-for="@Model.Semester" placeholder="Enter Your Semester Name">
+                    <span asp-validation-for="@Model.Semester" class="text-danger"></span>
+                </div>
+
+                <div class="row justify-content-between">
+                    <div class="mb-3 col">
+                        <label asp-for="@Model.EnrollStartDate" class="form-label"></label>
+                        <input class="form-control filt bg-black bg-opacity-10" asp-for="@Model.EnrollStartDate" type="date">
+                        <span asp-validation-for="@Model.EnrollStartDate" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 col">
+                        <label asp-for="@Model.EnrollEndDate" class="form-label"></label>
+                        <input class="form-control filt bg-black bg-opacity-10" asp-for="@Model.EnrollEndDate" type="date">
+                        <span asp-validation-for="@Model.EnrollEndDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3 col">
+                    <label asp-for="@Model.CourseShortDescription" class="form-label"></label>
+                    <textarea class="form-control text-white  bg-black bg-opacity-10" asp-for="@Model.CourseShortDescription" placeholder="Enter the Course Short Description Here"></textarea>
+                    <span asp-validation-for="@Model.CourseShortDescription" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col">
+                    <label asp-for="@Model.CourseDescription" class="form-label"></label>
+                    <textarea class="form-control text-white  bg-black bg-opacity-10" asp-for="@Model.CourseDescription" placeholder="Enter the Course Description Here"></textarea>
+                    <span asp-validation-for="@Model.CourseDescription" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3">
+                    <label asp-for="@Model.CoursePic" class="form-label"></label>
+                    <input asp-for="@Model.CoursePic" class="form-control text-white bg-black bg-opacity-10" type="file" onchange="ShowPreview(this)">
+                </div>
+
+
+            </div>
+
+            <div class="m-2 bg-secondary bg-opacity-10">
+                <a asp-action="CourseList" asp-controller="Dashboard" class="btn btn-outline-warning m-2">Back to Course List</a>
+                <button type="submit" class="btn btn-outline-info m-2">Create Course</button>
+
+            </div>
+
+        </form>
+
+    </div>
+    <div class="col-md-6 m-auto">
+        <div class="text-center m-auto">
+            <img id="img" style="height:20rem; text-align:center; width:20rem;}" alt="Choose an image to preview" />
+        </div>
+    </div>
+</div>

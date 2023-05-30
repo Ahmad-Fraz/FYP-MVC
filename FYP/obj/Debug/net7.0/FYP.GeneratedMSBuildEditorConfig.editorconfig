@@ -9,161 +9,225 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FYP
 build_property.RootNamespace = FYP
-build_property.ProjectDir = D:\FYP\New folder\FYP\
+build_property.ProjectDir = D:\FYP\FYP\FYP\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = D:\FYP\New folder\FYP
+build_property.MSBuildProjectDirectory = D:\FYP\FYP\FYP
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/FYP/New folder/FYP/Views/Account/Profile.cshtml]
+[D:/FYP/FYP/FYP/EmailTemplate/template.cshtml]
+build_metadata.AdditionalFiles.TargetPath = RW1haWxUZW1wbGF0ZVx0ZW1wbGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Account/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Account/Setting.cshtml]
+[D:/FYP/FYP/FYP/Views/Account/Setting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTZXR0aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Account/SignIn.cshtml]
+[D:/FYP/FYP/FYP/Views/Account/SignIn.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduSW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Account/SignUp.cshtml]
+[D:/FYP/FYP/FYP/Views/Account/SignUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Administration/AddUsers.cshtml]
+[D:/FYP/FYP/FYP/Views/Administration/AddUsers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpb25cQWRkVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Administration/CreateRoles.cshtml]
+[D:/FYP/FYP/FYP/Views/Administration/AdminPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpb25cQWRtaW5QYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Administration/CreateRoles.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpb25cQ3JlYXRlUm9sZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Administration/EditRole.cshtml]
+[D:/FYP/FYP/FYP/Views/Administration/EditRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpb25cRWRpdFJvbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Administration/RolesList.cshtml]
+[D:/FYP/FYP/FYP/Views/Administration/EnrolledStudentsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpb25cRW5yb2xsZWRTdHVkZW50c0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Administration/RolesList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpb25cUm9sZXNMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/AddAssignment.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFjY2Vzc0RlbmllZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Dashboard/AddAssignment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFkZEFzc2lnbm1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/AddLinks.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/AddLinks.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFkZExpbmtzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/AddNotes.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/AddNotes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFkZE5vdGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/AskQuestion.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/AnswerTheQuestion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFuc3dlclRoZVF1ZXN0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Dashboard/AskQuestion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFza1F1ZXN0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/Assignments.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/Assignments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEFzc2lnbm1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/Dashboard.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/CourseDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXENvdXJzZURldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Dashboard/CourseList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXENvdXJzZUxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Dashboard/CreateCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXENyZWF0ZUNvdXJzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Dashboard/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXERhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/DetailsAssignemt.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/DetailsAssignemt.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXERldGFpbHNBc3NpZ25lbXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/DetailsNote.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/DetailsNote.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXERldGFpbHNOb3RlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/Discussion.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/Discussion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXERpc2N1c3Npb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/EventDetail.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/EventDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEV2ZW50RGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/Links.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/Links.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXExpbmtzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/News_and_Events.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/News_and_Events.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE5ld3NfYW5kX0V2ZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/Notes.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/Notes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE5vdGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/OpenQuiz.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/OpenQuiz.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXE9wZW5RdWl6LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/Quizzes.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/Quizzes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFF1aXp6ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/_assignments.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/SeeAnswer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFNlZUFuc3dlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Dashboard/_assignments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9hc3NpZ25tZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/_Edit.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/_Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Dashboard/_EditNote.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/_EditAnswer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9FZGl0QW5zd2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Dashboard/_EditCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9FZGl0Q291cnNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Dashboard/_EditNote.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9FZGl0Tm90ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Home/ContactUs.cshtml]
+[D:/FYP/FYP/FYP/Views/Dashboard/_EnrolledCourses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXF9FbnJvbGxlZENvdXJzZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Enrollments_And_Panels/EnrollRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5yb2xsbWVudHNfQW5kX1BhbmVsc1xFbnJvbGxSZXF1ZXN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Enrollments_And_Panels/_Enroll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5yb2xsbWVudHNfQW5kX1BhbmVsc1xfRW5yb2xsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Home/AboutUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dFVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Home/ContactUs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0VXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Home/Privacy.cshtml]
+[D:/FYP/FYP/FYP/Views/Home/OnlineSupport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxPbmxpbmVTdXBwb3J0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/FYP/FYP/FYP/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Shared/Dropdown_Partials/_Help.cshtml]
+[D:/FYP/FYP/FYP/Views/Shared/Dropdown_Partials/_Help.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXERyb3Bkb3duX1BhcnRpYWxzXF9IZWxwLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Shared/Dropdown_Partials/_Home.cshtml]
+[D:/FYP/FYP/FYP/Views/Shared/Dropdown_Partials/_Home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXERyb3Bkb3duX1BhcnRpYWxzXF9Ib21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Shared/Dropdown_Partials/_security.cshtml]
+[D:/FYP/FYP/FYP/Views/Shared/Dropdown_Partials/_security.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXERyb3Bkb3duX1BhcnRpYWxzXF9zZWN1cml0eS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Shared/Dropdown_Partials/_setting.cshtml]
+[D:/FYP/FYP/FYP/Views/Shared/Dropdown_Partials/_setting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXERyb3Bkb3duX1BhcnRpYWxzXF9zZXR0aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Shared/_ProfileDropdown.cshtml]
+[D:/FYP/FYP/FYP/Views/Shared/_ProfileDropdown.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Qcm9maWxlRHJvcGRvd24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Shared/_scrollspy.cshtml]
+[D:/FYP/FYP/FYP/Views/Shared/_scrollspy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9zY3JvbGxzcHkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/FYP/FYP/FYP/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/_ViewImports.cshtml]
+[D:/FYP/FYP/FYP/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/_ViewStart.cshtml]
+[D:/FYP/FYP/FYP/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/FYP/New folder/FYP/Views/Shared/_Layout.cshtml]
+[D:/FYP/FYP/FYP/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ghxt4wc268

@@ -1,12 +1,19 @@
 ﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signin_manager
+@inject Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> user_manager
+
 @inject Models.SignUpModel signup
 
 @{
-    var user_TwoFactorAuthentication = User.FindFirst("TwoFactorAuthentication").Value;
-
-    var user_Two_step_Verification_Phone = User.FindFirst("Two_step_Verification_Phone").Value;
-    var user_Recovery_Email = User.FindFirst("Recovery_Email").Value;
-}
+    string user_Two_step_Verification_Phone = "", user_Recovery_Email = ""; bool user_TwoFactorAuthentication = false;
+    if (User.Identity.IsAuthenticated)
+    {
+        var username = User.Identity.Name;
+        var user = await user_manager.FindByNameAsync(username);
+        user_Two_step_Verification_Phone = user.Two_step_Verification_Phone;
+        user_Recovery_Email = user.Recovery_Email;
+        user_TwoFactorAuthentication = user.TwoFactorEnabled;
+    }
+  }  
 @*--------------------- Security
 *@
 
