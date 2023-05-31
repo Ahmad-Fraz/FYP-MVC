@@ -19,7 +19,7 @@
 }
 
 <div id="placeHoderHere"></div>
-
+<center class="bg-success bg-opacity-10 p-2 rounded fw-bold"><h1>Assignment Details</h1></center>
 <div class="row">
     <label class="fw-bold fs-2 w-auto">
         Subject : @Html.DisplayFor(model => model.Subject)
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-
+                
             </div>
     </div>
 
@@ -108,9 +108,12 @@
 </div>
 <hr />
 <div class="bg-dark bg-opacity-75 w-100 text-center rounded">
-    <button class="card-link btn btn-outline-warning m-2" asp-route-id="@Model.id" type="button" data-toggle="ajax-modal" data-target="#_EditAssignment" data-url="@Url.Action($"EditAssignment/{@Model?.id}","Dashboard")">Edit</button>
+    @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Professor")))
+    {
+        <button class="card-link btn btn-outline-warning m-2" asp-route-id="@Model.id" type="button" data-toggle="ajax-modal" data-target="#_EditAssignment" data-url="@Url.Action($"EditAssignment/{@Model?.id}","Dashboard")">Edit</button>
 
-    <a href="#_Delete" data-bs-toggle="modal" data-bs-target="#_Delete" class="btn btn-outline-danger m-2">Delete</a>
+        <a href="#_Delete" data-bs-toggle="modal" data-bs-target="#_Delete" class="btn btn-outline-danger m-2">Delete</a>
+    }
 
     <a class="btn btn-outline-info m-2" asp-action="Assignments" asp-controller="Dashboard">All Assignmets</a>
 </div>

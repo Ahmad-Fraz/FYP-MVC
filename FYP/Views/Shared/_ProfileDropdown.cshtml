@@ -1,9 +1,19 @@
-﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor
+﻿@inject Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> Usermanager
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor
 @inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> manager
+
 @{
-    var username = User.FindFirst("FullName").Value;
-    var profilePhoto = User.FindFirst("Profile_Photo_Path").Value;
-    var Photofolder = "Profile_Pics/";
+
+    string username = "", profilePhoto = "", Photofolder ="";
+    if (User.Identity.IsAuthenticated)
+    {
+        username = User.Identity.Name;
+        var user = await Usermanager.FindByNameAsync(username);
+        profilePhoto = user.Profile_Photo_Path;
+        //username = User.FindFirst("FullName").Value;
+        //profilePhoto = User.FindFirst("Profile_Photo_Path").Value;
+        Photofolder = "Profile_Pics/";
+    }
 
     string photo = "";
     if (profilePhoto != "")

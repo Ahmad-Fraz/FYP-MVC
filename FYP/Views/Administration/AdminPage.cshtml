@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "AdminPage";
+}
+<body style="" class="contactus-background">
+
+</body>
+<div class="row bg-black bg-opacity-75 rounded">
+    <center class="shadow bg-success bg-opacity-10"><label class="fw-bold fs-1  text-white ">Admin Page</label></center>
+    <hr />
+    <div class="col-4">       
+        
+        <div class="text-center bg-danger bg-opacity-10 p-3 m-3 rounded" style="height:8rem;">
+            <label class="form-label text-danger fw-bold d-block">Users Request Report</label>
+            <a asp-action="GenerateExcel" asp-controller="Administration" class="btn btn-outline-danger m-2">Generate Excel File</a>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="text-center bg-warning bg-opacity-10 p-3 m-3 rounded" style="height:8rem;">
+            <label class="d-block text-warning fw-bold">Create New Roles/Add or Remove Users From Role</label>
+            <a asp-action="RolesList" asp-controller="Administration" class="btn btn-outline-warning m-2">Roles List</a>
+        </div>       
+    </div>
+    <div class="col-4">
+        <div class="text-center bg-success bg-opacity-10 p-3 m-3 rounded" style="height:8rem;">
+            <label class="d-block text-success fw-bold">Events</label>
+            <a asp-action="News_and_Events" asp-controller="Dashboard" class="btn btn-outline-success m-2">News & Events</a>
+        </div>       
+    </div>
+    <div class="col-4">
+        <div class="text-center bg-info bg-opacity-10 p-3 m-3 rounded" style="height:8rem;">
+            <label class="d-block text-info fw-bold">Create New Course</label>
+            <a asp-action="CreateCourse" asp-controller="Dashboard" class="btn btn-outline-info m-2">Create Course</a>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="text-center bg-success bg-opacity-10 p-3 m-3 rounded" style="height:8rem;">
+            <label class="d-block text-success fw-bold">Enroll to Courese Requests</label>
+            <a asp-action="EnrollRequests" asp-controller="Enrollments_And_Panels" class="btn btn-outline-success m-2">Enrollment Requests</a>
+        </div>
+    </div>
+    
+
+</div>

@@ -1,8 +1,8 @@
-﻿
+﻿@model IEnumerable<FYP.Models.Dashboard.CourseList>
 @{
     ViewData["Title"] = "Home page";
     ViewData["color"] = "text-muted";
-    ViewData["render"] = "render";    
+    ViewData["render"] = "render";
 }
 
 <body style="" class="dashboard-background">
@@ -48,7 +48,7 @@
             <div class="col justify-content-between d-flex p-2 bg-dark text-white mb-1 fw-bold text-uppercase">
                 <label>My Current Courses</label>
                 <div>
-                    <a class="link text-decoration-none link-info" href="#"><img class="align-middle icon me-1" src="~/icons/hamburger.svg" />Enroll Now</a>
+                    <a class="link text-decoration-none link-info" asp-action="CourseList" asp-controller="Dashboard"><img class="align-middle icon me-1" src="~/icons/hamburger.svg" />Enroll Now</a>
                 </div>
             </div>
 
@@ -59,14 +59,32 @@
                 <div class="row">
                     <div class="col bg-black bg-opacity-50 p-2">
                         <strong class="text-white ms-2">Current Courses List</strong>
-                        <button class="btn1 btn-primary float-end">+</button>
+                        <button class="btn1 btn-primary float-end" asp-action="CourseLists" asp-controller="Enrollments_And_Panels">+</button>
                         <button class="btn2 btn-primary hide float-end">-</button>
                     </div>
                     <div class="w-100"></div>
 
-                    <div class="coll col hide">
+                    <div class="coll col hide overflow-auto" style="max-height:30rem;">
                         <div class="card-body text-white">
-                            You don't have any courses yet
+                            @if (Model.Any())
+                            {
+                                foreach (var course in Model)
+                                {
+                                    <partial name="_EnrolledCourses" model="course"></partial>
+                                }
+                            }
+                            else
+                            {
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <center><h2>You don't have any enrolled courses</h2></center>
+                                }
+                                else
+                                {
+                                    <center><h2>You Are Not Signed In</h2></center>
+
+                                }
+                            }
                         </div>
                     </div>
                 </div>
@@ -88,8 +106,8 @@
                 <div class="row">
                     <div class="col bg-black bg-opacity-50 p-2">
                         <strong class="text-white ms-2">Previous Courses List</strong>
-                        <button class="btn1 btn-primary float-end">+</button>
-                        <button class="btn2 btn-primary hide float-end">-</button>
+                        <button class="btn3 btn-primary float-end">+</button>
+                        <button class="btn4 btn-primary hide float-end">-</button>
                     </div>
                     <div class="w-100"></div>
 
@@ -140,53 +158,107 @@
         </div>
 
         @* Section for My-Activities*@
-        <div class="row m-2">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="row m-2">
 
-            @*  col 1 of 100% width  *@
+                @*  col 1 of 100% width  *@
 
-            <div class="col justify-content-between d-flex p-2 bg-dark text-white mb-1 fw-bold text-uppercase">
-                <label>My Activities</label>
+                <div class="col justify-content-between d-flex p-2 bg-dark text-white mb-1 fw-bold text-uppercase">
+                    <label>My Activities (<strong class="text-success">Note : </strong> You Nedd To SignIn To Use This Section</label>)
+                </div>
+
+                <div class="w-100"></div>
+                <div class="col-3 m-1 flex-grow-1 disabled bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                    <a class=" text-decoration-none link-dark">
+                        <center>
+                            <img class="icon2" src="~/icons/calender.svg" />
+                        </center>
+                        <label class="text-center text-white d-block" style="cursor:pointer;">Assignments</label>
+                    </a>
+
+                </div>
+                <div class="col-3 m-1 disabled bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                    <a class=" text-decoration-none link-dark">
+                        <center>
+                            <img class="icon2" src="~/icons/quiz.svg" />
+                        </center>
+                        <label class="text-center text-white d-block" style="cursor:pointer;">Quizes</label>
+                    </a>
+
+                </div>
+                <div class="col-3 m-1 disabled bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                    <a class=" text-decoration-none link-dark">
+                        <center>
+                            <img class="icon2" src="~/icons/discussion.svg" />
+                        </center>
+                        <label class="text-center text-white d-block" style="cursor:pointer;">Discussion</label>
+                    </a>
+
+                </div>
+                <div class="col-3 m-1 disabled bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary mt-1" style="cursor:pointer;">
+                    <a class=" text-decoration-none link-dark" title="Add your Personal Notes here">
+                        <center>
+                            <img class="icon2" src="~/icons/notes.svg" />
+                        </center>
+                        <label class="text-center text-white d-block" style="cursor:pointer;">My Notes</label>
+                    </a>
+
+                </div>
+
+            </div>
+        }
+        else
+        {
+            <div class="row m-2">
+
+                @*  col 1 of 100% width  *@
+
+                <div class="col justify-content-between d-flex p-2 bg-dark text-white mb-1 fw-bold text-uppercase">
+                    <label>My Activities </label>
+                </div>
+
+                <div class="w-100"></div>
+                <div class="col-3 m-1 flex-grow-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                    <a asp-action="Assignments" asp-controller="Dashboard" class=" text-decoration-none link-dark">
+                        <center>
+                            <img class="icon2" src="~/icons/calender.svg" />
+                        </center>
+                        <label class="text-center text-white d-block" style="cursor:pointer;">Assignments</label>
+                    </a>
+
+                </div>
+                <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                    <a asp-action="Quizzes" asp-controller="Dashboard" class=" text-decoration-none link-dark">
+                        <center>
+                            <img class="icon2" src="~/icons/quiz.svg" />
+                        </center>
+                        <label class="text-center text-white d-block" style="cursor:pointer;">Quizes</label>
+                    </a>
+
+                </div>
+                <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
+                    <a asp-action="Discussion" asp-controller="Dashboard" class=" text-decoration-none link-dark">
+                        <center>
+                            <img class="icon2" src="~/icons/discussion.svg" />
+                        </center>
+                        <label class="text-center text-white d-block" style="cursor:pointer;">Discussion</label>
+                    </a>
+
+                </div>
+                <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary mt-1" style="cursor:pointer;">
+                    <a asp-action="Notes" asp-controller="Dashboard" class=" text-decoration-none link-dark" title="Add your Personal Notes here">
+                        <center>
+                            <img class="icon2" src="~/icons/notes.svg" />
+                        </center>
+                        <label class="text-center text-white d-block" style="cursor:pointer;">My Notes</label>
+                    </a>
+
+                </div>
+
             </div>
 
-            <div class="w-100"></div>
-            <div class="col-3 m-1 flex-grow-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
-                <a asp-action="Assignments" asp-controller="Dashboard" class=" text-decoration-none link-dark">
-                    <center>
-                        <img class="icon2" src="~/icons/calender.svg" />
-                    </center>
-                    <label class="text-center text-white d-block" style="cursor:pointer;">Assignments</label>
-                </a>
-
-            </div>
-            <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
-                <a href="#" class=" text-decoration-none link-dark">
-                    <center>
-                        <img class="icon2" src="~/icons/quiz.svg" />
-                    </center>
-                    <label class="text-center text-white d-block" style="cursor:pointer;">Quizes</label>
-                </a>
-
-            </div>
-            <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
-                <a href="#" class=" text-decoration-none link-dark">
-                    <center>
-                        <img class="icon2" src="~/icons/discussion.svg" />
-                    </center>
-                    <label class="text-center text-white d-block" style="cursor:pointer;">Discussion</label>
-                </a>
-
-            </div>
-            <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary mt-1" style="cursor:pointer;">
-                <a asp-action="Notes" asp-controller="Dashboard" class=" text-decoration-none link-dark" title="Add your Personal Notes here">
-                    <center>
-                        <img class="icon2" src="~/icons/notes.svg" />
-                    </center>
-                    <label class="text-center text-white d-block" style="cursor:pointer;">My Notes</label>
-                </a>
-
-            </div>
-
-        </div>
+        }
 
         @* Section for Services*@
         <div class="row m-2">
@@ -199,21 +271,14 @@
 
             <div class="w-100"></div>
 
-            <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
-                <a href="#" class=" text-decoration-none link-dark">
-                    <center>
-                        <img class="icon2" src="~/icons/results.svg" />
-                    </center>
-                    <label class="text-center text-white d-block" style="cursor:pointer;">Result</label>
-                </a>
-            </div>
+
 
             <div class="col-3 m-1  bg-black my-auto d-flex justify-content-center bg-opacity-50  btn btn-outline-primary" style="cursor:pointer;">
-                <a href="#" class=" text-decoration-none link-dark">
+                <a asp-action="OnlineSupport" asp-controller="Home" class=" text-decoration-none link-dark">
                     <center>
                         <img class="icon2" src="~/icons/support.svg" />
                     </center>
-                    <label class="text-center text-white d-block">Support</label>
+                    <label class="text-center text-white d-block">Online Support</label>
                 </a>
             </div>
 

@@ -15,8 +15,7 @@ namespace Encapsulation
         public Task AddressInfoUpdateAsync(string id, SignUpModel signUp);
         public Task ContactInfoUpdateAsync(string id, SignUpModel signUp);
         public Task BasicInfoUpdateAsync(string id, SignUpModel signUp);
-        public Task<int> Create_News_Event(news_events news_Events);
-  
+        public Task<int> Create_News_Event(news_events news_Events);  
         public Task<news_events> findEventAsync(int? id);
         public news_events UpdateEvent(news_events news_Events);
         public Task DeleteEvent(news_events news_Events);
@@ -30,6 +29,17 @@ namespace Encapsulation
         public Notes UpdateNote(Notes notes);
         public Task<int> DelNote(int? id);
         public Task<int> DelQuiz(int? id);
+        public Task<int> DelQuestion(int? id);
+        public Answer UpdateAnswer(Answer answer);
+        public Task<int> DelAnswer(int? id);
 
+
+        //---------------------  ----------    Course Reltaed Functions
+
+        public Task<int> CreateCourseAsync(CourseList courseList);
+        public Task<CourseList> findCourseAsync(int? id);
+        public CourseList UpdateCourse(CourseList courseList);
+        public Task DeleteCourseAsync(CourseList courseList);
+        public Enroll UpdateEnroll(Enroll enroll);
     }
 }

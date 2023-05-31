@@ -1,0 +1,33 @@
+﻿@model FYP.Models.Dashboard.Answer
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var Qid = ViewBag.Qid;
+}
+<body style="" class="links-background">
+
+</body>
+
+
+<div class="row signin-pageContent col-5">
+    <div class="text-white bg-black bg-opacity-50 p-3 rounded">
+        <center><label class="text-white fw-bold text-uppercase fs-2 text-success"> Answer The Question </label></center>
+        <hr />
+
+        <form asp-action="AnswerTheQuestion" asp-controller="Dashboard" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Question_ID" value="@Qid"/>
+            <div class="form-group m-1">
+                <label asp-for="_Answer" class="control-label"></label>
+                <textarea asp-for="_Answer" class="form-control text-white bg-black bg-opacity-50" ></textarea>
+                <span asp-validation-for="_Answer" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group mt-2">
+                <input type="submit" value="Submit Answer" class="btn btn-primary hover" />
+                <a asp-action="Discussion" asp-controller="Dashboard" class="btn btn-info hover">All Question</a>
+            </div>
+        </form>
+    </div>
+</div>

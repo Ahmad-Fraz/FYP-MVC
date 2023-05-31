@@ -1,0 +1,256 @@
+﻿@using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
+@using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Web.Common
+@using FYP.Models.Dashboard
+@model IEnumerable<FYP.Models.Dashboard.CourseList>
+@inject FYP.Models.Dashboard.CourseList CLModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "CreateCourse";
+    var pagedList = (IPagedList)ViewBag.course_list;
+    var list = (List<Enroll>)ViewBag.Enrolled;
+
+    var currentUserEmail = @ViewBag.UserEmail;
+
+}
+
+<body style="" class="CourseList-background">
+
+</body>
+
+<div id="placeHoderHere"></div>
+<div class="row">
+    @if (TempData["CourseCreated"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Course created Successfully ||</strong> A new Course has been created.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["CourseDeleted"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Course Deleted Successfully ||</strong> A Course has been deleted.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["CourseCouldNotBeCreate"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Course Cannot be Created</strong> There was a problem in Course creation.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["CourseEditedSuccessfully"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Course Modified Successfully : </strong>A Course was modified.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["EnrolledSuccessfully"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>@TempData["Candidate"]! </strong>Your Request has been submitted to the Admin for Approval.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="col container_img">
+        <div class="event_para rounded">
+            <center class="h1 bg-primary bg-opacity-50 ">Courses </center>
+            <p class="font-monospace text-capitalize">Lok Virsa festival is the largest cultural activity in Pakistan held in October every year. For the last two decades, this festival has attracted international artisans and performers from more than 20 countries around the world to perform</p>
+            @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Professor")))
+            {
+                <a class="m-3 btn btn-outline-light bg-primary link-light border" asp-action="CreateCourse" asp-controller="Dashboard">Create New Course</a>
+            }
+        </div>
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/Images for background/note1.jpg" class="d-block w-100" alt="..." style="height:25rem;">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/Images for background/note2.jpg" class="d-block w-100" alt="..." style="height:25rem;">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="w-100"></div>
+    <hr />
+    <div class="bg-dark m-0 rounded p-1 bg-opacity-75 text-center">
+        <label class="fw-bold fs-2 w-auto text-uppercase">New Courses</label>
+    </div>
+
+    <hr />
+    <div class="row overflow-auto" style="max-height:100vh">
+        @if (Model.Any() == false)
+        {
+            <center><label class="text-white fw-bold text-uppercase"> No Courses are available</label></center>
+        }
+        else
+        {
+
+
+            @foreach (var course in Model)
+            {
+                bool CourseFinded = false;
+                bool enmailMached = false;
+                var AppendList = new List<Enroll>();
+                var cid = course.id;
+                DateTime myDate = DateTime.Parse(course.EnrollmentStartDate);
+                DateTime myDate2 = DateTime.Parse(course.EnrollmentEndDate);
+                TimeSpan timeToEvent = myDate2.Subtract(myDate);
+                string RemainingTimeToStart = "";
+                bool WeHaveTime = false;
+                if (timeToEvent.Days >= 0)
+                {
+                    RemainingTimeToStart = string.Format("Days : {0}, Hours : {1}, Minutes : {2}",
+                    timeToEvent.Days, timeToEvent.Hours, timeToEvent.Minutes);
+                    WeHaveTime = true;
+                }
+
+                int id = course.id;
+                var eventImage = "/profile_pics/" + (course.CoursePicName ?? "qm.jpg");
+
+                <div class="row my-1 border-bottom bg-opacity-75 bg-black">
+
+                    <div class="col-2 p-1 my-auto text-center">
+                        <h6 class="text-info fw-bold text-center">Enrollment Date</h6>
+                        <hr>
+                        <strong> <label class="text-success">From : </label> <label class="text-muted d-inline">@course.EnrollmentStartDate </label> <label class="text-warning"> To </label> <label class="text-muted d-inline">@course.EnrollmentEndDate </label> </strong>
+                        <hr>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (WeHaveTime)
+                            {
+                                <div>
+                                    <label class="text-success fw-bold">Enrollment Ends After : </label>@RemainingTimeToStart
+                                </div>
+                                <hr>
+
+                                for (int i = 0; i < list.Count; i++)
+                                {
+                                    if (list[i].CourseId == course.id && list[i].CandidateEmail == currentUserEmail && list[i].EnrollInCourse == true)
+                                    {
+                                        AppendList.Add(list[i]);
+                                    }
+                                    if (list[i].CourseId == course.id && list[i].CandidateEmail == currentUserEmail && list[i].EnrollInCourse != true)
+                                    {
+                                        CourseFinded = true;
+                                    }
+
+                                }
+                                if (AppendList.Any())
+                                {
+                                    <a class="btn-outline-info btn disabled my-2">Enrolled</a>
+                                }
+                                else if (CourseFinded)
+                                {
+                                    <a class="btn-outline-info btn disabled my-2">Request Submitted</a>
+                                }
+                                else
+                                {
+                                    <button class="card-link btn btn-outline-info my-2" type="button" data-toggle="ajax-modal" data-target="#Enroll" data-url="@Url.Action($"Enroll/{cid}","Enrollments_And_Panels")">Enroll Now</button>
+                                }
+
+                            }
+                            else
+                            {
+                                <label class="text-warning">Enrollments Closed</label>
+                            }
+                        }
+                        else
+                        {
+                            <label><strong>Note:</strong>You need to Sign in to enroll in any Course</label>
+                        }
+
+                    </div>
+                    <div class="col-4 p-1">
+                        <img class="w-100" style="height:22rem;" src="@eventImage" />
+                    </div>
+
+                    @*        For Text
+            *@
+                    <div class="col-6 m-auto">
+                        <div class="w-100" style="">
+                            <div class="card-body">
+                                <div class="card-subtitle mb-2 text-body-secondary">
+                                    <h5 class="card-title d-flex fw-bold"><label class="text-muted me-2"> Title : </label> @course.CourseTitle</h5>
+                                    <h6 class="text-muted d-inline-flex me-3 fw-bold">Course No:</h6>@course.CourseNo
+                                    <br> <h6 class="text-muted d-inline-flex me-3 fw-bold">Duration :</h6>@course.CourseStartDate <label class="text-warning"> To </label> @course.CourseEndDate
+                                </div>
+
+                                <p class=""><h6 class="text-muted d-inline-flex me-3 fw-bold">Intoduction :</h6>@course.CourseShortDescription</p>
+                                <hr />
+
+                                <br>
+
+                                <div class="justify-content-between d-flex">
+
+                                    <a asp-action="CourseDetails" asp-controller="Dashboard" class="card-link btn btn-outline-success my-2" asp-route-id="@id">View Course Details</a> <br>
+                                    @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Professor")))
+                                    {
+                                        <button class="card-link btn btn-outline-info my-2" type="button" data-toggle="ajax-modal" data-target="#_EditCourse" data-url="@Url.Action($"EditCourse/{id}","Dashboard")">Edit</button>
+                                        <a href="#_DeleteEvent" data-bs-toggle="modal" data-bs-target="#_DeleteEvent" class="card-link btn btn-outline-danger my-2">Delete Course</a>
+                                    }
+                                    <form method="post" enctype="multipart/form-data" asp-controller="Dashboard" asp-action="DeleteCourse" asp-route-id="@course.id">
+
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="_DeleteEvent" tabindex="-1" aria-labelledby="DeleteEvent" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content overflow-scroll text-white bg-black bg-opacity-50">
+                                                    <div class="modal-header text-center">
+                                                        <h1 class="modal-title fs-5 fw-bold text-uppercase" id="DeleteEvent">Do you want to delete this Course</h1>
+                                                        <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+
+                                                    <input type="hidden" asp-for="@id" />
+
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        }
+    </div>
+    <center>
+
+        @Html.PagedListPager(pagedList,
+        page => Url.Action("CreateCourse","Dashboard",
+        new { page }),
+        new PagedListRenderOptions()
+        {
+        DisplayItemSliceAndTotal = true,
+        ItemSliceAndTotalPosition = ItemSliceAndTotalPosition.End,
+        MaximumPageNumbersToDisplay=3
+        })
+
+    </center>
+</div>
+

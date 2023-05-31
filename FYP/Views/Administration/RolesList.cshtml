@@ -43,7 +43,7 @@
 }
 else
 {
-    <div class="overflow-scroll p-3 d-flex" style="max-height:75vh;">
+    <div class="overflow-auto p-3 d-flex" style="max-height:75vh;">
 
         @foreach (var item in Model)
         {
@@ -51,7 +51,7 @@ else
 
                 <div class="card-body text-white bg-black bg-opacity-50">
 
-                    <button type="button" href="#_createrole" data-toggle="ajax-modal" data-target="#createrole" class="btn btn-outline-warning m-1 d-block" data-url=@Url.Action($"CreateRoles","Administration")>Add a New Role</button>
+                    <button type="button" href="#_createrole" data-toggle="ajax-modal" data-target="#createrole" class="m-auto btn btn-outline-warning m-1 d-block" data-url=@Url.Action($"CreateRoles","Administration")>Add a New Role</button>
 
                     <p class="card-text">
                         <label asp-for="@item.Id" class="text-success fw-bold d-block mx-2 text-uppercase"></label>

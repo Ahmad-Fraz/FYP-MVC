@@ -1,11 +1,15 @@
-﻿using DataBase;
+﻿using ClosedXML.Excel;
+using DataBase;
 using FYP.Models;
+using FYP.Models.Dashboard;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FYP.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdministrationController : Controller
     {
         int Addnotify = 1, RemNotify = 1;
@@ -29,6 +33,7 @@ namespace FYP.Controllers
             return View(roles);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateRoles()
         {
             return PartialView("CreateRoles");
@@ -61,7 +66,7 @@ namespace FYP.Controllers
             return View(createRoles);
         }
 
-
+        [Route("EditRole")]
         public async Task<IActionResult> EditRole(string? id, string? Add_notification, string? Remove_notification)
         {
             ViewBag.AddNotify = Add_notification;
@@ -89,6 +94,7 @@ namespace FYP.Controllers
         }
 
         [HttpPost]
+        [Route("EditRole")]
         public async Task<IActionResult> EditRole(EditRole editRole)
         {
 
@@ -215,11 +221,76 @@ namespace FYP.Controllers
         }
 
 
-
+        [Route("RolesList")]
         public IActionResult RolesList()
         {
             var roles = roleManager.Roles.ToList();
             return View(roles);
+        }
+
+        [Route("AdminPage")]
+        public IActionResult AdminPage()
+        {
+            return View();
+        }
+
+        [Route("EnrolledStudents")]
+        public IActionResult EnrolledStudentsList(int? id)
+        {
+            var enrolls = dBase.Enroll.Where(x => x.EnrollInCourse == true).ToList();
+
+            var list = enrolls.Where(x => x.CourseId == id).ToList();
+
+            return View(list);
+        }
+        [Route("DeleteEnrollmentAsync")]
+        public async Task<IActionResult> DeleteEnrollmentAsync(int? id)
+        {
+            var result =await dBase.Enroll.FindAsync(id);
+            dBase.Enroll.Remove(result);
+            await dBase.SaveChangesAsync();
+            TempData["EnrollmentCanceled"] = true;
+            return RedirectToAction("EnrolledStudentsList", new {id = id});
+        }
+
+        public IActionResult GenerateExcel()
+        {
+            var list = dBase.ContactUs.ToList();
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("UserRequests");
+                var currentrow = 1;
+                #region Header
+                worksheet.Cell(currentrow, 1).Value = "Request Id";
+                worksheet.Cell(currentrow, 2).Value = "Name";
+                worksheet.Cell(currentrow, 3).Value = "Email";
+                worksheet.Cell(currentrow, 4).Value = "Subject";
+                worksheet.Cell(currentrow, 5).Value = "Description";
+                #endregion
+
+                #region Body
+                foreach (var contactForm in list)
+                {
+                    currentrow++;
+                    worksheet.Cell(currentrow, 1).Value = contactForm.id;
+                    worksheet.Cell(currentrow, 2).Value = contactForm.Name;
+                    worksheet.Cell(currentrow, 3).Value = contactForm.Email;
+                    worksheet.Cell(currentrow, 4).Value = contactForm.Subject;
+                    worksheet.Cell(currentrow, 5).Value = contactForm.Description;
+                }
+
+                #endregion
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(
+                        content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "UserRequests.xlsx"
+                        );
+                }
+            }
         }
     }
 }

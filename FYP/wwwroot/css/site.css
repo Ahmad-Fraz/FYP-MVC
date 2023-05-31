@@ -139,6 +139,11 @@ input[type=email]::-webkit-input-placeholder {
     background-size: cover;
     background-attachment: fixed;
 }
+.onlineSupport-background {
+    background-image: url('../Images for background/helpdeskImage.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
 
 .home-background {
     background-image: url('../Images for background/home.jpg');
@@ -298,6 +303,32 @@ input[type=email]::-webkit-input-placeholder {
     color: white;
 }
 
+
+.AccessDenied-background {
+    background-image: url('../Images for background/NoAccess.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+
+.createCourse-background {
+    background-image: url('../Images for background/course2.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+.CourseList-background {
+    background-image: url('../Images for background/note3.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+.CourseDetails-background {
+    background-image: url('../Images for background/note2.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
 /* width */
 ::-webkit-scrollbar {
     width: 5px;

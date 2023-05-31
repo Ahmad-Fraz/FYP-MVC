@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\VS Projects\\FYP\\FYP.csproj": {}
+    "D:\\FYP\\FYP\\FYP\\FYP.csproj": {}
   },
   "projects": {
-    "D:\\VS Projects\\FYP\\FYP.csproj": {
+    "D:\\FYP\\FYP\\FYP\\FYP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\VS Projects\\FYP\\FYP.csproj",
+        "projectUniqueName": "D:\\FYP\\FYP\\FYP\\FYP.csproj",
         "projectName": "FYP",
-        "projectPath": "D:\\VS Projects\\FYP\\FYP.csproj",
+        "projectPath": "D:\\FYP\\FYP\\FYP\\FYP.csproj",
         "packagesPath": "C:\\Users\\Ahmad\\.nuget\\packages\\",
-        "outputPath": "D:\\VS Projects\\FYP\\obj\\",
+        "outputPath": "D:\\FYP\\FYP\\FYP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ahmad\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.101.0, )"
+            },
             "Mailkit": {
               "target": "Package",
               "version": "[4.0.0, )"

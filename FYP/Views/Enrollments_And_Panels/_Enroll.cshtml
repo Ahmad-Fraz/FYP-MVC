@@ -1,0 +1,32 @@
+﻿@model FYP.Models.Dashboard.Enroll
+@{
+
+}
+@*Creating New Event*@
+<form method="post" enctype="multipart/form-data" asp-controller="Enrollments_And_Panels" asp-action="Enroll">
+    <div class="" id="CreateEvent">
+
+        <!-- Modal -->
+        <div class="modal fade" id="Enroll" tabindex="-1" aria-labelledby="_Enroll" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content  text-white bg-black bg-opacity-75">
+                    <div class="modal-header text-center">
+                        <h1 class="modal-title fs-5 fw-bold text-uppercase" id="Enroll">Do You Want To Enroll in this Course?</h1>
+                        <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>                  
+
+                    <div class="modal-body overflow-auto" style="max-height:50vh;">
+                                   
+                        <input type="hidden" asp-for="@Model.EnrollInCourse" value="false"/>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <button type="submit" class="btn btn-primary hover">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

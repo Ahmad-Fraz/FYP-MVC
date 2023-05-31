@@ -7,8 +7,15 @@
 
 </body>
 
+@if (TempData["dataAdded"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Request Submitted Successfully.</strong>Your Request has been submitted.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
-<form method="post">
+<form method="post" asp-action="ContactUs" asp-controller="Home">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 

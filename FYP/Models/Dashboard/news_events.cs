@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -13,13 +14,13 @@ namespace Models.Dashboard
         [Key]
         public int id { get; set; }
 
-        [Required(ErrorMessage ="Please provide the event date."), Display(Name = "Event Date")]
+        [Display(Name = "Event Date")]
         public string? Date { get; set; }
 
-        [Required(ErrorMessage = "Please provide the event Start time."),Display(Name = "Event Start Time")]
+        [Display(Name = "Event Start Time")]
         public string? FromTime { get; set; }
 
-        [Required(ErrorMessage = "Please provide the event End time."), Display(Name = "Event End Time")]
+        [Display(Name = "Event End Time")]
         public string? ToTime { get; set; }
 
         [Required(ErrorMessage = "Please provide the event Occuring Locations.")]
@@ -37,7 +38,18 @@ namespace Models.Dashboard
 
         public string? Event_Image_Name { get; set; }
 
-        [NotMapped]
+
+        [Required(ErrorMessage = "Please provide the event Start time."),Display(Name = "Event Start Time")]
+        public DateTime EventFromTime { get; set; }
+
+        [Required(ErrorMessage = "Please provide the event End time."),Display(Name = "Event End Time")]
+        public DateTime EventToTime { get; set; }
+
+        [Required(ErrorMessage = "Please provide the event date."),Display(Name = "Event Date :")]
+        public DateTime EventDate { get; set; }
+
+
+        [NotMapped,DisplayName("Event Image")]
         public IFormFile? FormFile { get; set; }
 
     }

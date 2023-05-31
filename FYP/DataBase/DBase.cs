@@ -19,7 +19,10 @@ namespace DataBase
         public DbSet<Assignments> Assignments { get; set; }
         public DbSet<Notes> MyNotes { get; set; }
         public DbSet<Quizz> Quizzs { get; set; }
-
+        public DbSet<FYP.Models.Dashboard.Discussion> Discussion { get; set; } = default!;
+        public DbSet<FYP.Models.Dashboard.Answer> Answers { get; set; } 
+        public DbSet<FYP.Models.Dashboard.CourseList> Course { get; set; }
+        public DbSet<Enroll> Enroll {  get; set; }
     }
 
 

@@ -23,7 +23,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
-@if (TempData["quizDeleted"]!= null)
+@if (TempData["quizDeleted"] != null)
 {
     <div class="alert alert-danger alert-dismissible fade show" role="alert" style="z-index:1">
         <strong>Quiz Deleted Successfully||</strong> A Quizz was Deleted.
@@ -33,12 +33,13 @@
 
 <div class="row">
     <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded" style="height:85vh;">
-
-        <div class="text-center ">
-            <a href="#AddQuizz" data-bs-toggle="modal" data-bs-target="#_AddQuizz" class="btn hover btn-light col-3 mx-1">Add a new Quizz</a>
-        </div>
-        <hr />
-
+        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Professor")))
+        {
+            <div class="text-center ">
+                <a href="#AddQuizz" data-bs-toggle="modal" data-bs-target="#_AddQuizz" class="btn hover btn-light col-3 mx-1">Add a new Quizz</a>
+            </div>
+            <hr />
+        }
         <center>
             <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Quizzes List</h1>
         </center>
@@ -61,14 +62,14 @@
         }
         else
         {
-            <div class="overflow-scroll p-3" style="height:54vh;">
+            <div class="overflow-auto p-3" style="height:54vh;">
                 @foreach (var item in Model)
                 {
 
 
                     <center>
                         <div class="row mb-2 w-100">
-                            
+
                             <div class="border bg-black bg-opacity-50 text-white col-8 row m-0 flex-grow-1">
 
                                 <div class="col-4 text-center">
@@ -77,12 +78,12 @@
                                 </div>
 
                                 <div class="col-4 text-center border-start">
-                                    <label asp-for="@item.UploadedBy" class="text-info fw-bold d-block mx-2 text-uppercase"></label> 
+                                    <label asp-for="@item.UploadedBy" class="text-info fw-bold d-block mx-2 text-uppercase"></label>
                                     @Html.DisplayFor(x=>@item.UploadedBy)
                                 </div>
 
                                 <div class="col-4 text-center border-start">
-                                    <label asp-for="@item.CreateDate" class="text-info fw-bold d-block mx-2 text-uppercase"></label> 
+                                    <label asp-for="@item.CreateDate" class="text-info fw-bold d-block mx-2 text-uppercase"></label>
                                     @Html.DisplayFor(x=>@item.CreateDate)
                                 </div>
 
@@ -90,12 +91,36 @@
                                 <hr>
                                 <div class="d-flex justify-content-center">
                                     <a asp-action="OpenQuiz" asp-controller="Dashboard" class="btn btn-outline-success m-1" asp-route-id="@item.id">Open Quizz</a>
-                                    <a asp-action="DeleteQuiz" asp-controller="Dashboard" class="btn btn-outline-danger m-1" asp-route-id="@item.id">Delete</a>
+                                    <a asp-action="DeleteQuiz" asp-controller="Dashboard" class="btn btn-outline-danger m-1">Delete</a>
+                                    <a href="#DeleteQuizz" data-bs-toggle="modal" data-bs-target="#_DeleteQuizz" class="btn btn-outline-danger m-1">Delete Quizz</a>
 
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
                     </center>
+
+                    <form method="post" enctype="multipart/form-data" asp-action="DeleteQuiz" asp-controller="Dashboard" asp-route-id="@item.id">
+                        <div class="" id="DeleteQuizz">
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="_DeleteQuizz" tabindex="-1" aria-labelledby="_DeleteQuizz" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content text-white bg-black">
+                                        <div class="modal-header text-center">
+                                            <h1 class="modal-title fs-5 fw-bold text-uppercase" id="CreateEvent">Do you want to Delete The Quizz</h1>
+                                            <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-danger">Delete Quizz</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
                     <hr />
                 }
             </div>
@@ -112,7 +137,7 @@
         <!-- Modal -->
         <div class="modal fade" id="_AddQuizz" tabindex="-1" aria-labelledby="_AddQuizz" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content text-white bg-black bg-opacity-50">
+                <div class="modal-content text-white bg-black">
                     <div class="modal-header text-center">
                         <h1 class="modal-title fs-5 fw-bold text-uppercase" id="CreateEvent">Add a New Quizz</h1>
                         <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
@@ -126,12 +151,12 @@
                                 You need to create a new google form.
                                 <a href="https://docs.google.com/forms/u/0/?tgif=d" target="_blank" class="link-info">Go to Google Form</a>
                                 <li>Click Save button at top right corner of Google Form.</li>
-                                    <li>A new popup will appear.Click embed code button</li>    
-                                    <li>Copy the embeded html</li>
-                                    <li>Paste it below</li>
-                                </ul>
+                                <li>A new popup will appear.Click embed code button</li>
+                                <li>Copy the embeded html</li>
+                                <li>Paste it below</li>
+                            </ul>
 
-                        
+
                         </div>
                         <div class="mb-3 col">
                             <label asp-for="@quizz.QuizzName" class="form-label"></label>
@@ -158,3 +183,9 @@
     </div>
 </form>
 
+<style>
+    .modal-backdrop {
+        display: none;
+    }
+
+</style>

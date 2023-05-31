@@ -1,0 +1,141 @@
+﻿@using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
+@using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Web.Common
+@model IEnumerable<FYP.Models.Dashboard.Enroll>
+@inject DataBase.DBase dbase
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Links";
+    var pagedList = (IPagedList)ViewBag.EnrollList;
+    var courseList = dbase.Course.ToList();
+}
+<body style="" class="links-background">
+
+</body>
+
+@if (TempData["requestapproved"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="z-index:1">
+        <strong>Request Approved Successfully ||</strong> An enroll request was approved.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["linkdeleted"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="z-index:1">
+        <strong>Link deleted Successfully ||</strong> A link has been removed.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<div class="row">
+    <div class="col-8 bg-black bg-opacity-75 signin-pageContent p-4 rounded" style="height:85vh;">
+
+
+        <center>
+            <h1 class="text-white bg-white bg-opacity-10 text-white rounded">Enroll to Courses Requests List</h1>
+        </center>
+        <center>
+
+            @Html.PagedListPager(pagedList,
+            page => Url.Action("EnrollRequests","Enrollments_And_Panels",
+            new { page }),
+            new PagedListRenderOptions()
+            {
+            DisplayItemSliceAndTotal = true,
+            ItemSliceAndTotalPosition = ItemSliceAndTotalPosition.End,
+            MaximumPageNumbersToDisplay=3
+            })
+
+        </center>
+        @if (Model?.Any() == false)
+        {
+            <center><label class="text-white fw-bold text-uppercase"> No Requests To Approve</label></center>
+        }
+        else
+        {
+            <div class="overflow-auto p-3" style="height:54vh;">
+                @foreach (var item in Model)
+                {
+
+                    var course = courseList.Where(x => x.id == item.CourseId).FirstOrDefault();
+                    <center>
+                        <div class="row mb-2 w-100">
+
+                            <div class="col-6 border bg-black bg-opacity-50 text-white row m-0 flex-grow-1">
+
+                                <div class="d-flex m-1">
+                                    <label asp-for="@item.CandidateName" class="text-success fw-bold d-block mx-2 text-uppercase"></label> :
+                                    @Html.DisplayFor(x=>@item.CandidateName)
+                                </div>
+
+                                <div class="d-flex m-1">
+                                    <label asp-for="@item.CandidateEmail" class="text-info fw-bold d-block mx-2 text-uppercase"></label>
+                                    <input asp-for="@item.CandidateEmail" class="form-control-sm fw-bold filt" disabled />
+                                </div>
+
+                                <div class="w-100"></div>
+                                <hr>
+
+                                <strong class="d-block text-warning">Course To Be Enrolled In </strong>
+                                <div class="d-flex">
+                                    <div class="col-6 border-end">
+                                        <label asp-for="@course.CourseNo" class="text-success fw-bold d-block text-uppercase"></label>
+                                        @Html.DisplayFor(x=>@course.CourseNo)
+                                    </div>
+                                    <div class="col-6">
+                                        <label asp-for="@course.CourseTitle" class="text-info fw-bold d-block text-uppercase"></label>
+                                        @Html.DisplayFor(x=>@course.CourseTitle)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 border m-0 row">
+                                <div class="my-auto">
+                                    <form asp-action="ApproveTheRequest" asp-controller="Enrollments_And_Panels" asp-route-id="@item.id">
+                                        <input type="submit" class="btn btn-outline-info" value="Approve the Request" />
+                                    </form>
+                                    <hr>
+                                    <a href="#DeleteLink" data-bs-toggle="modal" data-bs-target="#_DeleteLink" class="btn btn-outline-danger m-1">Delete the Request</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                    <form method="post" enctype="multipart/form-data" asp-action="DeleteLink" asp-controller="Dashboard" asp-route-id="@item.id">
+                        <div class="" id="DeleteLink">
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="_DeleteLink" tabindex="-1" aria-labelledby="_DeleteLink" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content text-white bg-black">
+                                        <div class="modal-header text-center">
+                                            <h1 class="modal-title fs-5 fw-bold text-uppercase" id="CreateEvent">Do you want to Delete This Link</h1>
+                                            <button type="button" class="btn-close filt " data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-danger">Delete Link</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <hr />
+                }
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<style>
+    .modal-backdrop {
+        display: none;
+    }
+
+</style>
